@@ -1,10 +1,15 @@
 import React, { Fragment } from 'react';
+import {
+  RichTextProps,
+  NodeRendererType,
+  ElementNode,
+  Node,
+  isElement,
+  isText,
+} from '@graphcms/rich-text-types';
 
 import { defaultElements, elementKeys } from './defaultElements';
 import { RenderText } from './RenderText';
-import { RichTextProps, NodeRendererType, ElementNode, Node } from './types';
-import { isElement } from './util/isElement';
-import { isText } from './util/isText';
 
 function RenderNode({
   node,

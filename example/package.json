@@ -1,8 +1,8 @@
 {
-  "name": "example",
+  "name": "@graphcms/example",
   "version": "1.0.0",
   "main": "index.js",
-  "private": "true",
+  "private": true,
   "license": "MIT",
   "scripts": {
     "start": "parcel index.html",
@@ -13,6 +13,7 @@
     "react-app-polyfill": "^1.0.0"
   },
   "alias": {
+    "@graphcms/rich-text-react-renderer": "../packages/react",
     "react": "../node_modules/react",
     "react-dom": "../node_modules/react-dom/profiling",
     "scheduler/tracing": "../node_modules/scheduler/tracing-profiling"

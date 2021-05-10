@@ -1,7 +1,7 @@
 import 'react-app-polyfill/ie11';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { RichText } from '../.';
+import { RichText } from '@graphcms/rich-text-react-renderer';
 
 import { content } from './content';
 
@@ -11,7 +11,7 @@ const App = () => {
       <RichText
         children={content.children}
         renderers={{
-          h1: ({ children }) => <h1 className={`abc`}>{children}</h1>,
+          h1: ({ children }) => <h1 className={`wfafsa`}>{children}</h1>,
           blockquote: ({ children }) => (
             <blockquote
               style={{

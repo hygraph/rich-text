@@ -1,7 +1,6 @@
 import React from 'react';
 import escapeHtml from 'escape-html';
-
-import { VideoProps } from '../types';
+import { VideoProps } from '@graphcms/rich-text-types';
 
 export function Video({ src, width, height, title }: Partial<VideoProps>) {
   return (

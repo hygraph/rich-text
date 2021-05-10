@@ -1,0 +1,49 @@
+{
+  "name": "@graphcms/rich-text-react-renderer",
+  "description": "GraphCMS Rich Text React renderer",
+  "version": "0.1.0",
+  "author": "João Pedro Schmitz <hey@joaopedro.dev> (https://joaopedro.dev)",
+  "license": "MIT",
+  "scripts": {
+    "start": "tsdx watch --tsconfig tsconfig.build.json --verbose --noClean",
+    "build": "tsdx build --tsconfig tsconfig.build.json",
+    "test": "tsdx test --passWithNoTests",
+    "lint": "tsdx lint",
+    "prepublish": "npm run build"
+  },
+  "dependencies": {
+    "escape-html": "^1.0.3"
+  },
+  "devDependencies": {
+    "@graphcms/rich-text-types": "^0.1.0",
+    "@types/escape-html": "^1.0.1"
+  },
+  "peerDependencies": {
+    "react": ">=16",
+    "react-dom": ">=16"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "react",
+    "rich-text",
+    "renderer",
+    "graphcms"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GraphCMS/rich-text-renderer.git",
+    "directory": "packages/react"
+  },
+  "main": "dist/index.js",
+  "module": "dist/rich-text-react-renderer.esm.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "README.md",
+    "dist"
+  ],
+  "engines": {
+    "node": ">=10"
+  }
+}

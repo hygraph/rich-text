@@ -28,7 +28,7 @@ export interface Element {
   [key: string]: unknown;
 }
 
-type ImageMimeTypes =
+export type ImageMimeTypes =
   | 'image/webp'
   | 'image/jpeg'
   | 'image/bmp'
@@ -122,6 +122,7 @@ export interface DefaultElementProps {
 export interface ClassRendererProps
   extends DefaultElementProps,
     Partial<ClassProps> {}
+
 export interface LinkRendererProps
   extends DefaultElementProps,
     Partial<LinkProps> {}
@@ -132,7 +133,6 @@ type ClassNodeRenderer = (props: ClassRendererProps) => JSX.Element;
 type ImageNodeRenderer = (props: Partial<ImageProps>) => JSX.Element;
 type VideoNodeRenderer = (props: Partial<VideoProps>) => JSX.Element;
 type IFrameNodeRenderer = (props: Partial<IFrameProps>) => JSX.Element;
-// type TextNodeRenderer = ({ text: string }) => JSX.Element;
 
 export interface NodeRendererType {
   a?: LinkNodeRenderer;
@@ -161,3 +161,6 @@ export interface NodeRendererType {
   underlined?: DefaultNodeRenderer;
   code?: DefaultNodeRenderer;
 }
+
+export * from './util/isElement';
+export * from './util/isText';

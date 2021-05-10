@@ -1,7 +1,6 @@
 import React from 'react';
 import escapeHtml from 'escape-html';
-
-import { IFrameProps } from '../types';
+import { IFrameProps } from '@graphcms/rich-text-types';
 
 export function IFrame({ url }: Partial<IFrameProps>) {
   return (

@@ -1,7 +1,6 @@
 import React from 'react';
 import escapeHtml from 'escape-html';
-
-import { ImageProps } from '../types';
+import { ImageProps } from '@graphcms/rich-text-types';
 
 export function Image({
   src,

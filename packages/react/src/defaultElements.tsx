@@ -1,6 +1,5 @@
 import React from 'react';
-
-import { NodeRendererType } from './types';
+import { NodeRendererType } from '@graphcms/rich-text-types';
 
 import { IFrame, Image, Video, Class, Link } from './elements';
 

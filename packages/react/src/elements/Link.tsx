@@ -1,7 +1,6 @@
 import React from 'react';
 import escapeHtml from 'escape-html';
-
-import { LinkElement, LinkRendererProps } from '../types';
+import { LinkElement, LinkRendererProps } from '@graphcms/rich-text-types';
 
 export function Link({ children, ...rest }: LinkRendererProps) {
   const { href, rel, id, title, openInNewTab, className } = rest;

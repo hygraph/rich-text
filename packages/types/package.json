@@ -1,0 +1,38 @@
+{
+  "name": "@graphcms/rich-text-types",
+  "description": "TypeScript definitions for the Rich Text",
+  "version": "0.1.0",
+  "author": "João Pedro Schmitz <hey@joaopedro.dev> (https://joaopedro.dev)",
+  "license": "MIT",
+  "scripts": {
+    "start": "tsdx watch --tsconfig tsconfig.build.json --verbose --noClean",
+    "build": "tsdx build --tsconfig tsconfig.build.json",
+    "test": "tsdx test --passWithNoTests",
+    "lint": "tsdx lint",
+    "prepublish": "npm run build"
+  },
+  "dependencies": {
+    "tslib": "^2.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "rich-text",
+    "types",
+    "typescript",
+    "graphcms"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GraphCMS/rich-text-renderer.git",
+    "directory": "packages/types"
+  },
+  "main": "dist/index.js",
+  "module": "dist/rich-text-types.esm.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "README.md",
+    "dist"
+  ]
+}

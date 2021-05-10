@@ -1,8 +1,8 @@
 import React, { Fragment, ReactNode } from 'react';
+import { NodeRendererType, Text } from '@graphcms/rich-text-types';
 import escapeHtml from 'escape-html';
 
 import { elementKeys } from './defaultElements';
-import { NodeRendererType, Text } from './types';
 
 export function RenderText({
   textNode,
