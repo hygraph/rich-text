@@ -51,7 +51,7 @@ function RenderElement({
   if (NodeRenderer) {
     return (
       <NodeRenderer {...rest}>
-        <RichText children={children as ElementNode[]} renderers={renderers} />
+        <RichText content={children as ElementNode[]} renderers={renderers} />
       </NodeRenderer>
     );
   }
@@ -59,15 +59,21 @@ function RenderElement({
   return <Fragment />;
 }
 
-export function RichText({ children, renderers: resolvers }: RichTextProps) {
+export function RichText({ content, renderers: resolvers }: RichTextProps) {
   const renderers: NodeRendererType = {
     ...defaultElements,
     ...resolvers,
   };
 
+  if (__DEV__ && !content) {
+    console.error(`[@graphcms/rich-text-react-renderer]: Content is required.`);
+
+    return <Fragment />;
+  }
+
   return (
     <>
-      {children.map((node, index) => {
+      {content.map((node, index) => {
         return <RenderNode node={node} renderers={renderers} key={index} />;
       })}
     </>

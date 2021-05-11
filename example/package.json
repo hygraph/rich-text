@@ -13,6 +13,7 @@
     "react-app-polyfill": "^1.0.0"
   },
   "alias": {
+    "@graphcms/rich-text-types": "../packages/types",
     "@graphcms/rich-text-react-renderer": "../packages/react",
     "react": "../node_modules/react",
     "react-dom": "../node_modules/react-dom/profiling",

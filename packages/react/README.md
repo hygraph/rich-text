@@ -16,29 +16,29 @@ yarn add @graphcms/rich-text-react-renderer
 
 ## 🔥 Usage/Examples
 
+To render the content on your application, you'll need to provide the array of elements returned from the GraphCMS API to the `RichText` component.
+
 ```tsx
 import { RichText } from '@graphcms/rich-text-react-renderer';
 
-const content = {
-  children: [
-    {
-      type: 'paragraph',
-      children: [
-        {
-          bold: true,
-          text: 'Hello World!',
-        },
-      ],
-    },
-  ],
-};
+const content = [
+  {
+    type: 'paragraph',
+    children: [
+      {
+        bold: true,
+        text: 'Hello World!',
+      },
+    ],
+  },
+];
 
 const App = () => {
-  return <RichText children={content.children} />;
+  return <RichText content={content} />;
 };
 ```
 
-This will render:
+The content from the example above will render:
 
 ```html
 <p>
@@ -48,20 +48,20 @@ This will render:
 
 ### Custom elements
 
-By default, the elements won't have any styling, despite the `IFrame`, which we designed to adapt automatically on a mobile device. But if you have, for example, a design system and wants to use your own components with styling, you can pass a `renderers` prop to the `RichText` component. Let's see an example:
+By default, the elements won't have any styling, despite the `IFrame`, which we designed to be responsive. But if you have, for example, a design system and wants to use your own components with styling, you can pass a `renderers` prop to the `RichText` component. Let's see an example:
 
 ```tsx
 import { RichText } from '@graphcms/rich-text-react-renderer';
 
 /**
- * const content = { ... }
+ * const content = [ ... ]
  */
 
 const App = () => {
   return (
     <div>
       <RichText
-        children={content.children}
+        children={content}
         renderers={{
           h1: ({ children }) => <h1 className="text-white">{children}</h1>,
           bold: ({ children }) => <strong>{children}</strong>,

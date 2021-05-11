@@ -9,7 +9,7 @@ const App = () => {
   return (
     <div>
       <RichText
-        children={content.children}
+        content={content}
         renderers={{
           h1: ({ children }) => <h1 className={`wfafsa`}>{children}</h1>,
           blockquote: ({ children }) => (
