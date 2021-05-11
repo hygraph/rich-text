@@ -1,0 +1,87 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`@graphcms/rich-text-react-renderer renders iframe 1`] = `
+<div>
+  <div
+    style="position: relative; overflow: hidden; width: 100%; padding-top: 56.25%;"
+  >
+    <iframe
+      allow="fullscreen"
+      frameborder="0"
+      loading="lazy"
+      referrerpolicy="no-referrer"
+      src="https://www.youtube.com/watch?v=Ylmd737tw5w"
+      style="position: absolute; top: 0px; bottom: 0px; right: 0px; left: 0px; width: 100%; height: 100%;"
+    />
+  </div>
+</div>
+`;
+
+exports[`@graphcms/rich-text-react-renderer renders inline content 1`] = `
+<div>
+  <p>
+    <b>
+      Hey, 
+    </b>
+    <i>
+      how
+    </i>
+    <u>
+      are
+    </u>
+    <code>
+      you?
+    </code>
+  </p>
+</div>
+`;
+
+exports[`@graphcms/rich-text-react-renderer renders inline content with custom renderers 1`] = `
+<div>
+  <p>
+    <strong>
+      Hey, 
+    </strong>
+    <i
+      class="italic-class"
+      style="color: red;"
+    >
+      how
+    </i>
+    <u
+      role="button"
+    >
+      are
+       test
+    </u>
+    <code
+      style="font-style: italic;"
+    >
+      you?
+    </code>
+  </p>
+</div>
+`;
+
+exports[`@graphcms/rich-text-react-renderer renders video 1`] = `
+<div>
+  <video
+    controls=""
+    height="400"
+    src="https://media.graphcms.com/oWd7OYr5Q5KGRJW9ujRO"
+    title="file_example_MP4_480_1_5MG.m4v"
+    width="400"
+  >
+    <p>
+      Your browser doesn't support HTML5 video. Here is a
+       
+      <a
+        href="https://media.graphcms.com/oWd7OYr5Q5KGRJW9ujRO"
+      >
+        link to the video
+      </a>
+       instead.
+    </p>
+  </video>
+</div>
+`;

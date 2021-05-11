@@ -32,10 +32,6 @@ const App = () => {
               {children}
             </a>
           ),
-          img: (props) => {
-            console.log(props);
-            return <img src="https://github.com/jpedroschmitz.png" />;
-          },
           h2: ({ children }) => (
             <h2 style={{ color: 'darkcyan' }}>{children}</h2>
           ),

@@ -48,6 +48,27 @@ export const content: RichTextContent = [
     type: 'paragraph',
     children: [
       {
+        text: 'Hey, ',
+        bold: true,
+      },
+      {
+        text: 'how',
+        italic: true,
+      },
+      {
+        text: 'are',
+        underline: true,
+      },
+      {
+        text: 'you?',
+        code: true,
+      },
+    ],
+  },
+  {
+    type: 'paragraph',
+    children: [
+      {
         bold: true,
         text: 'Teste 2\\',
       },
