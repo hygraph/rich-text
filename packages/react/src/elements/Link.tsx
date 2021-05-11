@@ -16,7 +16,7 @@ export function Link({ children, ...rest }: LinkRendererProps) {
   if (openInNewTab) props.target = '_blank';
 
   return (
-    <a href={escapeHtml(href)} {...props} style={{ color: 'red' }}>
+    <a href={escapeHtml(href)} {...props}>
       {children}
     </a>
   );
