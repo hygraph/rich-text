@@ -1,6 +1,6 @@
 {
   "name": "@graphcms/rich-text-types",
-  "description": "TypeScript definitions for the Rich Text",
+  "description": "TypeScript definitions for the GraphCMS Rich Text field type.",
   "version": "0.1.0",
   "author": "João Pedro Schmitz <hey@joaopedro.dev> (https://joaopedro.dev)",
   "license": "MIT",
