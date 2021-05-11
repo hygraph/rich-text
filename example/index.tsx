@@ -32,7 +32,7 @@ const App = () => {
               {children}
             </a>
           ),
-          img: props => {
+          img: (props) => {
             console.log(props);
             return <img src="https://github.com/jpedroschmitz.png" />;
           },
