@@ -39,7 +39,7 @@ export interface Text {
   text: string;
   bold?: boolean;
   italic?: boolean;
-  underlined?: boolean;
+  underline?: boolean;
   code?: boolean;
 }
 
@@ -160,7 +160,7 @@ export interface NodeRendererType {
   blockquote?: DefaultNodeRenderer;
   bold?: DefaultNodeRenderer;
   italic?: DefaultNodeRenderer;
-  underlined?: DefaultNodeRenderer;
+  underline?: DefaultNodeRenderer;
   code?: DefaultNodeRenderer;
 }
 

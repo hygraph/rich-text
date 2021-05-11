@@ -27,7 +27,7 @@ export const defaultElements: Required<NodeRendererType> = {
   table_cell: ({ children }) => <td>{children}</td>,
   bold: ({ children }) => <b>{children}</b>,
   italic: ({ children }) => <i>{children}</i>,
-  underlined: ({ children }) => <u>{children}</u>,
+  underline: ({ children }) => <u>{children}</u>,
   code: ({ children }) => <code>{children}</code>,
 };
 
@@ -56,6 +56,6 @@ export const elementKeys: { [key: string]: string } = {
   paragraph: 'p',
   bold: 'bold',
   italic: 'italic',
-  underlined: 'underlined',
+  underline: 'underline',
   code: 'code',
 };

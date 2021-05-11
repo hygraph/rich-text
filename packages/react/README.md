@@ -137,7 +137,7 @@ Below you can check the full list of elements you can customize, alongside the p
   - `children`: ReactNode;
 - `italic`
   - `children`: ReactNode;
-- `underlined`
+- `underline`
   - `children`: ReactNode;
 - `code`
   - `children`: ReactNode;
