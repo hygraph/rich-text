@@ -1,6 +1,5 @@
 import React, { Fragment, ReactNode } from 'react';
 import { NodeRendererType, Text } from '@graphcms/rich-text-types';
-import escapeHtml from 'escape-html';
 
 import { elementKeys } from './defaultElements';
 
@@ -21,7 +20,7 @@ export function RenderText({
     renderers?.[elementKeys['underline'] as keyof NodeRendererType];
   const Code = renderers?.[elementKeys['code'] as keyof NodeRendererType];
 
-  let element: ReactNode = escapeHtml(text);
+  let element: ReactNode = text;
 
   if (bold && Bold) {
     element = <Bold>{element}</Bold>;
