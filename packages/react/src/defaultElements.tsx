@@ -29,6 +29,7 @@ export const defaultElements: Required<NodeRendererType> = {
   italic: ({ children }) => <i>{children}</i>,
   underline: ({ children }) => <u>{children}</u>,
   code: ({ children }) => <code>{children}</code>,
+  list_item_child: ({ children }) => <>{children}</>,
 };
 
 export const elementKeys: { [key: string]: string } = {
@@ -46,7 +47,7 @@ export const elementKeys: { [key: string]: string } = {
   'bulleted-list': 'ul',
   'numbered-list': 'ol',
   'list-item': 'li',
-  'list-item-child': '',
+  'list-item-child': 'list_item_child',
   table: 'table',
   table_head: 'table_head',
   table_body: 'table_body',
