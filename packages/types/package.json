@@ -33,6 +33,7 @@
   "types": "dist/index.d.ts",
   "files": [
     "README.md",
+    "LICENSE.md",
     "dist"
   ]
 }
