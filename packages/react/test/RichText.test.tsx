@@ -268,4 +268,14 @@ describe('@graphcms/rich-text-react-renderer', () => {
       </div>
     `);
   });
+
+  it('should render HTML and JSX tags correctly', () => {
+    const content: RichTextContent = [
+      { type: 'paragraph', children: [{ text: '<Test />', code: true }] },
+    ];
+
+    const { container } = render(<RichText content={content} />);
+
+    expect(container).toHaveTextContent('<Test />');
+  });
 });
