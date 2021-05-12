@@ -152,6 +152,7 @@ export interface NodeRendererType {
   ul?: DefaultNodeRenderer;
   ol?: DefaultNodeRenderer;
   li?: DefaultNodeRenderer;
+  list_item_child?: DefaultNodeRenderer;
   table?: DefaultNodeRenderer;
   table_head?: DefaultNodeRenderer;
   table_body?: DefaultNodeRenderer;

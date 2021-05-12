@@ -3,92 +3,14 @@ import { render } from '@testing-library/react';
 import { RichText } from '@graphcms/rich-text-react-renderer';
 import { RichTextContent } from '@graphcms/rich-text-types';
 
-const content: RichTextContent = [
-  {
-    type: 'paragraph',
-    children: [
-      {
-        bold: true,
-        text: 'Hello World!',
-      },
-    ],
-  },
-];
-
-const inlineContent: RichTextContent = [
-  {
-    type: 'paragraph',
-    children: [
-      {
-        text: 'Hey, ',
-        bold: true,
-      },
-      {
-        text: 'how',
-        italic: true,
-      },
-      {
-        text: 'are',
-        underline: true,
-      },
-      {
-        text: 'you?',
-        code: true,
-      },
-    ],
-  },
-];
-
-const iframeContent: RichTextContent = [
-  {
-    type: 'class',
-    children: [
-      {
-        type: 'paragraph',
-        children: [
-          {
-            text: 'wow',
-          },
-        ],
-      },
-    ],
-    className: 'test',
-  },
-];
-
-const imageContent: RichTextContent = [
-  {
-    src: 'https://media.graphcms.com/output=format:webp/resize=,width:667,height:1000/8xrjYm4CR721mAZ1YAoy',
-    type: 'image',
-    title: 'photo-1564631027894-5bdb17618445.jpg',
-    width: 667,
-    handle: '8xrjYm4CR721mAZ1YAoy',
-    height: 1000,
-    altText: 'photo-1564631027894-5bdb17618445.jpg',
-    children: [
-      {
-        text: '',
-      },
-    ],
-    mimeType: 'image/webp',
-  },
-];
-
-const videoContent: RichTextContent = [
-  {
-    src: 'https://media.graphcms.com/oWd7OYr5Q5KGRJW9ujRO',
-    type: 'video',
-    title: 'file_example_MP4_480_1_5MG.m4v',
-    width: 400,
-    handle: 'oWd7OYr5Q5KGRJW9ujRO',
-    height: 400,
-    children: [
-      {
-        text: '',
-      },
-    ],
-  },
-];
+import {
+  defaultContent as content,
+  imageContent,
+  videoContent,
+  listContent,
+  iframeContent,
+  inlineContent,
+} from './content';
 
 describe('@graphcms/rich-text-react-renderer', () => {
   it('renders content', async () => {
@@ -318,9 +240,32 @@ describe('@graphcms/rich-text-react-renderer', () => {
     `);
   });
 
-  it('renders video', async () => {
+  it('renders video', () => {
     const { container } = render(<RichText content={videoContent} />);
 
     expect(container).toMatchSnapshot();
+  });
+
+  it('renders lists', () => {
+    const { container } = render(<RichText content={listContent} />);
+
+    expect(container).toMatchInlineSnapshot(`
+      <div>
+        <ul>
+          <li>
+            Embroided logo
+          </li>
+          <li>
+            Fits well
+          </li>
+          <li>
+            Comes in black
+          </li>
+          <li>
+            Reasonably priced
+          </li>
+        </ul>
+      </div>
+    `);
   });
 });
