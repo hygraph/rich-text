@@ -1,5 +1,13 @@
 # @graphcms/rich-text-react-renderer
 
+## 0.1.1-canary.1
+
+### Patch Changes
+
+🐛 Bug fixes:
+
+- Move @graphcms/rich-text-types to dependecy section to fix the error "can't resolve @graphcms/rich-text-types"
+
 ## 0.1.1-canary.0
 
 ### Patch Changes

@@ -6,6 +6,7 @@
     "@graphcms/rich-text-types": "0.1.0"
   },
   "changesets": [
+    "hip-icons-joke",
     "tough-shirts-suffer",
     "warm-bags-lie"
   ]
