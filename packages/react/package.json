@@ -12,10 +12,10 @@
     "prepublish": "npm run build"
   },
   "dependencies": {
+    "@graphcms/rich-text-types": "^0.1.1-canary.0",
     "escape-html": "^1.0.3"
   },
   "devDependencies": {
-    "@graphcms/rich-text-types": "^0.1.1-canary.0",
     "@types/escape-html": "^1.0.1"
   },
   "peerDependencies": {
