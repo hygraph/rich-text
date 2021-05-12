@@ -37,8 +37,6 @@
     "start:app": "yarn run build && yarn --cwd example && yarn --cwd example start",
     "changeset": "changeset",
     "release": "changeset publish",
-    "version:canary": "changeset version --snapshot canary",
-    "release:canary": "changeset publish --tag canary",
     "size": "size-limit",
     "analyze": "size-limit --why",
     "prepare": "husky install"
