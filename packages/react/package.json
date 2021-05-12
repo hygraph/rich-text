@@ -1,7 +1,7 @@
 {
   "name": "@graphcms/rich-text-react-renderer",
   "description": "GraphCMS Rich Text React renderer",
-  "version": "0.1.0",
+  "version": "0.1.1-canary.0",
   "author": "João Pedro Schmitz <hey@joaopedro.dev> (https://joaopedro.dev)",
   "license": "MIT",
   "scripts": {
@@ -15,7 +15,7 @@
     "escape-html": "^1.0.3"
   },
   "devDependencies": {
-    "@graphcms/rich-text-types": "^0.1.0",
+    "@graphcms/rich-text-types": "^0.1.1-canary.0",
     "@types/escape-html": "^1.0.1"
   },
   "peerDependencies": {

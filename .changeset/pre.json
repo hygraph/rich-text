@@ -1,0 +1,12 @@
+{
+  "mode": "pre",
+  "tag": "canary",
+  "initialVersions": {
+    "@graphcms/rich-text-react-renderer": "0.1.0",
+    "@graphcms/rich-text-types": "0.1.0"
+  },
+  "changesets": [
+    "tough-shirts-suffer",
+    "warm-bags-lie"
+  ]
+}
