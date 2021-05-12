@@ -110,7 +110,9 @@ export type ElementNode =
 
 export type Node = ElementNode | Text;
 
-export type RichTextContent = Array<ElementNode>;
+export type RichTextContent =
+  | Array<ElementNode>
+  | { children: Array<ElementNode> };
 
 export type RichTextProps = {
   content: RichTextContent;

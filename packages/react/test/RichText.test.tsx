@@ -13,8 +13,36 @@ import {
 } from './content';
 
 describe('@graphcms/rich-text-react-renderer', () => {
-  it('renders content', async () => {
+  it('renders content', () => {
     const { container } = render(<RichText content={content} />);
+
+    expect(container).toMatchInlineSnapshot(`
+      <div>
+        <p>
+          <b>
+            Hello World!
+          </b>
+        </p>
+      </div>
+    `);
+  });
+
+  it('renders content correctly if received a object with children', () => {
+    const contentObject: RichTextContent = {
+      children: [
+        {
+          type: 'paragraph',
+          children: [
+            {
+              bold: true,
+              text: 'Hello World!',
+            },
+          ],
+        },
+      ],
+    };
+
+    const { container } = render(<RichText content={contentObject} />);
 
     expect(container).toMatchInlineSnapshot(`
       <div>
@@ -31,7 +59,7 @@ describe('@graphcms/rich-text-react-renderer', () => {
    * For now this is acceptable, but we should add a filter to remove all empty
    * elements from the content, in the future.
    */
-  it('should not render empty text', async () => {
+  it('should not render empty text', () => {
     const content: RichTextContent = [
       {
         type: 'paragraph',
@@ -108,7 +136,7 @@ describe('@graphcms/rich-text-react-renderer', () => {
     expect(container).toMatchSnapshot();
   });
 
-  it('renders link', async () => {
+  it('renders link', () => {
     const linkContent: RichTextContent = [
       {
         type: 'link',
@@ -144,7 +172,7 @@ describe('@graphcms/rich-text-react-renderer', () => {
     `);
   });
 
-  it('renders iframe', async () => {
+  it('renders iframe', () => {
     const iframeContent: RichTextContent = [
       {
         url: 'https://www.youtube.com/watch?v=Ylmd737tw5w',
@@ -162,7 +190,7 @@ describe('@graphcms/rich-text-react-renderer', () => {
     expect(container).toMatchSnapshot();
   });
 
-  it('renders class', async () => {
+  it('renders class', () => {
     const { container } = render(<RichText content={iframeContent} />);
 
     expect(container).toMatchInlineSnapshot(`
@@ -178,7 +206,7 @@ describe('@graphcms/rich-text-react-renderer', () => {
     `);
   });
 
-  it('renders class with custom renderer', async () => {
+  it('renders class with custom renderer', () => {
     const { container } = render(
       <RichText
         content={iframeContent}
@@ -203,7 +231,7 @@ describe('@graphcms/rich-text-react-renderer', () => {
     `);
   });
 
-  it('renders image', async () => {
+  it('renders image', () => {
     const { container } = render(<RichText content={imageContent} />);
 
     expect(container).toMatchInlineSnapshot(`
@@ -220,7 +248,7 @@ describe('@graphcms/rich-text-react-renderer', () => {
     `);
   });
 
-  it('renders image with custom renderer', async () => {
+  it('renders image with custom renderer', () => {
     const { container } = render(
       <RichText
         content={imageContent}
