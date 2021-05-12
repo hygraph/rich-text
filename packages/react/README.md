@@ -21,17 +21,19 @@ To render the content on your application, you'll need to provide the array of e
 ```tsx
 import { RichText } from '@graphcms/rich-text-react-renderer';
 
-const content = [
-  {
-    type: 'paragraph',
-    children: [
-      {
-        bold: true,
-        text: 'Hello World!',
-      },
-    ],
-  },
-];
+const content = {
+  children: [
+    {
+      type: 'paragraph',
+      children: [
+        {
+          bold: true,
+          text: 'Hello World!',
+        },
+      ],
+    },
+  ],
+};
 
 const App = () => {
   return <RichText content={content} />;
@@ -52,10 +54,6 @@ By default, the elements won't have any styling, despite the `IFrame`, which we 
 
 ```tsx
 import { RichText } from '@graphcms/rich-text-react-renderer';
-
-/**
- * const content = [ ... ]
- */
 
 const App = () => {
   return (

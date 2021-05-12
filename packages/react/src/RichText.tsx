@@ -66,14 +66,24 @@ export function RichText({ content, renderers: resolvers }: RichTextProps) {
   };
 
   if (__DEV__ && !content) {
-    console.error(`[@graphcms/rich-text-react-renderer]: Content is required.`);
+    console.error(`[@graphcms/rich-text-react-renderer]: content is required.`);
 
     return <Fragment />;
   }
 
+  if (__DEV__ && !Array.isArray(content) && !content.children) {
+    console.error(
+      `[@graphcms/rich-text-react-renderer]: children is required.`
+    );
+
+    return <Fragment />;
+  }
+
+  const elements = Array.isArray(content) ? content : content.children;
+
   return (
     <>
-      {content.map((node, index) => {
+      {elements.map((node, index) => {
         return <RenderNode node={node} renderers={renderers} key={index} />;
       })}
     </>
