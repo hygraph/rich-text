@@ -30,7 +30,7 @@
   },
   "main": "dist/index.js",
   "module": "dist/rich-text-types.esm.js",
-  "typings": "dist/index.d.ts",
+  "types": "dist/index.d.ts",
   "files": [
     "README.md",
     "dist"
