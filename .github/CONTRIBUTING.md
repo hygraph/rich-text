@@ -66,5 +66,24 @@ When opening a pull request, please be sure to update any relevant documentation
 
 This repository uses [changesets][] to do versioning. What that means for contributors is that you need to add a changeset by running `yarn changeset` which contains what packages should be bumped, their associated semver bump types, and some markdown which will be inserted into changelogs.
 
+### Publish canary version
+
+To publish a canary version using `changesets`, you'll need to be in the GraphCMS npm organization. Otherwise, ask a maintainer to do it for you. To get started, enter prerelease mode. You can do that with the `pre enter <tag>`. The tag that you need to pass is used in versions(e.g. `1.0.0-canary.0`) and the npm dist tag.
+
+A prerelease workflow might look something like this:
+
+```sh
+yarn changeset pre enter canary
+yarn changeset
+yarn changeset version
+yarn build
+git add .
+git commit -m "chore(release): v1.0.0-canary.0"
+yarn changeset publish
+git push --follow-tags
+```
+
+For more information, [check this link](https://github.com/atlassian/changesets/blob/main/docs/prereleases.md).
+
 [yarn workspaces]: https://yarnpkg.com/en/docs/workspaces
 [changesets]: https://github.com/atlassian/changesets
