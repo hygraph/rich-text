@@ -140,6 +140,63 @@ Below you can check the full list of elements you can customize, alongside the p
 - `code`
   - `children`: ReactNode;
 
+### TypeScript
+
+If you are using TypeScript in your project, we highly recommend you install the `@graphcms/rich-text-types` package. It contains types for the elements, alongside the props accepted by each of them. You can use them in your application to create custom components.
+
+### Examples
+
+#### Next.js Link component
+
+```tsx
+import Link from 'next/link';
+import { RichText } from '@graphcms/rich-text-react-renderer';
+
+const content = {
+  children: [
+    {
+      type: 'paragraph',
+      children: [
+        {
+          bold: true,
+          text: 'Hello World!',
+        },
+      ],
+    },
+  ],
+};
+
+const App = () => {
+  return (
+    <RichText
+      content={content}
+      renderers={{
+        a: ({ children, openInNewTab, href, rel, ...rest }) => {
+          if (href.match(/^https?:\/\/|^\/\//i)) {
+            return (
+              <a
+                href={href}
+                target={openInNewTab ? '_blank' : '_self'}
+                rel={rel || 'noopener noreferrer'}
+                {...rest}
+              >
+                {children}
+              </a>
+            );
+          }
+
+          return (
+            <Link href={href}>
+              <a {...rest}>{children}</a>
+            </Link>
+          );
+        },
+      }}
+    />
+  );
+};
+```
+
 ## 📝 License
 
 Licensed under the MIT License.
