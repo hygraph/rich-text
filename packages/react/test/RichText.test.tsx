@@ -55,31 +55,6 @@ describe('@graphcms/rich-text-react-renderer', () => {
     `);
   });
 
-  /**
-   * For now this is acceptable, but we should add a filter to remove all empty
-   * elements from the content, in the future.
-   */
-  it('should not render empty text', () => {
-    const content: RichTextContent = [
-      {
-        type: 'paragraph',
-        children: [
-          {
-            text: ' ',
-          },
-        ],
-      },
-    ];
-
-    const { container } = render(<RichText content={content} />);
-
-    expect(container).toMatchInlineSnapshot(`
-      <div>
-        <p />
-      </div>
-    `);
-  });
-
   it('renders content with custom elements', () => {
     const { container } = render(
       <RichText
@@ -305,5 +280,28 @@ describe('@graphcms/rich-text-react-renderer', () => {
     const { container } = render(<RichText content={content} />);
 
     expect(container).toHaveTextContent('<Test />');
+  });
+
+  it('should render empty text spaces', () => {
+    const content: RichTextContent = [
+      {
+        type: 'paragraph',
+        children: [
+          { text: 'Sweet black ' },
+          { bold: true, text: 'cap' },
+          { text: ' ' },
+          { text: 'with', underline: true },
+          { text: ' ' },
+          { text: 'embroidered', italic: true },
+          { text: ' ' },
+          { bold: true, text: 'GraphCMS' },
+          { text: ' logo.' },
+        ],
+      },
+    ];
+
+    const { container } = render(<RichText content={content} />);
+
+    expect(container).toMatchSnapshot();
   });
 });
