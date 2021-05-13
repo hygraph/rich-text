@@ -4,9 +4,11 @@
 
 ### Patch Changes
 
-- [`c064507`](https://github.com/GraphCMS/rich-text-renderer/commit/c06450766c911bd680e71130d71eff34865ec4de) [#3](https://github.com/GraphCMS/rich-text-renderer/pull/3) Thanks [@jpedroschmitz](https://github.com/jpedroschmitz)! - 🐛 Bug fixes
+- [`c064507`](https://github.com/GraphCMS/rich-text-renderer/commit/c06450766c911bd680e71130d71eff34865ec4de) [#3](https://github.com/GraphCMS/rich-text-renderer/pull/3) Thanks [@jpedroschmitz](https://github.com/jpedroschmitz)!
 
-  - fix(react): empty space not being rendered
+🐛 Bug fixes
+
+- fix(react): empty space not being rendered
 
 ## 0.1.1
 
