@@ -85,3 +85,27 @@ exports[`@graphcms/rich-text-react-renderer renders video 1`] = `
   </video>
 </div>
 `;
+
+exports[`@graphcms/rich-text-react-renderer should render empty text spaces 1`] = `
+<div>
+  <p>
+    Sweet black 
+    <b>
+      cap
+    </b>
+     
+    <u>
+      with
+    </u>
+     
+    <i>
+      embroidered
+    </i>
+     
+    <b>
+      GraphCMS
+    </b>
+     logo.
+  </p>
+</div>
+`;
