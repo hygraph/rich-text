@@ -1,4 +1,4 @@
-import React, { Fragment, ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 import { NodeRendererType, Text } from '@graphcms/rich-text-types';
 
 import { elementKeys } from './defaultElements';
@@ -11,8 +11,6 @@ export function RenderText({
   renderers?: NodeRendererType;
 }) {
   const { text, bold, italic, underline, code } = textNode;
-
-  if (!text.trim()) return <Fragment />;
 
   const Bold = renderers?.[elementKeys['bold'] as keyof NodeRendererType];
   const Italic = renderers?.[elementKeys['italic'] as keyof NodeRendererType];
