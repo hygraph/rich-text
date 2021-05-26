@@ -3,19 +3,26 @@ import {
   RichTextProps,
   NodeRendererType,
   ElementNode,
+  RemoveEmptyElementType,
   Node,
   isElement,
   isText,
 } from '@graphcms/rich-text-types';
 
-import { defaultElements, elementKeys } from './defaultElements';
+import {
+  defaultElements,
+  defaultRemoveEmptyElements,
+  elementKeys,
+} from './defaultElements';
 import { RenderText } from './RenderText';
 
 function RenderNode({
   node,
+  removers,
   renderers,
 }: {
   node: Node;
+  removers?: RemoveEmptyElementType;
   renderers?: NodeRendererType;
 }) {
   if (isText(node)) {
@@ -23,7 +30,9 @@ function RenderNode({
   }
 
   if (isElement(node)) {
-    return <RenderElement element={node} renderers={renderers} />;
+    return (
+      <RenderElement element={node} removers={removers} renderers={renderers} />
+    );
   }
 
   const { type } = node as ElementNode;
@@ -39,19 +48,32 @@ function RenderNode({
 
 function RenderElement({
   element,
+  removers,
   renderers,
 }: {
   element: ElementNode;
+  removers?: RemoveEmptyElementType;
   renderers?: NodeRendererType;
 }) {
   const { children, type, ...rest } = element;
+
+  if (
+    removers?.[elementKeys[type] as keyof RemoveEmptyElementType] &&
+    !children.filter((child) => child.text !== '').length
+  ) {
+    return <Fragment />;
+  }
 
   const NodeRenderer = renderers?.[elementKeys[type] as keyof NodeRendererType];
 
   if (NodeRenderer) {
     return (
       <NodeRenderer {...rest}>
-        <RichText content={children as ElementNode[]} renderers={renderers} />
+        <RichText
+          content={children as ElementNode[]}
+          removers={removers}
+          renderers={renderers}
+        />
       </NodeRenderer>
     );
   }
@@ -59,10 +81,19 @@ function RenderElement({
   return <Fragment />;
 }
 
-export function RichText({ content, renderers: resolvers }: RichTextProps) {
+export function RichText({
+  content,
+  removers: emptyItemRemoveList,
+  renderers: resolvers,
+}: RichTextProps) {
   const renderers: NodeRendererType = {
     ...defaultElements,
     ...resolvers,
+  };
+
+  const removers: RemoveEmptyElementType = {
+    ...defaultRemoveEmptyElements,
+    ...emptyItemRemoveList,
   };
 
   if (__DEV__ && !content) {
@@ -84,7 +115,14 @@ export function RichText({ content, renderers: resolvers }: RichTextProps) {
   return (
     <>
       {elements.map((node, index) => {
-        return <RenderNode node={node} renderers={renderers} key={index} />;
+        return (
+          <RenderNode
+            node={node}
+            removers={removers}
+            renderers={renderers}
+            key={index}
+          />
+        );
       })}
     </>
   );
