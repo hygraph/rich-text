@@ -116,7 +116,6 @@ export type RichTextContent =
 
 export type RichTextProps = {
   content: RichTextContent;
-  removers?: RemoveEmptyElementType;
   renderers?: NodeRendererType;
 };
 
@@ -169,26 +168,12 @@ export interface NodeRendererType {
 }
 
 export interface RemoveEmptyElementType {
-  a?: Boolean;
-  class?: Boolean;
   h1?: Boolean;
   h2?: Boolean;
   h3?: Boolean;
   h4?: Boolean;
   h5?: Boolean;
   h6?: Boolean;
-  p?: Boolean;
-  li?: Boolean;
-  table?: Boolean;
-  table_head?: Boolean;
-  table_body?: Boolean;
-  table_row?: Boolean;
-  table_cell?: Boolean;
-  blockquote?: Boolean;
-  bold?: Boolean;
-  italic?: Boolean;
-  underline?: Boolean;
-  code?: Boolean;
 }
 
 export * from './util/isElement';

@@ -140,71 +140,9 @@ Below you can check the full list of elements you can customize, alongside the p
 - `code`
   - `children`: ReactNode;
 
-### Remove empty elements
+### Removal of empty elements
 
-By default the `RichText` component does not render all elements if their children are empty or just contain a text node with no content (whitespace excluded), you can pass a `removers` prop to `RichText` component to contorl whether to render a element if it's content is empty or not. Let's see an example:
-
-```tsx
-import { RichText } from '@graphcms/rich-text-react-renderer';
-
-const App = () => {
-  return (
-    <div>
-      <RichText
-        children={content}
-        removers={{
-          h2: false,
-          h3: true,
-          p: false,
-        }}
-      />
-    </div>
-  );
-};
-```
-
-Below you can check the full list of elements you can remove from rendering if empty, alongside with their default setting.
-
-- `a`:
-  - `true`
-- `class`:
-  - `true`
-- `h1`:
-  - `true`
-- `h2`:
-  - `true`
-- `h3`:
-  - `true`
-- `h4`:
-  - `true`
-- `h5`:
-  - `true`
-- `h6`:
-  - `true`
-- `p`:
-  - `false`
-- `li`:
-  - `true`
-- `table`:
-  - `true`
-- `table_head`:
-  - `true`
-- `table_body`:
-  - `true`
-- `table_row`:
-  - `false`
-- `table_cell`:
-  - `false`
-- `blockquote`:
-  - `true`
-- `bold`:
-  - `true`
-- `italic`:
-  - `true`
-- `underline`:
-  - `true`
-- `code`:
-  - `true`
+By default, we remove empty headings from the element list to prevent SEO issues.
 
 ### TypeScript
 

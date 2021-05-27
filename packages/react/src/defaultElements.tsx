@@ -36,26 +36,12 @@ export const defaultElements: Required<NodeRendererType> = {
 };
 
 export const defaultRemoveEmptyElements: Required<RemoveEmptyElementType> = {
-  a: true,
-  class: true,
   h1: true,
   h2: true,
   h3: true,
   h4: true,
   h5: true,
   h6: true,
-  p: false,
-  li: true,
-  table: true,
-  table_head: true,
-  table_body: true,
-  table_row: false,
-  table_cell: false,
-  blockquote: true,
-  bold: true,
-  italic: true,
-  underline: true,
-  code: true,
 };
 
 export const elementKeys: { [key: string]: string } = {

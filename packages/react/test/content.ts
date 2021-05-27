@@ -22,18 +22,10 @@ export const emptyContent: RichTextContent = [
     ],
   },
   {
-    type: 'paragraph',
+    type: 'heading-five',
     children: [
       {
-        text: '',
-      },
-    ],
-  },
-  {
-    type: 'block-quote',
-    children: [
-      {
-        text: '',
+        text: 'Hello World!',
       },
     ],
   },

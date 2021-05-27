@@ -57,18 +57,13 @@ describe('@graphcms/rich-text-react-renderer', () => {
   });
 
   it('renders content correctly if received a object with empty children', () => {
-    const { container } = render(
-      <RichText content={emptyContent} removers={{ blockquote: false }} />
-    );
+    const { container } = render(<RichText content={emptyContent} />);
 
     expect(container).toMatchInlineSnapshot(`
       <div>
-        <p>
-          
-        </p>
-        <blockquote>
-          
-        </blockquote>
+        <h5>
+          Hello World!
+        </h5>
       </div>
     `);
   });
