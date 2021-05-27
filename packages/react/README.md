@@ -140,7 +140,7 @@ Below you can check the full list of elements you can customize, alongside the p
 - `code`
   - `children`: ReactNode;
 
-### Removal of empty elements
+### Empty elements
 
 By default, we remove empty headings from the element list to prevent SEO issues.
 
