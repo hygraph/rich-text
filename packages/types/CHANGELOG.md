@@ -4,7 +4,9 @@
 
 ### Patch Changes
 
-- [`23b87f6`](https://github.com/GraphCMS/rich-text-renderer/commit/23b87f6218040df283d112307c3720645a5936aa) [#6](https://github.com/GraphCMS/rich-text-renderer/pull/6) Thanks [@KaterBasilisk6](https://github.com/KaterBasilisk6)! - - Add `RemoveEmptyElementType`
+- [`23b87f6`](https://github.com/GraphCMS/rich-text-renderer/commit/23b87f6218040df283d112307c3720645a5936aa) [#6](https://github.com/GraphCMS/rich-text-renderer/pull/6) Thanks [@KaterBasilisk6](https://github.com/KaterBasilisk6)!
+
+- Add `RemoveEmptyElementType`
 
 ## 0.1.1
 
