@@ -12,6 +12,25 @@ export const defaultContent: RichTextContent = [
   },
 ];
 
+export const emptyContent: RichTextContent = [
+  {
+    type: 'heading-two',
+    children: [
+      {
+        text: '',
+      },
+    ],
+  },
+  {
+    type: 'heading-five',
+    children: [
+      {
+        text: 'Hello World!',
+      },
+    ],
+  },
+];
+
 export const inlineContent: RichTextContent = [
   {
     type: 'paragraph',

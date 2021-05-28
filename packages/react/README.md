@@ -140,6 +140,10 @@ Below you can check the full list of elements you can customize, alongside the p
 - `code`
   - `children`: ReactNode;
 
+### Empty elements
+
+By default, we remove empty headings from the element list to prevent SEO issues.
+
 ### TypeScript
 
 If you are using TypeScript in your project, we highly recommend you install the `@graphcms/rich-text-types` package. It contains types for the elements, alongside the props accepted by each of them. You can use them in your application to create custom components.

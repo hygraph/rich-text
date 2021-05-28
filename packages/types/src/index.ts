@@ -167,5 +167,14 @@ export interface NodeRendererType {
   code?: DefaultNodeRenderer;
 }
 
+export interface RemoveEmptyElementType {
+  h1?: Boolean;
+  h2?: Boolean;
+  h3?: Boolean;
+  h4?: Boolean;
+  h5?: Boolean;
+  h6?: Boolean;
+}
+
 export * from './util/isElement';
 export * from './util/isText';

@@ -3,12 +3,17 @@ import {
   RichTextProps,
   NodeRendererType,
   ElementNode,
+  RemoveEmptyElementType,
   Node,
   isElement,
   isText,
 } from '@graphcms/rich-text-types';
 
-import { defaultElements, elementKeys } from './defaultElements';
+import {
+  defaultElements,
+  defaultRemoveEmptyElements,
+  elementKeys,
+} from './defaultElements';
 import { RenderText } from './RenderText';
 
 function RenderNode({
@@ -45,6 +50,15 @@ function RenderElement({
   renderers?: NodeRendererType;
 }) {
   const { children, type, ...rest } = element;
+
+  if (
+    defaultRemoveEmptyElements?.[
+      elementKeys[type] as keyof RemoveEmptyElementType
+    ] &&
+    children[0].text === ''
+  ) {
+    return <Fragment />;
+  }
 
   const NodeRenderer = renderers?.[elementKeys[type] as keyof NodeRendererType];
 

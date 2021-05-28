@@ -10,6 +10,7 @@ import {
   listContent,
   iframeContent,
   inlineContent,
+  emptyContent,
 } from './content';
 
 describe('@graphcms/rich-text-react-renderer', () => {
@@ -51,6 +52,18 @@ describe('@graphcms/rich-text-react-renderer', () => {
             Hello World!
           </b>
         </p>
+      </div>
+    `);
+  });
+
+  it('renders content correctly if received a object with empty children', () => {
+    const { container } = render(<RichText content={emptyContent} />);
+
+    expect(container).toMatchInlineSnapshot(`
+      <div>
+        <h5>
+          Hello World!
+        </h5>
       </div>
     `);
   });
