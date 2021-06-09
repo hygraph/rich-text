@@ -1,4 +1,4 @@
-import { RichTextContent } from '@graphcms/rich-text-types';
+import { Reference, RichTextContent } from '@graphcms/rich-text-types';
 
 export const defaultContent: RichTextContent = [
   {
@@ -9,6 +9,23 @@ export const defaultContent: RichTextContent = [
         text: 'Hello World!',
       },
     ],
+  },
+];
+
+export const embedContent: RichTextContent = [
+  {
+    type: 'embed',
+    nodeId: 'cko2lq2u0031r0844xnvurz05',
+    children: [{ text: '' }],
+    nodeType: 'Asset',
+  },
+];
+
+export const embedReferences: Array<Reference> = [
+  {
+    id: 'cko2lq2u0031r0844xnvurz05',
+    url: 'https://media.graphcms.com/xSIoGkATQybd8S2SgA5Q',
+    type: 'image/png',
   },
 ];
 

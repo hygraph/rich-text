@@ -11,6 +11,8 @@ import {
   iframeContent,
   inlineContent,
   emptyContent,
+  embedContent,
+  embedReferences,
 } from './content';
 
 describe('@graphcms/rich-text-react-renderer', () => {
@@ -52,6 +54,21 @@ describe('@graphcms/rich-text-react-renderer', () => {
             Hello World!
           </b>
         </p>
+      </div>
+    `);
+  });
+
+  it('redners embed content correctly', () => {
+    const { container } = render(
+      <RichText content={embedContent} references={embedReferences} />
+    );
+
+    expect(container).toMatchInlineSnapshot(`
+      <div>
+        <embed
+          src="https://media.graphcms.com/xSIoGkATQybd8S2SgA5Q"
+          type="image/png"
+        />
       </div>
     `);
   });
