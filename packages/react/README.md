@@ -48,6 +48,45 @@ The content from the example above will render:
 </p>
 ```
 
+### Embed Types
+
+> :warning: **Make sure to provide the `id`, `url` and `mimeType` of the embed like shown in the example, else the default embed element will not render** :warning:
+
+To render embed Assets in your application, you'll need to provide the array of embeds returned from the GraphCMS API to the `RichText` component.
+
+```tsx
+import { RichText } from '@graphcms/rich-text-react-renderer';
+
+const content = {
+  children: [
+    {
+      type: 'embed',
+      nodeId: 'cko2lq2u0031r0844xnvurz05',
+      children: [{ text: '' }],
+      nodeType: 'Asset',
+    },
+  ],
+};
+
+const embedReferences = [
+  {
+    id: 'cko2lq2u0031r0844xnvurz05',
+    url: 'https://media.graphcms.com/xSIoGkATQybd8S2SgA5Q',
+    type: 'image/png',
+  },
+];
+
+const App = () => {
+  return <RichText content={content} references={embedReferences} />;
+};
+```
+
+The content from the example above will render:
+
+```html
+<embed src="https://media.graphcms.com/xSIoGkATQybd8S2SgA5Q" type="image/png" />
+```
+
 ### Custom elements
 
 By default, the elements won't have any styling, despite the `IFrame`, which we designed to be responsive. But if you have, for example, a design system and wants to use your own components with styling, you can pass a `renderers` prop to the `RichText` component. Let's see an example:
@@ -99,6 +138,10 @@ Below you can check the full list of elements you can customize, alongside the p
   - `url`: string;
   - `width`: number;
   - `height`: number;
+- `embed`
+  - `nodeId`: string;
+  - `nodeType`: string;
+  - Any properties passed along with references object
 - `h1`
   - `children`: ReactNode;
 - `h2`
