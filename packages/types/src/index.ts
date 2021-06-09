@@ -24,7 +24,8 @@ export interface Element {
     | 'link'
     | 'image'
     | 'video'
-    | 'iframe';
+    | 'iframe'
+    | 'embed';
   [key: string]: unknown;
 }
 
@@ -100,22 +101,40 @@ export interface IFrameElement extends Element, IFrameProps {
   type: 'iframe';
 }
 
+export interface EmbedProps {
+  nodeId: string;
+  nodeType: string;
+}
+
+export interface EmbedElement extends Element, EmbedProps {
+  type: 'embed';
+}
+
 export type ElementNode =
   | Element
   | ClassElement
   | LinkElement
   | ImageElement
   | IFrameElement
-  | VideoElement;
+  | VideoElement
+  | EmbedElement;
 
 export type Node = ElementNode | Text;
+
+export type Reference = {
+  id: string;
+  [key: string]: unknown;
+};
 
 export type RichTextContent =
   | Array<ElementNode>
   | { children: Array<ElementNode> };
 
+export type EmbedReferences = Map<string, Reference>;
+
 export type RichTextProps = {
   content: RichTextContent;
+  references?: EmbedReferences | Array<Reference>;
   renderers?: NodeRendererType;
 };
 
@@ -137,6 +156,9 @@ type ClassNodeRenderer = (props: ClassRendererProps) => JSX.Element;
 type ImageNodeRenderer = (props: Partial<ImageProps>) => JSX.Element;
 type VideoNodeRenderer = (props: Partial<VideoProps>) => JSX.Element;
 type IFrameNodeRenderer = (props: Partial<IFrameProps>) => JSX.Element;
+type EmbedNodeRenderer = (
+  props: Partial<Reference> | { type: string; url: string }
+) => JSX.Element;
 
 export interface NodeRendererType {
   a?: LinkNodeRenderer;
@@ -144,6 +166,7 @@ export interface NodeRendererType {
   img?: ImageNodeRenderer;
   video?: VideoNodeRenderer;
   iframe?: IFrameNodeRenderer;
+  embed?: EmbedNodeRenderer;
   h1?: DefaultNodeRenderer;
   h2?: DefaultNodeRenderer;
   h3?: DefaultNodeRenderer;
@@ -178,3 +201,4 @@ export interface RemoveEmptyElementType {
 
 export * from './util/isElement';
 export * from './util/isText';
+export * from './util/isEmbed';

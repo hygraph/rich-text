@@ -3,9 +3,12 @@ import {
   RichTextProps,
   NodeRendererType,
   ElementNode,
+  EmbedReferences,
+  EmbedElement,
   RemoveEmptyElementType,
   Node,
   isElement,
+  isEmbed,
   isText,
 } from '@graphcms/rich-text-types';
 
@@ -18,17 +21,35 @@ import { RenderText } from './RenderText';
 
 function RenderNode({
   node,
+  references,
   renderers,
 }: {
   node: Node;
+  references?: EmbedReferences;
   renderers?: NodeRendererType;
 }) {
   if (isText(node)) {
     return <RenderText textNode={node} renderers={renderers} />;
   }
 
+  if (isEmbed(node)) {
+    return (
+      <RenderEmbed
+        element={node}
+        references={references}
+        renderers={renderers}
+      />
+    );
+  }
+
   if (isElement(node)) {
-    return <RenderElement element={node} renderers={renderers} />;
+    return (
+      <RenderElement
+        element={node}
+        references={references}
+        renderers={renderers}
+      />
+    );
   }
 
   const { type } = node as ElementNode;
@@ -44,9 +65,11 @@ function RenderNode({
 
 function RenderElement({
   element,
+  references,
   renderers,
 }: {
   element: ElementNode;
+  references?: EmbedReferences;
   renderers?: NodeRendererType;
 }) {
   const { children, type, ...rest } = element;
@@ -65,7 +88,11 @@ function RenderElement({
   if (NodeRenderer) {
     return (
       <NodeRenderer {...rest}>
-        <RichText content={children as ElementNode[]} renderers={renderers} />
+        <RichText
+          content={children as ElementNode[]}
+          references={references}
+          renderers={renderers}
+        />
       </NodeRenderer>
     );
   }
@@ -73,7 +100,40 @@ function RenderElement({
   return <Fragment />;
 }
 
-export function RichText({ content, renderers: resolvers }: RichTextProps) {
+export function RenderEmbed({
+  element,
+  references,
+  renderers,
+}: {
+  element: EmbedElement;
+  references?: EmbedReferences;
+  renderers?: NodeRendererType;
+}) {
+  const { children, type, nodeId, ...rest } = element;
+
+  const NodeRenderer = renderers?.[elementKeys[type] as keyof NodeRendererType];
+  const reference = references?.get(nodeId);
+
+  if (NodeRenderer) {
+    return (
+      <NodeRenderer {...rest} {...reference}>
+        <RichText
+          content={children as ElementNode[]}
+          references={references}
+          renderers={renderers}
+        />
+      </NodeRenderer>
+    );
+  }
+
+  return <Fragment />;
+}
+
+export function RichText({
+  content,
+  references: embedReferences,
+  renderers: resolvers,
+}: RichTextProps) {
   const renderers: NodeRendererType = {
     ...defaultElements,
     ...resolvers,
@@ -94,11 +154,21 @@ export function RichText({ content, renderers: resolvers }: RichTextProps) {
   }
 
   const elements = Array.isArray(content) ? content : content.children;
+  const references = Array.isArray(embedReferences)
+    ? new Map(embedReferences?.map((embeds) => [embeds.id, embeds]))
+    : embedReferences;
 
   return (
     <>
       {elements.map((node, index) => {
-        return <RenderNode node={node} renderers={renderers} key={index} />;
+        return (
+          <RenderNode
+            node={node}
+            references={references}
+            renderers={renderers}
+            key={index}
+          />
+        );
       })}
     </>
   );

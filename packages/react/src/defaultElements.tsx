@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import {
   NodeRendererType,
   RemoveEmptyElementType,
@@ -33,6 +33,18 @@ export const defaultElements: Required<NodeRendererType> = {
   underline: ({ children }) => <u>{children}</u>,
   code: ({ children }) => <code>{children}</code>,
   list_item_child: ({ children }) => <>{children}</>,
+  embed: ({ url, type }) => {
+    if (!url || !type || typeof type !== 'string' || typeof url !== 'string') {
+      if (__DEV__) {
+        console.warn(
+          `[@graphcms/rich-text-react-renderer]: default embed renderer requires \`url\` and \`type\` to be of type string and not be null`
+        );
+      }
+
+      return <Fragment />;
+    }
+    return <embed src={url as string} type={type as string} />;
+  },
 };
 
 export const defaultRemoveEmptyElements: Required<RemoveEmptyElementType> = {
@@ -71,4 +83,5 @@ export const elementKeys: { [key: string]: string } = {
   italic: 'italic',
   underline: 'underline',
   code: 'code',
+  embed: 'embed',
 };
