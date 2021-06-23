@@ -1,6 +1,6 @@
-# Rich Text Renderer
+# Rich Text Helpers
 
-Render GraphCMS Rich Text documents in your application easily.
+A set of companion packages for GraphCMS's Rich Text Field
 
 ## ✨ Packages
 
