@@ -35,8 +35,11 @@ export type ImageMimeTypes =
   | 'image/gif'
   | 'image/png';
 
-export interface Text {
+export interface Text extends Mark {
   text: string;
+}
+
+export interface Mark {
   bold?: boolean;
   italic?: boolean;
   underline?: boolean;
