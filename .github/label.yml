@@ -2,9 +2,9 @@ examples:
   - example/*
   - example/**/*
 
-react:
-  - packages/react/*
-  - packages/react/**/*
+react-renderer:
+  - packages/react-renderer/*
+  - packages/react-renderer/**/*
 
 types:
   - packages/types/*

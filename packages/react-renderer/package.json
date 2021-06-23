@@ -33,8 +33,8 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/GraphCMS/rich-text-renderer.git",
-    "directory": "packages/react"
+    "url": "git+https://github.com/GraphCMS/rich-text.git",
+    "directory": "packages/react-renderer"
   },
   "main": "dist/index.js",
   "module": "dist/rich-text-react-renderer.esm.js",
