@@ -2,6 +2,10 @@ examples:
   - example/*
   - example/**/*
 
+html-to-slate-ast:
+  - packages/html-to-slate-ast/*
+  - packages/html-to-slate-ast/**/*
+
 react-renderer:
   - packages/react-renderer/*
   - packages/react-renderer/**/*
