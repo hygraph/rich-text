@@ -1,5 +1,14 @@
 # @graphcms/rich-text-react-renderer
 
+## 0.1.4
+
+### Patch Changes
+
+- [`7cb7b7e`](https://github.com/GraphCMS/rich-text-renderer/commit/7cb7b7ef78a465c54982f81c77432d001ea9645b) [#9](https://github.com/GraphCMS/rich-text-renderer/pull/9) Thanks [@feychenie](https://github.com/feychenie)! - Moved html-to-slate-ast package to this repo.
+
+- Updated dependencies [[`7cb7b7e`](https://github.com/GraphCMS/rich-text-renderer/commit/7cb7b7ef78a465c54982f81c77432d001ea9645b)]:
+  - @graphcms/rich-text-types@0.1.3
+
 ## 0.1.3
 
 ### Patch Changes
