@@ -7,7 +7,7 @@
     "typeRoots": ["./node_modules/@types", "./types"],
     "paths": {
       "@graphcms/rich-text-types": ["packages/types/src"],
-      "@graphcms/rich-text-react-renderer": ["packages/react/src"],
+      "@graphcms/rich-text-react-renderer": ["packages/react-renderer/src"],
       "$test/*": ["test/*"]
     }
   }

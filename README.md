@@ -4,7 +4,7 @@ Render GraphCMS Rich Text documents in your application easily.
 
 ## ✨ Packages
 
-- [rich-text-react-renderer](./packages/react): Render Rich Text content from GraphCMS in React applications;
+- [rich-text-react-renderer](./packages/react-renderer): Render Rich Text content from GraphCMS in React applications;
 - [rich-text-types](./packages/types): TypeScript definitions for the GraphCMS Rich Text field type.
 
 ## 🤝 Contributing

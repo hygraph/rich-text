@@ -43,11 +43,11 @@
   },
   "size-limit": [
     {
-      "path": "packages/react/dist/rich-text-react-renderer.cjs.production.min.js",
+      "path": "packages/react-renderer/dist/rich-text-react-renderer.cjs.production.min.js",
       "limit": "5 KB"
     },
     {
-      "path": "packages/react/dist/rich-text-react-renderer.esm.js",
+      "path": "packages/react-renderer/dist/rich-text-react-renderer.esm.js",
       "limit": "5 KB"
     },
     {

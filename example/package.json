@@ -14,7 +14,7 @@
   },
   "alias": {
     "@graphcms/rich-text-types": "../packages/types",
-    "@graphcms/rich-text-react-renderer": "../packages/react",
+    "@graphcms/rich-text-react-renderer": "../packages/react-renderer",
     "react": "../node_modules/react",
     "react-dom": "../node_modules/react-dom/profiling",
     "scheduler/tracing": "../node_modules/scheduler/tracing-profiling"
