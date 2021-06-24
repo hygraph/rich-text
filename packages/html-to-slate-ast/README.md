@@ -8,20 +8,26 @@ HTML to Slate AST converter for the GraphCMS's RichTextAST format.
 
 ### 1. Install
 
-This package needs to have the packages `jsdom`, `slate` and `slate-hyperscript` installed as well.
+This package needs to have the packages `slate` and `slate-hyperscript` installed, and `jsdom` as well if you need to run the converter in nodejs.
 
 ```bash
-npm install jsdom slate@0.58.3 slate-hyperscript@0.58.3
+# for node or isomorphic usage, jsdom is required
+npm install jsdom
+
+# required peer-dependancies
+npm install slate@0.58.3 slate-hyperscript@0.58.3
 npm install @graphcms/html-to-slate-ast
 ```
 
 ### 2. Convert your data
 
+☝️ `htmlToSlateAst` returns a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises)
+
 ```js
 import { htmlToSlateAST } from '@graphcms/html-to-slate-ast';
 
 const htmlString = '<div><p>test</p></div>'; // or import form a filr or database
-const ast = htmlToSlateAST(htmlString);
+const ast = await htmlToSlateAST(htmlString);
 ```
 
 ### 3. Use it in your Content API mutations
