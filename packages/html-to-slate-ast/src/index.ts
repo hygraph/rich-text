@@ -1,4 +1,3 @@
-import { JSDOM } from 'jsdom';
 import { jsx } from 'slate-hyperscript';
 
 import type { Element, Mark } from '@graphcms/rich-text-types';
@@ -45,7 +44,7 @@ const TEXT_TAGS: Record<
   U: () => ({ underline: true }),
 };
 
-const deserialize = (el: Node) => {
+function deserialize(el: Node) {
   if (el.nodeType === 3) {
     return el.textContent;
   } else if (el.nodeType !== 1) {
@@ -179,7 +178,7 @@ const deserialize = (el: Node) => {
   // general fallback
   // skips unsupported tags and prevents block-level element nesting
   return children;
-};
+}
 
 /*
   CKEditor's Word normalizer functions
@@ -242,10 +241,8 @@ function cleanContentAfterBody(htmlString: string) {
   );
 }
 
-export function htmlToSlateAST(html: string) {
-  const normalizedHTML = cleanContentAfterBody(normalizeSpacing(html));
-  const dom = new JSDOM(normalizedHTML, { contentType: 'text/html' });
-  return deserialize(dom.window.document.body);
+function normalizeHtml(html: string) {
+  return cleanContentAfterBody(normalizeSpacing(html));
 }
 
 // https://developer.mozilla.org/en-US/docs/Web/API/Node/nodeType#node_type_constants
@@ -316,6 +313,22 @@ function isInlineElement(element: HTMLElement) {
   return allInlineElements.includes(
     element.tagName.toLowerCase() as keyof HTMLElementTagNameMap
   );
+}
+
+const parseDomDocument = async (normalizedHTML: string) => {
+  if (window && window.DOMParser) {
+    return new DOMParser().parseFromString(normalizedHTML, 'text/html');
+  } else {
+    const jsdom = await import('jsdom');
+    const dom = new jsdom.JSDOM(normalizedHTML, { contentType: 'text/html' });
+    return dom.window.document;
+  }
+};
+
+export async function htmlToSlateAST(html: string) {
+  const normalizedHTML = normalizeHtml(html);
+  const domDocument = await parseDomDocument(normalizedHTML);
+  return deserialize(domDocument.body);
 }
 
 export default htmlToSlateAST;
