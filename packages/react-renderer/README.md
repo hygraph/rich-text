@@ -59,7 +59,7 @@ const App = () => {
   return (
     <div>
       <RichText
-        children={content}
+        content={content}
         renderers={{
           h1: ({ children }) => <h1 className="text-white">{children}</h1>,
           bold: ({ children }) => <strong>{children}</strong>,
