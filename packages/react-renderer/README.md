@@ -35,9 +35,9 @@ const content = {
   ],
 };
 
-const App = () => {
+function App() {
   return <RichText content={content} />;
-};
+}
 ```
 
 The content from the example above will render:
@@ -55,7 +55,11 @@ By default, the elements won't have any styling, despite the `IFrame`, which we 
 ```tsx
 import { RichText } from '@graphcms/rich-text-react-renderer';
 
-const App = () => {
+const content = {
+  /* ... */
+};
+
+function App() {
   return (
     <div>
       <RichText
@@ -67,7 +71,7 @@ const App = () => {
       />
     </div>
   );
-};
+}
 ```
 
 Below you can check the full list of elements you can customize, alongside the props available for each of them.
@@ -157,20 +161,10 @@ import Link from 'next/link';
 import { RichText } from '@graphcms/rich-text-react-renderer';
 
 const content = {
-  children: [
-    {
-      type: 'paragraph',
-      children: [
-        {
-          bold: true,
-          text: 'Hello World!',
-        },
-      ],
-    },
-  ],
+  /* ... */
 };
 
-const App = () => {
+function App() {
   return (
     <RichText
       content={content}
@@ -198,7 +192,88 @@ const App = () => {
       }}
     />
   );
+}
+```
+
+#### Next.js Image component
+
+```js
+import Image from 'next/image';
+import { RichText } from '@graphcms/rich-text-react-renderer';
+
+const content = {
+  /* ... */
 };
+
+function App() {
+  return (
+    <RichText
+      content={content}
+      renderers={{
+        img: ({ src, altText, height, width }) => (
+          <Image
+            src={src}
+            alt={altText}
+            height={height}
+            width={width}
+            objectFit="cover"
+          />
+        ),
+      }}
+    />
+  );
+}
+```
+
+Since the images are in the GraphCMS CDN, you need to specify our domain in the `next.config.js` file. For more information, check [this guide](https://nextjs.org/docs/basic-features/image-optimization#domains).
+
+```js
+module.exports = {
+  images: {
+    domains: ['media.graphcms.com'],
+  },
+};
+```
+
+#### Gatsby Link component
+
+```js
+import { Link } from 'gatsby';
+import { RichText } from '@graphcms/rich-text-react-renderer';
+
+const content = {
+  /* ... */
+};
+
+function App() {
+  return (
+    <RichText
+      content={content}
+      renderers={{
+        a: ({ children, openInNewTab, href, rel, ...rest }) => {
+          if (href.match(/^https?:\/\/|^\/\//i)) {
+            return (
+              <a
+                href={href}
+                target={openInNewTab ? '_blank' : '_self'}
+                rel={rel || 'noopener noreferrer'}
+                {...rest}
+              >
+                {children}
+              </a>
+            );
+          }
+
+          return (
+            <Link to={href} {...rest}>
+              {children}
+            </Link>
+          );
+        },
+      }}
+    />
+  );
+}
 ```
 
 ## 📝 License
