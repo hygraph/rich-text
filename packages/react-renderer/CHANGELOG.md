@@ -1,5 +1,16 @@
 # @graphcms/rich-text-react-renderer
 
+## 0.1.5
+
+### Patch Changes
+
+- [`e950c91`](https://github.com/GraphCMS/rich-text/commit/e950c917befe31060c77891dd44f7722c9c93c77) [#17](https://github.com/GraphCMS/rich-text/pull/17) Thanks [@jpedroschmitz](https://github.com/jpedroschmitz)! - fix: empty thead being renderered
+
+* [`1a0354c`](https://github.com/GraphCMS/rich-text/commit/1a0354c13c1ca6b5eef0cd6b41281f413360de87) [#16](https://github.com/GraphCMS/rich-text/pull/16) Thanks [@jpedroschmitz](https://github.com/jpedroschmitz)! - docs: add examples for next image and gatsby link
+
+* Updated dependencies [[`e950c91`](https://github.com/GraphCMS/rich-text/commit/e950c917befe31060c77891dd44f7722c9c93c77)]:
+  - @graphcms/rich-text-types@0.1.4
+
 ## 0.1.4
 
 ### Patch Changes
