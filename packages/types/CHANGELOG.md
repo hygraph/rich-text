@@ -1,5 +1,11 @@
 # @graphcms/rich-text-types
 
+## 0.1.4
+
+### Patch Changes
+
+- [`e950c91`](https://github.com/GraphCMS/rich-text/commit/e950c917befe31060c77891dd44f7722c9c93c77) [#17](https://github.com/GraphCMS/rich-text/pull/17) Thanks [@jpedroschmitz](https://github.com/jpedroschmitz)! - fix: empty thead being renderered
+
 ## 0.1.3
 
 ### Patch Changes
