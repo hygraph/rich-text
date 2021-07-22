@@ -177,6 +177,7 @@ export interface RemoveEmptyElementType {
   h4?: Boolean;
   h5?: Boolean;
   h6?: Boolean;
+  table_head?: Boolean;
 }
 
 export * from './util/isElement';

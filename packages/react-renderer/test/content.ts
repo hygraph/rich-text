@@ -14,7 +14,31 @@ export const defaultContent: RichTextContent = [
 
 export const emptyContent: RichTextContent = [
   {
+    type: 'heading-one',
+    children: [
+      {
+        text: '',
+      },
+    ],
+  },
+  {
     type: 'heading-two',
+    children: [
+      {
+        text: '',
+      },
+    ],
+  },
+  {
+    type: 'heading-three',
+    children: [
+      {
+        text: '',
+      },
+    ],
+  },
+  {
+    type: 'heading-four',
     children: [
       {
         text: '',
@@ -25,7 +49,56 @@ export const emptyContent: RichTextContent = [
     type: 'heading-five',
     children: [
       {
-        text: 'Hello World!',
+        text: '',
+      },
+    ],
+  },
+  {
+    type: 'table',
+    children: [
+      {
+        type: 'table_head',
+        children: [
+          {
+            text: '',
+          },
+        ],
+      },
+      {
+        type: 'table_body',
+        children: [
+          {
+            type: 'table_row',
+            children: [
+              {
+                type: 'table_cell',
+                children: [
+                  {
+                    type: 'paragraph',
+                    children: [
+                      {
+                        text: 'Row 1 - Col 1',
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                type: 'table_cell',
+                children: [
+                  {
+                    type: 'paragraph',
+                    children: [
+                      {
+                        text: 'Row 1 - Col 2',
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
       },
     ],
   },

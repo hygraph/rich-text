@@ -42,6 +42,7 @@ export const defaultRemoveEmptyElements: Required<RemoveEmptyElementType> = {
   h4: true,
   h5: true,
   h6: true,
+  table_head: true,
 };
 
 export const elementKeys: { [key: string]: string } = {
