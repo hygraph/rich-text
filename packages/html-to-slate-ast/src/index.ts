@@ -316,7 +316,7 @@ function isInlineElement(element: HTMLElement) {
 }
 
 const parseDomDocument = async (normalizedHTML: string) => {
-  if (window && window.DOMParser) {
+  if (typeof window !== 'undefined' && window.DOMParser) {
     return new DOMParser().parseFromString(normalizedHTML, 'text/html');
   } else {
     const jsdom = await import('jsdom');
