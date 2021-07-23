@@ -1,5 +1,11 @@
 # @graphcms/html-to-slate-ast
 
+## 0.3.0
+
+### Minor Changes
+
+- [`90a3f7d`](https://github.com/GraphCMS/rich-text/commit/90a3f7d6c1e135bb1d9a8e57fda49cb0e24a1c53) [#18](https://github.com/GraphCMS/rich-text/pull/18) Thanks [@OKJulian](https://github.com/OKJulian)! - Fix window check in node
+
 ## 0.2.0
 
 ### Minor Changes
