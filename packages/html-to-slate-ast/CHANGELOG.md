@@ -1,5 +1,11 @@
 # @graphcms/html-to-slate-ast
 
+## 0.4.0
+
+### Minor Changes
+
+- [`eea403f`](https://github.com/GraphCMS/rich-text/commit/eea403faf1074f3532b4697296014c3c436083d0) [#21](https://github.com/GraphCMS/rich-text/pull/21) Thanks [@notrab](https://github.com/notrab)! - Pass supported attributes to links
+
 ## 0.3.0
 
 ### Minor Changes
