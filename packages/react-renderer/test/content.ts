@@ -219,3 +219,26 @@ export const listContent: RichTextContent = [
     ],
   },
 ];
+
+export const embedAssetContent: RichTextContent = [
+  {
+    type: 'embed',
+    nodeId: 'cknjbzowggjo90b91kjisy03a',
+    children: [
+      {
+        text: '',
+      },
+    ],
+    nodeType: 'Asset',
+  },
+  {
+    type: 'embed',
+    nodeId: 'ckrus0f14ao760b32mz2dwvgx',
+    children: [
+      {
+        text: '',
+      },
+    ],
+    nodeType: 'Asset',
+  },
+];

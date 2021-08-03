@@ -4,7 +4,7 @@ import {
   RemoveEmptyElementType,
 } from '@graphcms/rich-text-types';
 
-import { IFrame, Image, Video, Class, Link } from './elements';
+import { IFrame, Image, Video, Class, Link, Asset } from './elements';
 
 export const defaultElements: Required<NodeRendererType> = {
   a: Link,
@@ -33,8 +33,16 @@ export const defaultElements: Required<NodeRendererType> = {
   underline: ({ children }) => <u>{children}</u>,
   code: ({ children }) => <code>{children}</code>,
   list_item_child: ({ children }) => <>{children}</>,
+  embed: {
+    Asset: Asset,
+  },
 };
 
+/**
+ * List of elements that shouldn't render when they are empty.
+ *
+ * This fixes issues like validate DOM nesting and others - look at [#5](https://github.com/GraphCMS/rich-text/issues/5)
+ */
 export const defaultRemoveEmptyElements: Required<RemoveEmptyElementType> = {
   h1: true,
   h2: true,

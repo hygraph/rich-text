@@ -12,11 +12,21 @@ export function RenderText({
 }) {
   const { text, bold, italic, underline, code } = textNode;
 
-  const Bold = renderers?.[elementKeys['bold'] as keyof NodeRendererType];
-  const Italic = renderers?.[elementKeys['italic'] as keyof NodeRendererType];
-  const Underline =
-    renderers?.[elementKeys['underline'] as keyof NodeRendererType];
-  const Code = renderers?.[elementKeys['code'] as keyof NodeRendererType];
+  const Bold = renderers?.[
+    elementKeys['bold'] as keyof NodeRendererType
+  ] as React.ElementType;
+
+  const Italic = renderers?.[
+    elementKeys['italic'] as keyof NodeRendererType
+  ] as React.ElementType;
+
+  const Underline = renderers?.[
+    elementKeys['underline'] as keyof NodeRendererType
+  ] as React.ElementType;
+
+  const Code = renderers?.[
+    elementKeys['code'] as keyof NodeRendererType
+  ] as React.ElementType;
 
   let element: ReactNode = text;
 

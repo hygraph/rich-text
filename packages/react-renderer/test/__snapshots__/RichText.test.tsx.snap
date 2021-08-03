@@ -86,6 +86,32 @@ exports[`@graphcms/rich-text-react-renderer renders video 1`] = `
 </div>
 `;
 
+exports[`@graphcms/rich-text-react-renderer should render embed assets 1`] = `
+<div>
+  <img
+    loading="lazy"
+    src="https://media.graphcms.com/dsQtt0ARqO28baaXbVy9"
+  />
+  <video
+    controls=""
+    height="100%"
+    src="https://media.graphcms.com/7M0lXLdCQfeIDXnT2SVS"
+    width="100%"
+  >
+    <p>
+      Your browser doesn't support HTML5 video. Here is a
+       
+      <a
+        href="https://media.graphcms.com/7M0lXLdCQfeIDXnT2SVS"
+      >
+        link to the video
+      </a>
+       instead.
+    </p>
+  </video>
+</div>
+`;
+
 exports[`@graphcms/rich-text-react-renderer should render empty text spaces 1`] = `
 <div>
   <p>

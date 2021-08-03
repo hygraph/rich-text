@@ -3,13 +3,14 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { RichText } from '@graphcms/rich-text-react-renderer';
 
-import { content } from './content';
+import { content, references } from './content';
 
 const App = () => {
   return (
     <div>
       <RichText
         content={content}
+        references={references}
         renderers={{
           h1: ({ children }) => <h1 className={`wfafsa`}>{children}</h1>,
           blockquote: ({ children }) => (

@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import { RichText } from '@graphcms/rich-text-react-renderer';
-import { RichTextContent } from '@graphcms/rich-text-types';
+import { RichTextContent, EmbedProps } from '@graphcms/rich-text-types';
 
 import {
   defaultContent as content,
@@ -11,6 +11,7 @@ import {
   iframeContent,
   inlineContent,
   emptyContent,
+  embedAssetContent,
 } from './content';
 
 describe('@graphcms/rich-text-react-renderer', () => {
@@ -329,5 +330,167 @@ describe('@graphcms/rich-text-react-renderer', () => {
     const { container } = render(<RichText content={content} />);
 
     expect(container).toMatchSnapshot();
+  });
+
+  it('should render embed assets', () => {
+    const references = [
+      {
+        id: 'cknjbzowggjo90b91kjisy03a',
+        url: 'https://media.graphcms.com/dsQtt0ARqO28baaXbVy9',
+        mimeType: 'image/png',
+      },
+      {
+        id: 'ckrus0f14ao760b32mz2dwvgx',
+        url: 'https://media.graphcms.com/7M0lXLdCQfeIDXnT2SVS',
+        mimeType: 'video/mp4',
+      },
+    ];
+
+    const { container } = render(
+      <RichText content={embedAssetContent} references={references} />
+    );
+
+    expect(container).toMatchSnapshot();
+  });
+
+  it(`shouldn't render embeds if id is missing in references`, () => {
+    console.error = jest.fn();
+
+    const references = [
+      {
+        id: '',
+        url: 'https://media.graphcms.com/dsQtt0ARqO28baaXbVy9',
+        mimeType: 'image/png',
+      },
+      {
+        id: '',
+        url: 'https://media.graphcms.com/7M0lXLdCQfeIDXnT2SVS',
+        mimeType: 'video/mp4',
+      },
+    ];
+
+    /**
+     * `id` is required in `references`, but if you remove it, or if it's empty, it can't render
+     */
+    const { container } = render(
+      <RichText content={embedAssetContent} references={references} />
+    );
+
+    expect(console.error).toHaveBeenCalledTimes(2);
+    expect(container).toMatchInlineSnapshot(`<div />`);
+  });
+
+  it('should render custom embed assets', () => {
+    const references = [
+      {
+        id: 'cknjbzowggjo90b91kjisy03a',
+        url: 'https://media.graphcms.com/dsQtt0ARqO28baaXbVy9',
+        mimeType: 'image/png',
+      },
+      {
+        id: 'ckrus0f14ao760b32mz2dwvgx',
+        url: 'https://media.graphcms.com/7M0lXLdCQfeIDXnT2SVS',
+        mimeType: 'video/mp4',
+      },
+    ];
+
+    const { container } = render(
+      <RichText
+        content={embedAssetContent}
+        references={references}
+        renderers={{
+          embed: {
+            Asset: () => <div>custom asset embed</div>,
+          },
+        }}
+      />
+    );
+
+    expect(container).toMatchInlineSnapshot(`
+      <div>
+        <div>
+          custom asset embed
+        </div>
+        <div>
+          custom asset embed
+        </div>
+      </div>
+    `);
+  });
+
+  it(`shouldn't render embed assets due to missing mimeType or url`, () => {
+    console.error = jest.fn();
+
+    const references = [
+      {
+        id: 'cknjbzowggjo90b91kjisy03a',
+      },
+      {
+        id: 'ckrus0f14ao760b32mz2dwvgx',
+      },
+    ];
+
+    const { container } = render(
+      <RichText content={embedAssetContent} references={references} />
+    );
+
+    expect(console.error).toHaveBeenCalledTimes(2);
+    expect(container).toMatchInlineSnapshot(`<div />`);
+  });
+
+  it('should render custom embed models', () => {
+    const content: RichTextContent = [
+      {
+        type: 'embed',
+        nodeId: 'custom_post_id',
+        children: [
+          {
+            text: '',
+          },
+        ],
+        nodeType: 'Post',
+      },
+    ];
+
+    const references = [
+      {
+        id: 'custom_post_id',
+        title: 'GraphCMS is awesome :rocket:',
+      },
+    ];
+
+    const { container } = render(
+      <RichText
+        content={content}
+        references={references}
+        renderers={{
+          embed: {
+            Post: ({ title, nodeId }: EmbedProps<{ title: string }>) => {
+              return (
+                <div className="post">
+                  <h3>{title}</h3>
+                  <p>{nodeId}</p>
+                </div>
+              );
+            },
+          },
+        }}
+      />
+    );
+
+    expect(container).toMatchInlineSnapshot(`
+      <div>
+        <div
+          class="post"
+        >
+          <h3>
+            GraphCMS is awesome :rocket:
+          </h3>
+          <p>
+            custom_post_id
+          </p>
+        </div>
+      </div>
+    `);
   });
 });
