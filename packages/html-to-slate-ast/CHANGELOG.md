@@ -1,5 +1,11 @@
 # @graphcms/html-to-slate-ast
 
+## 0.5.0
+
+### Minor Changes
+
+- [`b2c8f91`](https://github.com/GraphCMS/rich-text/commit/b2c8f9163abe9e1f50aaf3da5e242a8beb0efe31) [#23](https://github.com/GraphCMS/rich-text/pull/23) Thanks [@larisachristie](https://github.com/larisachristie)! - Fix the AST shape of a converted copy-pasted image
+
 ## 0.4.0
 
 ### Minor Changes
