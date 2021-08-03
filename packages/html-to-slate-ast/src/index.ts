@@ -37,6 +37,7 @@ const ELEMENT_TAGS: Record<
     href: el.getAttribute('src'),
     title: Boolean(el.getAttribute('alt')) ? el.getAttribute('alt') : '(Image)',
     openInNewTab: true,
+    children: [{ text: el.getAttribute('src') }],
   }),
   PRE: () => ({ type: 'pre' }),
 };
