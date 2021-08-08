@@ -1,10 +1,20 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import {
   NodeRendererType,
   RemoveEmptyElementType,
 } from '@graphcms/rich-text-types';
 
-import { IFrame, Image, Video, Class, Link, Asset } from './elements';
+import { IFrame, Image, Video, Class, Link, Audio } from './elements';
+
+function FallbackForCustomAsset({ mimeType }: { mimeType: string }) {
+  if (__DEV__) {
+    console.warn(
+      `[@graphcms/rich-text-react-renderer]: Unsupported mimeType encountered: ${mimeType}. You need to write your renderer to render it since we are not opinionated about how this asset should be rendered (check our docs for more info).`
+    );
+  }
+
+  return <Fragment />;
+}
 
 export const defaultElements: Required<NodeRendererType> = {
   a: Link,
@@ -33,9 +43,16 @@ export const defaultElements: Required<NodeRendererType> = {
   underline: ({ children }) => <u>{children}</u>,
   code: ({ children }) => <code>{children}</code>,
   list_item_child: ({ children }) => <>{children}</>,
-  embed: {
-    Asset: Asset,
+  Asset: {
+    audio: (props) => <Audio {...props} url={props.url} />,
+    image: (props) => <Image {...props} src={props.url} />,
+    video: (props) => <Video {...props} src={props.url} />,
+    font: FallbackForCustomAsset,
+    application: FallbackForCustomAsset,
+    model: FallbackForCustomAsset,
+    text: FallbackForCustomAsset,
   },
+  embed: {},
 };
 
 /**

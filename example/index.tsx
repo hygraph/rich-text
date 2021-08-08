@@ -37,6 +37,18 @@ const App = () => {
             <h2 style={{ color: 'darkcyan' }}>{children}</h2>
           ),
           bold: ({ children }) => <strong>{children}</strong>,
+          Asset: {
+            application: () => (
+              <div>
+                <p>Asset</p>
+              </div>
+            ),
+            text: () => (
+              <div>
+                <p>text plain</p>
+              </div>
+            ),
+          },
         }}
       />
     </div>

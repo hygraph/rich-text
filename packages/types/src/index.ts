@@ -43,7 +43,7 @@ export type VideoMimeTypes =
   | 'video/webm'
   | 'video/x-msvideo';
 
-export type AssetMimeTypes = ImageMimeTypes | VideoMimeTypes;
+export type AssetMimeTypes = ImageMimeTypes | VideoMimeTypes | string;
 
 export interface Text extends Mark {
   text: string;
@@ -60,7 +60,7 @@ export interface ClassProps {
   className: string;
 }
 
-export interface ClassElement extends Element, ClassProps {
+export interface ClassElement extends ClassProps, Element {
   type: 'class';
 }
 
@@ -73,7 +73,7 @@ export interface LinkProps {
   openInNewTab?: boolean;
 }
 
-export interface LinkElement extends Element, LinkProps {
+export interface LinkElement extends LinkProps, Element {
   type: 'link';
 }
 
@@ -83,11 +83,11 @@ export interface ImageProps {
   width?: number;
   height?: number;
   handle?: string;
-  mimeType?: ImageMimeTypes;
+  mimeType?: AssetMimeTypes;
   altText?: string;
 }
 
-export interface ImageElement extends Element, ImageProps {
+export interface ImageElement extends ImageProps, Element {
   type: 'image';
 }
 
@@ -99,7 +99,7 @@ export interface VideoProps {
   handle?: string;
 }
 
-export interface VideoElement extends Element, VideoProps {
+export interface VideoElement extends VideoProps, Element {
   type: 'video';
 }
 
@@ -109,7 +109,7 @@ export interface IFrameProps {
   height?: number;
 }
 
-export interface IFrameElement extends Element, IFrameProps {
+export interface IFrameElement extends IFrameProps, Element {
   type: 'iframe';
 }
 
@@ -118,7 +118,7 @@ export type EmbedProps<T = any> = T & {
   nodeType: string;
 };
 
-export interface EmbedElement extends Element, EmbedProps {
+export interface EmbedElement extends EmbedProps, Element {
   type: 'embed';
 }
 
@@ -174,7 +174,18 @@ type ClassNodeRenderer = (props: ClassRendererProps) => JSX.Element;
 type ImageNodeRenderer = (props: Partial<ImageProps>) => JSX.Element;
 type VideoNodeRenderer = (props: Partial<VideoProps>) => JSX.Element;
 type IFrameNodeRenderer = (props: Partial<IFrameProps>) => JSX.Element;
-type EmbedNodeRenderer = (props: EmbedProps<any>) => JSX.Element;
+type EmbedNodeRenderer = (props: any) => JSX.Element;
+
+interface AssetRendererType {
+  application?: EmbedNodeRenderer;
+  audio?: EmbedNodeRenderer;
+  font?: EmbedNodeRenderer;
+  image?: EmbedNodeRenderer;
+  model?: EmbedNodeRenderer;
+  text?: EmbedNodeRenderer;
+  video?: EmbedNodeRenderer;
+  [key: string]: EmbedNodeRenderer | undefined;
+}
 
 export interface NodeRendererType {
   a?: LinkNodeRenderer;
@@ -203,8 +214,8 @@ export interface NodeRendererType {
   italic?: DefaultNodeRenderer;
   underline?: DefaultNodeRenderer;
   code?: DefaultNodeRenderer;
+  Asset?: AssetRendererType;
   embed?: {
-    Asset?: EmbedNodeRenderer;
     [key: string]: EmbedNodeRenderer | undefined;
   };
 }

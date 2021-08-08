@@ -86,7 +86,31 @@ exports[`@graphcms/rich-text-react-renderer renders video 1`] = `
 </div>
 `;
 
-exports[`@graphcms/rich-text-react-renderer should render embed assets 1`] = `
+exports[`@graphcms/rich-text-react-renderer should render empty text spaces 1`] = `
+<div>
+  <p>
+    Sweet black 
+    <b>
+      cap
+    </b>
+     
+    <u>
+      with
+    </u>
+     
+    <i>
+      embroidered
+    </i>
+     
+    <b>
+      GraphCMS
+    </b>
+     logo.
+  </p>
+</div>
+`;
+
+exports[`custom embeds and assets should render embed video, image, and audio assets 1`] = `
 <div>
   <img
     loading="lazy"
@@ -109,29 +133,21 @@ exports[`@graphcms/rich-text-react-renderer should render embed assets 1`] = `
        instead.
     </p>
   </video>
-</div>
-`;
-
-exports[`@graphcms/rich-text-react-renderer should render empty text spaces 1`] = `
-<div>
-  <p>
-    Sweet black 
-    <b>
-      cap
-    </b>
-     
-    <u>
-      with
-    </u>
-     
-    <i>
-      embroidered
-    </i>
-     
-    <b>
-      GraphCMS
-    </b>
-     logo.
-  </p>
+  <audio
+    controls=""
+    src="https://media.graphcms.com/H9eZ7CISSBpAKxqdSwzg"
+    style="display: block; max-width: 100%; height: auto;"
+  >
+    <p>
+      Your browser doesn't support HTML5 audio. Here is a
+       
+      <a
+        href="https://media.graphcms.com/H9eZ7CISSBpAKxqdSwzg"
+      >
+        link to the audio
+      </a>
+       instead.
+    </p>
+  </audio>
 </div>
 `;

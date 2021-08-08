@@ -16,6 +16,7 @@ import {
   elementKeys,
 } from './defaultElements';
 import { RenderText } from './RenderText';
+import { getElements } from './util/getElements';
 
 function RenderNode({
   node,
@@ -79,12 +80,6 @@ function RenderElement({
 
   const isEmbed = type === 'embed';
 
-  const elementToRender = isEmbed
-    ? renderers?.embed?.[nodeType as keyof NodeRendererType]
-    : renderers?.[elementKeys[type] as keyof NodeRendererType];
-
-  const NodeRenderer = elementToRender as React.ElementType;
-
   /**
    * The .filter method returns an array with all found elements.
    * Since there won't be duplicated ID's, it's safe to use the first element.
@@ -105,12 +100,90 @@ function RenderElement({
     return <Fragment />;
   }
 
+  /**
+   * `mimeType` is used to determine if the node is an image or a video.
+   * That's why this is required and we show an error if it's not present.
+   * Only for custom assets embeds.
+   */
+  if (
+    __DEV__ &&
+    isEmbed &&
+    nodeType === 'Asset' &&
+    !referenceValues?.mimeType
+  ) {
+    console.error(
+      `[@graphcms/rich-text-react-renderer]: No mimeType found for embed node ${nodeId}. In order to render custom assets, \`mimeType\` is required in your reference query.`
+    );
+
+    return <Fragment />;
+  }
+
+  /**
+   * `url` is needed to correctly render the image, video, audio or any other asset
+   * Only for custom assets embeds.
+   */
+  if (__DEV__ && isEmbed && nodeType === 'Asset' && !referenceValues?.url) {
+    console.error(
+      `[@graphcms/rich-text-react-renderer]: No url found for embed node ${nodeId}. In order to render custom assets, \`url\` is required in your reference query.`
+    );
+
+    return <Fragment />;
+  }
+
+  /**
+   * There's two options if the element is an embed.
+   * 1. If it isn't an asset, then we simply try to use the renderer for that model.
+   *  1.1 If we don't find a renderer, we render a Fragment and show a warning.
+   * 2. If it is an asset, then:
+   *  2.1 If we have a custom renderer for that specific mimeType, we use it.
+   *  2.2 If we don't have, we use the default mimeType group renderer (application, image, video...).
+   */
+  let elementToRender;
+
+  // Option 1
+  if (isEmbed && nodeType !== 'Asset') {
+    const element = renderers?.embed?.[nodeType as string];
+
+    if (element !== undefined) {
+      elementToRender = element;
+    } else {
+      // Option 1.1
+      console.warn(
+        `[@graphcms/rich-text-react-renderer]: No renderer found for custom embed node type ${nodeType}.`
+      );
+      return <Fragment />;
+    }
+  }
+
+  // Option 2
+  if (isEmbed && nodeType === 'Asset') {
+    const element = renderers?.Asset?.[referenceValues?.mimeType];
+
+    // Option 2.1
+    if (element !== undefined) {
+      elementToRender = element;
+    } else {
+      // Option 2.2
+      const mimeTypeGroup = referenceValues?.mimeType.split('/')[0];
+      elementToRender = renderers?.Asset?.[mimeTypeGroup];
+    }
+  }
+
+  const elementNodeRenderer = isEmbed
+    ? elementToRender
+    : renderers?.[elementKeys[type] as keyof NodeRendererType];
+
+  const NodeRenderer = elementNodeRenderer as React.ElementType;
+
   const props = { ...rest, ...referenceValues };
 
   if (NodeRenderer) {
     return (
       <NodeRenderer {...props}>
-        <RichText content={children as ElementNode[]} renderers={renderers} />
+        <RenderElements
+          content={children as ElementNode[]}
+          renderers={renderers}
+        />
       </NodeRenderer>
     );
   }
@@ -118,14 +191,42 @@ function RenderElement({
   return <Fragment />;
 }
 
+function RenderElements({ content, references, renderers }: RichTextProps) {
+  const elements = getElements({ content });
+
+  return (
+    <>
+      {elements.map((node, index) => {
+        return (
+          <RenderNode
+            node={node}
+            renderers={renderers}
+            references={references}
+            key={index}
+          />
+        );
+      })}
+    </>
+  );
+}
+
 export function RichText({
   content,
   renderers: resolvers,
   references,
 }: RichTextProps) {
+  // Shallow merge doensn't work here because if we spread over the elements, the
+  // Asset object will be completly overriden by the resolvers. We need to keep
+  // the default elements for the Asset that hasn't been writen.
+  const assetRenderers = {
+    ...defaultElements.Asset,
+    ...resolvers?.Asset,
+  };
+
   const renderers: NodeRendererType = {
     ...defaultElements,
     ...resolvers,
+    Asset: assetRenderers,
   };
 
   if (__DEV__ && !content) {
@@ -142,7 +243,7 @@ export function RichText({
     return <Fragment />;
   }
 
-  const elements = Array.isArray(content) ? content : content.children;
+  const elements = getElements({ content });
 
   /*
     Checks if there's a embed type inside the content and if the `references` prop is defined
@@ -163,16 +264,11 @@ export function RichText({
 
   return (
     <>
-      {elements.map((node, index) => {
-        return (
-          <RenderNode
-            node={node}
-            renderers={renderers}
-            references={references}
-            key={index}
-          />
-        );
-      })}
+      <RenderElements
+        content={elements}
+        renderers={renderers}
+        references={references}
+      />
     </>
   );
 }

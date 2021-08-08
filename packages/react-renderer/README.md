@@ -146,7 +146,7 @@ Below you can check the full list of elements you can customize, alongside the p
 
 ### Empty elements
 
-By default, we remove empty headings from the element list to prevent SEO issues.
+By default, we remove empty headings from the element list to prevent SEO issues. Other elements, such as `thead` are also removed. You can find the complete list [here](https://github.com/GraphCMS/rich-text/blob/main/packages/react-renderer/src/defaultElements.tsx).
 
 ### TypeScript
 

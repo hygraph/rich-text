@@ -331,8 +331,10 @@ describe('@graphcms/rich-text-react-renderer', () => {
 
     expect(container).toMatchSnapshot();
   });
+});
 
-  it('should render embed assets', () => {
+describe('custom embeds and assets', () => {
+  it('should render embed video, image, and audio assets', () => {
     const references = [
       {
         id: 'cknjbzowggjo90b91kjisy03a',
@@ -344,6 +346,11 @@ describe('@graphcms/rich-text-react-renderer', () => {
         url: 'https://media.graphcms.com/7M0lXLdCQfeIDXnT2SVS',
         mimeType: 'video/mp4',
       },
+      {
+        id: 'ckryzom5si5vw0d78d13bnwix',
+        url: 'https://media.graphcms.com/H9eZ7CISSBpAKxqdSwzg',
+        mimeType: 'audio/mpeg',
+      },
     ];
 
     const { container } = render(
@@ -353,8 +360,104 @@ describe('@graphcms/rich-text-react-renderer', () => {
     expect(container).toMatchSnapshot();
   });
 
+  it('should render specific mimeType if favour of the mimeType group', () => {
+    const references = [
+      {
+        id: 'ckrus0f14ao760b32mz2dwvgx',
+        url: 'https://media.graphcms.com/7M0lXLdCQfeIDXnT2SVS',
+        mimeType: 'video/mp4',
+      },
+      {
+        id: 'ckq2eek7c00ek0d83iakzoxuh',
+        url: 'https://media.graphcms.com/hUxrMqNSn6EAJiv6bk9l',
+        mimeType: 'video/quicktime',
+      },
+    ];
+
+    const { container } = render(
+      <RichText
+        content={embedAssetContent}
+        references={references}
+        renderers={{
+          Asset: {
+            video: () => <div>custom video</div>,
+            'video/mp4': () => <div>custom video/mp4</div>,
+          },
+        }}
+      />
+    );
+
+    expect(container).toMatchInlineSnapshot(`
+      <div>
+        <div>
+          custom video/mp4
+        </div>
+        <div>
+          custom video
+        </div>
+      </div>
+    `);
+  });
+
+  it(`should show warnings if the embed asset file isn't rendered by the package`, () => {
+    console.warn = jest.fn();
+
+    const references = [
+      {
+        id: 'ckrxv7b74g8il0d782lf66dup',
+        url: 'https://media.graphcms.com/7VA0p81VQfmZQC9jPB2I',
+        mimeType: 'text/plain',
+      },
+      {
+        id: 'ckrxv6otkg6ez0c8743xp9bzs',
+        url: 'https://media.graphcms.com/HzsAGQyASM2B6B3dHY0n',
+        mimeType: 'application/pdf',
+      },
+      {
+        id: 'model_example',
+        url: 'https://media.graphcms.com/HzsAGQyASM2B6B3dHY0n',
+        mimeType: 'model/example',
+      },
+      {
+        id: 'cks2osfk8t19a0b32vahjhn36',
+        url: 'https://media.graphcms.com/Kdk4nsiUTLac3gDD2m5L',
+        mimeType: 'font/ttf',
+      },
+    ];
+
+    const { container } = render(
+      <RichText content={embedAssetContent} references={references} />
+    );
+
+    expect(console.warn).toHaveBeenCalledTimes(4);
+    expect(container).toMatchInlineSnapshot(`<div />`);
+  });
+
   it(`shouldn't render embeds if id is missing in references`, () => {
     console.error = jest.fn();
+
+    const content: RichTextContent = [
+      {
+        type: 'embed',
+        nodeId: 'cknjbzowggjo90b91kjisy03a',
+        children: [
+          {
+            text: '',
+          },
+        ],
+        nodeType: 'Asset',
+      },
+      {
+        type: 'embed',
+        nodeId: 'ckrus0f14ao760b32mz2dwvgx',
+        children: [
+          {
+            text: '',
+          },
+        ],
+        nodeType: 'Asset',
+      },
+    ];
 
     const references = [
       {
@@ -373,7 +476,7 @@ describe('@graphcms/rich-text-react-renderer', () => {
      * `id` is required in `references`, but if you remove it, or if it's empty, it can't render
      */
     const { container } = render(
-      <RichText content={embedAssetContent} references={references} />
+      <RichText content={content} references={references} />
     );
 
     expect(console.error).toHaveBeenCalledTimes(2);
@@ -399,8 +502,9 @@ describe('@graphcms/rich-text-react-renderer', () => {
         content={embedAssetContent}
         references={references}
         renderers={{
-          embed: {
-            Asset: () => <div>custom asset embed</div>,
+          Asset: {
+            video: () => <div>custom VIDEO</div>,
+            image: () => <div>custom IMAGE</div>,
           },
         }}
       />
@@ -409,10 +513,10 @@ describe('@graphcms/rich-text-react-renderer', () => {
     expect(container).toMatchInlineSnapshot(`
       <div>
         <div>
-          custom asset embed
+          custom IMAGE
         </div>
         <div>
-          custom asset embed
+          custom VIDEO
         </div>
       </div>
     `);
@@ -420,6 +524,29 @@ describe('@graphcms/rich-text-react-renderer', () => {
 
   it(`shouldn't render embed assets due to missing mimeType or url`, () => {
     console.error = jest.fn();
+
+    const content: RichTextContent = [
+      {
+        type: 'embed',
+        nodeId: 'cknjbzowggjo90b91kjisy03a',
+        children: [
+          {
+            text: '',
+          },
+        ],
+        nodeType: 'Asset',
+      },
+      {
+        type: 'embed',
+        nodeId: 'ckrus0f14ao760b32mz2dwvgx',
+        children: [
+          {
+            text: '',
+          },
+        ],
+        nodeType: 'Asset',
+      },
+    ];
 
     const references = [
       {
@@ -431,7 +558,7 @@ describe('@graphcms/rich-text-react-renderer', () => {
     ];
 
     const { container } = render(
-      <RichText content={embedAssetContent} references={references} />
+      <RichText content={content} references={references} />
     );
 
     expect(console.error).toHaveBeenCalledTimes(2);
@@ -492,5 +619,36 @@ describe('@graphcms/rich-text-react-renderer', () => {
         </div>
       </div>
     `);
+  });
+
+  it(`should show a warning if embeds are found but there aren't any renderer for it`, () => {
+    console.warn = jest.fn();
+
+    const content: RichTextContent = [
+      {
+        type: 'embed',
+        nodeId: 'custom_post_id',
+        children: [
+          {
+            text: '',
+          },
+        ],
+        nodeType: 'Post',
+      },
+    ];
+
+    const references = [
+      {
+        id: 'custom_post_id',
+        title: 'GraphCMS is awesome :rocket:',
+      },
+    ];
+
+    const { container } = render(
+      <RichText content={content} references={references} />
+    );
+
+    expect(console.warn).toHaveBeenCalledTimes(1);
+    expect(container).toMatchInlineSnapshot(`<div />`);
   });
 });
