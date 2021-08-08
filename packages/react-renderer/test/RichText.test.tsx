@@ -433,7 +433,7 @@ describe('custom embeds and assets', () => {
     expect(container).toMatchInlineSnapshot(`<div />`);
   });
 
-  it(`shouldn't render embeds if id is missing in references`, () => {
+  it(`shouldn't render embeds or assets if id is missing in references`, () => {
     console.error = jest.fn();
 
     const content: RichTextContent = [
@@ -457,6 +457,16 @@ describe('custom embeds and assets', () => {
         ],
         nodeType: 'Asset',
       },
+      {
+        type: 'embed',
+        nodeId: 'custom_post_id',
+        children: [
+          {
+            text: '',
+          },
+        ],
+        nodeType: 'Post',
+      },
     ];
 
     const references = [
@@ -470,6 +480,10 @@ describe('custom embeds and assets', () => {
         url: 'https://media.graphcms.com/7M0lXLdCQfeIDXnT2SVS',
         mimeType: 'video/mp4',
       },
+      {
+        id: '',
+        title: 'GraphCMS is awesome :rocket:',
+      },
     ];
 
     /**
@@ -479,7 +493,7 @@ describe('custom embeds and assets', () => {
       <RichText content={content} references={references} />
     );
 
-    expect(console.error).toHaveBeenCalledTimes(2);
+    expect(console.error).toHaveBeenCalledTimes(3);
     expect(container).toMatchInlineSnapshot(`<div />`);
   });
 
