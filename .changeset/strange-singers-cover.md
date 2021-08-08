@@ -12,4 +12,4 @@
 - Add new type `EmbedReferences`
 - Add `EmbedElement` to `ElementNode`
 - Add `references` to `RichTextProps`
-- Add `embed` type to `NodeRendererType`
+- Add `Asset` and `embed` to `NodeRendererType`
