@@ -1,5 +1,12 @@
 # @graphcms/html-to-slate-ast
 
+## 0.5.1
+
+### Patch Changes
+
+- Updated dependencies [[`768492a`](https://github.com/GraphCMS/rich-text/commit/768492a5dd5e642cc639b82cd7e13f2ce7f2dc96)]:
+  - @graphcms/rich-text-types@0.2.0
+
 ## 0.5.0
 
 ### Minor Changes
