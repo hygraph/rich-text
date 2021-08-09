@@ -219,3 +219,86 @@ export const listContent: RichTextContent = [
     ],
   },
 ];
+
+export const embedAssetContent: RichTextContent = [
+  {
+    type: 'embed',
+    nodeId: 'ckrxv7b74g8il0d782lf66dup',
+    children: [
+      {
+        text: '',
+      },
+    ],
+    nodeType: 'Asset',
+  },
+  {
+    type: 'embed',
+    nodeId: 'ckrxv6otkg6ez0c8743xp9bzs',
+    children: [
+      {
+        text: '',
+      },
+    ],
+    nodeType: 'Asset',
+  },
+  {
+    type: 'embed',
+    nodeId: 'cknjbzowggjo90b91kjisy03a',
+    children: [
+      {
+        text: '',
+      },
+    ],
+    nodeType: 'Asset',
+  },
+  {
+    type: 'embed',
+    nodeId: 'ckrus0f14ao760b32mz2dwvgx',
+    children: [
+      {
+        text: '',
+      },
+    ],
+    nodeType: 'Asset',
+  },
+  {
+    type: 'embed',
+    nodeId: 'ckryzom5si5vw0d78d13bnwix',
+    children: [
+      {
+        text: '',
+      },
+    ],
+    nodeType: 'Asset',
+  },
+  {
+    type: 'embed',
+    nodeId: 'cks2osfk8t19a0b32vahjhn36',
+    children: [
+      {
+        text: '',
+      },
+    ],
+    nodeType: 'Asset',
+  },
+  {
+    type: 'embed',
+    nodeId: 'ckq2eek7c00ek0d83iakzoxuh',
+    children: [
+      {
+        text: '',
+      },
+    ],
+    nodeType: 'Asset',
+  },
+  {
+    type: 'embed',
+    nodeId: 'model_example',
+    children: [
+      {
+        text: '',
+      },
+    ],
+    nodeType: 'Asset',
+  },
+];

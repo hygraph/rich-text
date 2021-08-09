@@ -144,13 +144,229 @@ Below you can check the full list of elements you can customize, alongside the p
 - `code`
   - `children`: ReactNode;
 
+## Custom assets
+
+The Rich Text field allows you to embed assets. By default, we render images, videos and audios out of the box. However, you can define custom components for each mime type group. Below you can see the complete list of `mimeType` groups.
+
+- `audio`
+- `application`
+- `image`
+- `video`
+- `font`
+- `model`
+- `text`
+
+We don't have components to render fonts, models, text and application files, but you can write your own depending on your needs and project. If you need, you can also have a custom renderer for a specific `mimeType`. Here's an example:
+
+```js
+import { RichText } from '@graphcms/rich-text-react-renderer';
+
+const content = [
+  {
+    type: 'embed',
+    nodeId: 'cknjbzowggjo90b91kjisy03a',
+    children: [
+      {
+        text: '',
+      },
+    ],
+    nodeType: 'Asset',
+  },
+  {
+    type: 'embed',
+    nodeId: 'ckrus0f14ao760b32mz2dwvgx',
+    children: [
+      {
+        text: '',
+      },
+    ],
+    nodeType: 'Asset',
+  },
+];
+
+const references = [
+  {
+    id: 'cknjbzowggjo90b91kjisy03a',
+    url: 'https://media.graphcms.com/dsQtt0ARqO28baaXbVy9',
+    mimeType: 'image/png',
+  },
+  {
+    id: 'ckrus0f14ao760b32mz2dwvgx',
+    url: 'https://media.graphcms.com/7M0lXLdCQfeIDXnT2SVS',
+    mimeType: 'video/mp4',
+  },
+];
+
+const { container } = render(
+  <RichText
+    content={content}
+    references={references}
+    renderers={{
+      Asset: {
+        video: () => <div>custom VIDEO</div>,
+        image: () => <div>custom IMAGE</div>,
+        'video/mp4': () => {
+          return <div>custom video/mp4 renderer</div>;
+        },
+      },
+    }}
+  />
+);
+```
+
+As mentioned, you can write renderers for all `mimeType` groups or to specific `mimeType` files.
+
+### References
+
+References are required on the `RichText` component to render embed assets.
+
+`id`, `mimeType` and `url` are required in your `Asset` query. It won't render if it's not present.
+
+**Query example:**
+
+```graphql
+{
+  articles {
+    content {
+      json
+      references {
+        ... on Asset {
+          id
+          url
+          mimeType
+        }
+      }
+    }
+  }
+}
+```
+
+## Custom embeds
+
+> This feature is not released on the Rich Text field yet, but the package already supports it.
+
+Imagine you have an embed `Post` on your Rich Text field. To render it, you can have a custom renderer. Let's see an example:
+
+```js
+import { RichText } from '@graphcms/rich-text-react-renderer';
+
+const content = [
+  {
+    type: 'embed',
+    nodeId: 'custom_post_id',
+    children: [
+      {
+        text: '',
+      },
+    ],
+    nodeType: 'Post',
+  },
+];
+
+const references = [
+  {
+    id: 'custom_post_id',
+    title: 'GraphCMS is awesome :rocket:',
+  },
+];
+
+function App() {
+  return (
+    <RichText
+      content={content}
+      references={references}
+      renderers={{
+        embed: {
+          Post: ({ title, nodeId }) => {
+            return (
+              <div className="post">
+                <h3>{title}</h3>
+                <p>{nodeId}</p>
+              </div>
+            );
+          },
+        },
+      }}
+    />
+  );
+}
+```
+
+### References
+
+References are required on the `RichText` component. You also need to include your model in your query.
+
+- `id` is always required in your model query. It won't render if it's not present.
+
+```graphql
+{
+  articles {
+    content {
+      json
+      references {
+        ... on Asset {
+          id
+          url
+          mimeType
+        }
+        # Your post query
+        ... on Post {
+          id # required
+          title
+          slug
+          description
+        }
+      }
+    }
+  }
+}
+```
+
 ### Empty elements
 
-By default, we remove empty headings from the element list to prevent SEO issues.
+By default, we remove empty headings from the element list to prevent SEO issues. Other elements, such as `thead` are also removed. You can find the complete list [here](https://github.com/GraphCMS/rich-text/blob/main/packages/react-renderer/src/defaultElements.tsx).
 
 ### TypeScript
 
 If you are using TypeScript in your project, we highly recommend you install the `@graphcms/rich-text-types` package. It contains types for the elements, alongside the props accepted by each of them. You can use them in your application to create custom components.
+
+#### Custom Embeds/Assets
+
+Depending on your reference query and model, fields may change, and the same applies to types. To have a better DX using the package, we have `EmbedProps` type that can be imported from `@graphcms/rich-text-types` (you may need to install it if you don't have done it already).
+
+In this example, we have seen how to write a renderer for a `Post` model, but it applies the same way to any other model and `Asset` on your project.
+
+```tsx
+import { EmbedProps } from '@graphcms/rich-text-types';
+
+type Post = {
+  title: string;
+  slug: string;
+  description: string;
+};
+
+function App() {
+  return (
+    <RichText
+      // ...
+      renderers={{
+        embed: {
+          Post: ({ title, description, slug }: EmbedProps<Post>) => {
+            return (
+              <div className="post">
+                <a href={`/post/${slug}`}>
+                  <h3>{title}</h3>
+                  <p>{description}</p>
+                </a>
+              </div>
+            );
+          },
+        },
+      }}
+    />
+  );
+}
+```
 
 ### Examples
 

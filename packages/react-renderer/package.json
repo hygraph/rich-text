@@ -49,7 +49,7 @@
   },
   "jest": {
     "setupFilesAfterEnv": [
-      "<rootDir>/jest.setup.ts"
+      "@testing-library/jest-dom/extend-expect"
     ]
   }
 }

@@ -9,6 +9,12 @@ export function Image({
   altText,
   title,
 }: Partial<ImageProps>) {
+  if (__DEV__ && !src) {
+    console.warn(
+      `[@graphcms/rich-text-react-renderer]: src is required. You need to include a \`url\` in your query`
+    );
+  }
+
   return (
     <img
       loading="lazy"
