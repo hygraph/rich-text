@@ -1,5 +1,21 @@
 # @graphcms/rich-text-types
 
+## 0.2.0
+
+### Minor Changes
+
+- [`768492a`](https://github.com/GraphCMS/rich-text/commit/768492a5dd5e642cc639b82cd7e13f2ce7f2dc96) [#25](https://github.com/GraphCMS/rich-text/pull/25) Thanks [@jpedroschmitz](https://github.com/jpedroschmitz)! - - Include `embed` in the list of types in `Element`
+  - Add new type `VideoMimeTypes`
+  - Add new type `AssetMimeTypes`
+  - Add new type `EmbedProps`
+  - Add new type `EmbedElement`
+  - Add new type `AssetReference`
+  - Add new type `Reference`
+  - Add new type `EmbedReferences`
+  - Add `EmbedElement` to `ElementNode`
+  - Add `references` to `RichTextProps`
+  - Add `Asset` and `embed` to `NodeRendererType`
+
 ## 0.1.4
 
 ### Patch Changes
