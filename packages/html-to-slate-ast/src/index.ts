@@ -1,5 +1,5 @@
 import { jsx } from 'slate-hyperscript';
-
+import { sanitizeUrl } from '@braintree/sanitize-url';
 import type { Element, Mark } from '@graphcms/rich-text-types';
 
 const ELEMENT_TAGS: Record<
@@ -32,13 +32,18 @@ const ELEMENT_TAGS: Record<
   TR: () => ({ type: 'table_row' }),
   TD: () => ({ type: 'table_cell' }),
   TH: () => ({ type: 'table_cell' }),
-  IMG: (el) => ({
-    type: 'link',
-    href: el.getAttribute('src'),
-    title: Boolean(el.getAttribute('alt')) ? el.getAttribute('alt') : '(Image)',
-    openInNewTab: true,
-    children: [{ text: el.getAttribute('src') }],
-  }),
+  IMG: (el) => {
+    const href = el.getAttribute('src');
+    if (href === null) return {};
+    return {
+      type: 'link',
+      href: sanitizeUrl(href),
+      title: Boolean(el.getAttribute('alt'))
+        ? el.getAttribute('alt')
+        : '(Image)',
+      openInNewTab: true,
+    };
+  },
   PRE: () => ({ type: 'pre' }),
 };
 
@@ -131,6 +136,8 @@ function deserialize(el: Node) {
         children: [],
       };
       return jsx('element', attrs, [thead, ...children]);
+    } else if (nodeName === 'IMG') {
+      return jsx('element', attrs, [attrs.href]);
     }
     return jsx('element', attrs, children);
   }
