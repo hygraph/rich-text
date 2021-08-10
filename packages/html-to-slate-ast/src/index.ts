@@ -10,15 +10,21 @@ const ELEMENT_TAGS: Record<
   OL: () => ({ type: 'numbered-list' }),
   UL: () => ({ type: 'bulleted-list' }),
   P: () => ({ type: 'paragraph' }),
-  A: (el) => ({
-    type: 'link',
-    href: el.getAttribute('href'),
-    ...(el.hasAttribute('title') && { title: el.getAttribute('title') }),
-    ...(el.hasAttribute('rel') && { rel: el.getAttribute('rel') }),
-    ...(el.hasAttribute('id') && { id: el.getAttribute('id') }),
-    ...(el.hasAttribute('class') && { className: el.getAttribute('class') }),
-    openInNewTab: Boolean(el.getAttribute('target') === '_blank'),
-  }),
+  A: (el) => {
+    const href = el.getAttribute('href');
+    if (href === null) return {};
+    return {
+      type: 'link',
+      href: sanitizeUrl(href),
+      ...(el.hasAttribute('title') && { title: el.getAttribute('title') }),
+      ...(el.hasAttribute('rel') && { rel: el.getAttribute('rel') }),
+      ...(el.hasAttribute('id') && { id: el.getAttribute('id') }),
+      ...(el.hasAttribute('class') && {
+        className: el.getAttribute('class'),
+      }),
+      openInNewTab: Boolean(el.getAttribute('target') === '_blank'),
+    };
+  },
   BLOCKQUOTE: () => ({ type: 'block-quote' }),
   H1: () => ({ type: 'heading-one' }),
   H2: () => ({ type: 'heading-two' }),
