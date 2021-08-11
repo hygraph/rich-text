@@ -326,7 +326,6 @@ test('Transforms Google Docs input', () => {
   );
 });
 
-// Skipped because even though expected and result are the same, they differ on their invisible nonsense whitespace next to the headings
 test('Converts word documents', () => {
   return htmlToSlateAST(
     fs.readFileSync(__dirname + '/word-document.html').toString()
