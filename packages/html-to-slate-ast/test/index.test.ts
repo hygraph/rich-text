@@ -497,3 +497,23 @@ test('Converts word documents', () => {
     ])
   );
 });
+
+test('Converts an image pasted from Google Docs into a link node', () => {
+  return htmlToSlateAST(
+    fs.readFileSync(__dirname + '/image.html').toString()
+  ).then((ast) =>
+    expect(ast).toStrictEqual([
+      {
+        type: 'link',
+        href: 'https://lh5.googleusercontent.com/EqByyE2l_VVSU6KoXFlkpPjJIBsbMTb4Dkr0cuvy2K5ctn8BoJsDHBXO0rU2wyck72_ZF1rqJ5kJ0iMEjU4Jwf7mKhRaLWoHJAzX5WvpfMytIR9sw3EwBcdQdRlIwSrsQ3odhUYq',
+        title: '(Image)',
+        openInNewTab: true,
+        children: [
+          {
+            text: 'https://lh5.googleusercontent.com/EqByyE2l_VVSU6KoXFlkpPjJIBsbMTb4Dkr0cuvy2K5ctn8BoJsDHBXO0rU2wyck72_ZF1rqJ5kJ0iMEjU4Jwf7mKhRaLWoHJAzX5WvpfMytIR9sw3EwBcdQdRlIwSrsQ3odhUYq',
+          },
+        ],
+      },
+    ])
+  );
+});
