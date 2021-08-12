@@ -1,5 +1,11 @@
 # @graphcms/html-to-slate-ast
 
+## 0.6.0
+
+### Minor Changes
+
+- [`a594c49`](https://github.com/GraphCMS/rich-text/commit/a594c49620fe27346f39ec3f0fd44d84927a70f7) [#27](https://github.com/GraphCMS/rich-text/pull/27) Thanks [@larisachristie](https://github.com/larisachristie)! - Fix text node when pasting images; sanitize URLs
+
 ## 0.5.1
 
 ### Patch Changes
