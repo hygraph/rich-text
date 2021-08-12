@@ -326,7 +326,6 @@ test('Transforms Google Docs input', () => {
   );
 });
 
-// Skipped because even though expected and result are the same, they differ on their invisible nonsense whitespace next to the headings
 test('Converts word documents', () => {
   return htmlToSlateAST(
     fs.readFileSync(__dirname + '/word-document.html').toString()
@@ -494,6 +493,26 @@ test('Converts word documents', () => {
         ],
       },
       { type: 'paragraph', children: [{ text: 'The\u00a0end\u00a0' }] },
+    ])
+  );
+});
+
+test('Converts an image pasted from Google Docs into a link node', () => {
+  return htmlToSlateAST(
+    fs.readFileSync(__dirname + '/image.html').toString()
+  ).then((ast) =>
+    expect(ast).toStrictEqual([
+      {
+        type: 'link',
+        href: 'https://lh5.googleusercontent.com/EqByyE2l_VVSU6KoXFlkpPjJIBsbMTb4Dkr0cuvy2K5ctn8BoJsDHBXO0rU2wyck72_ZF1rqJ5kJ0iMEjU4Jwf7mKhRaLWoHJAzX5WvpfMytIR9sw3EwBcdQdRlIwSrsQ3odhUYq',
+        title: "this is this image's title",
+        openInNewTab: true,
+        children: [
+          {
+            text: 'https://lh5.googleusercontent.com/EqByyE2l_VVSU6KoXFlkpPjJIBsbMTb4Dkr0cuvy2K5ctn8BoJsDHBXO0rU2wyck72_ZF1rqJ5kJ0iMEjU4Jwf7mKhRaLWoHJAzX5WvpfMytIR9sw3EwBcdQdRlIwSrsQ3odhUYq',
+          },
+        ],
+      },
     ])
   );
 });
