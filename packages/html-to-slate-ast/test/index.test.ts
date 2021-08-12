@@ -505,7 +505,7 @@ test('Converts an image pasted from Google Docs into a link node', () => {
       {
         type: 'link',
         href: 'https://lh5.googleusercontent.com/EqByyE2l_VVSU6KoXFlkpPjJIBsbMTb4Dkr0cuvy2K5ctn8BoJsDHBXO0rU2wyck72_ZF1rqJ5kJ0iMEjU4Jwf7mKhRaLWoHJAzX5WvpfMytIR9sw3EwBcdQdRlIwSrsQ3odhUYq',
-        title: '(Image)',
+        title: "this is this image's title",
         openInNewTab: true,
         children: [
           {
