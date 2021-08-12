@@ -40,13 +40,16 @@ const ELEMENT_TAGS: Record<
   TH: () => ({ type: 'table_cell' }),
   IMG: (el) => {
     const href = el.getAttribute('src');
+    const title = Boolean(el.getAttribute('alt'))
+      ? el.getAttribute('alt')
+      : Boolean(el.getAttribute('title'))
+      ? el.getAttribute('title')
+      : '(Image)';
     if (href === null) return {};
     return {
       type: 'link',
       href: sanitizeUrl(href),
-      title: Boolean(el.getAttribute('alt'))
-        ? el.getAttribute('alt')
-        : '(Image)',
+      title,
       openInNewTab: true,
     };
   },
