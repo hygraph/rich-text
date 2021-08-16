@@ -25,7 +25,8 @@ export interface Element {
     | 'image'
     | 'video'
     | 'iframe'
-    | 'embed';
+    | 'embed'
+    | 'code-block';
   [key: string]: unknown;
 }
 
@@ -214,6 +215,7 @@ export interface NodeRendererType {
   italic?: DefaultNodeRenderer;
   underline?: DefaultNodeRenderer;
   code?: DefaultNodeRenderer;
+  code_block?: DefaultNodeRenderer;
   Asset?: AssetRendererType;
   embed?: {
     [key: string]: EmbedNodeRenderer | undefined;

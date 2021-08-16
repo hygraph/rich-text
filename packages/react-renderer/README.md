@@ -143,6 +143,8 @@ Below you can check the full list of elements you can customize, alongside the p
   - `children`: ReactNode;
 - `code`
   - `children`: ReactNode;
+- `code_block`
+  - `children`: ReactNode;
 
 ## Custom assets
 
@@ -484,6 +486,49 @@ function App() {
             <Link to={href} {...rest}>
               {children}
             </Link>
+          );
+        },
+      }}
+    />
+  );
+}
+```
+
+#### Code blocks with [Prism.js](https://prismjs.com/)
+
+By default, as you may have already realized, the code-blocks rendered by the package don't have any unique styling since we're unopinionated on how it should look on your application. But, if you need, you can create your code block, add a background color for it, add some padding, and adjust based on your needs.
+
+If you want to go one step away, you can also integrate with [Prism.js](https://prismjs.com/) or [highlight.js](https://highlightjs.org/). Below you can see an example using Prism.js:
+
+> Note: we still don't support defining a custom language for a code block in the Rich Text field.
+
+```jsx
+import { useEffect } from 'react';
+import { RichText } from '@graphcms/rich-text-react-renderer';
+
+import Prism from 'prismjs';
+import 'prismjs/plugins/line-numbers/prism-line-numbers';
+import 'prismjs/themes/prism-tomorrow.css';
+import 'prismjs/plugins/line-numbers/prism-line-numbers.css';
+
+const content = {
+  /* ... */
+};
+
+function App() {
+  useEffect(() => {
+    Prism.highlightAll();
+  }, []);
+
+  return (
+    <RichText
+      content={content}
+      renderers={{
+        code_block: ({ children }) => {
+          return (
+            <pre className="line-numbers language-none">
+              <code>{children}</code>
+            </pre>
           );
         },
       }}

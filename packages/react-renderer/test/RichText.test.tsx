@@ -364,12 +364,12 @@ describe('custom embeds and assets', () => {
     const references = [
       {
         id: 'ckrus0f14ao760b32mz2dwvgx',
-        url: 'https://media.graphcms.com/7M0lXLdCQfeIDXnT2SVS',
+        url: 'https://media.graphcms.com/video_id',
         mimeType: 'video/mp4',
       },
       {
         id: 'ckq2eek7c00ek0d83iakzoxuh',
-        url: 'https://media.graphcms.com/hUxrMqNSn6EAJiv6bk9l',
+        url: 'https://media.graphcms.com/video_id',
         mimeType: 'video/quicktime',
       },
     ];
