@@ -141,7 +141,9 @@ function deserialize(el: Node) {
       return jsx('element', attrs, listItemChildren);
     } else if (
       nodeName === 'TABLE' &&
-      !children.find((node: ChildNode) => node.nodeName === 'THEAD')
+      !Array.from((el as HTMLTableElement).childNodes).find(
+        (node: ChildNode) => node.nodeName === 'THEAD'
+      )
     ) {
       // tables must have thead, otherwise field crashes
       const thead = {
@@ -149,6 +151,41 @@ function deserialize(el: Node) {
         children: [],
       };
       return jsx('element', attrs, [thead, ...children]);
+    } else if (nodeName === 'TR') {
+      // if TR is empty, insert a cell with a paragraph to ensure selection can be placed inside
+      const modifiedChildren =
+        (el as HTMLTableRowElement).cells.length === 0
+          ? [
+              {
+                type: 'table_cell',
+                children: [
+                  {
+                    type: 'paragraph',
+                    children: [{ text: el.textContent ? el.textContent : '' }],
+                  },
+                ],
+              },
+            ]
+          : children;
+      return jsx('element', attrs, modifiedChildren);
+    } else if (nodeName === 'TD') {
+      // if TD is empty, insert a a paragraph to ensure selection can be placed inside
+      const childNodes = Array.from(
+        (el as HTMLTableDataCellElement).childNodes
+      );
+      const modifiedChildren =
+        childNodes.length === 0
+          ? [
+              {
+                type: 'paragraph',
+                children: [{ text: '' }],
+              },
+            ]
+          : childNodes.map((child) => ({
+              type: 'paragraph',
+              children: [{ text: child.textContent ? child.textContent : '' }],
+            }));
+      return jsx('element', attrs, modifiedChildren);
     } else if (nodeName === 'IMG') {
       return jsx('element', attrs, [attrs.href]);
     }
@@ -157,12 +194,10 @@ function deserialize(el: Node) {
 
   if (nodeName === 'DIV') {
     const childNodes = Array.from(el.childNodes);
-    const isParagraph =
-      childNodes.length &&
-      childNodes.every(
-        (child) =>
-          (isElementNode(child) && isInlineElement(child)) || isTextNode(child)
-      );
+    const isParagraph = childNodes.every(
+      (child) =>
+        (isElementNode(child) && isInlineElement(child)) || isTextNode(child)
+    );
     if (isParagraph) {
       return jsx('element', { type: 'paragraph' }, children);
     }
