@@ -86,10 +86,14 @@ function deserialize(el: Node) {
   ) {
     parent = el.childNodes[0];
   }
-  const children = Array.from(parent.childNodes)
+  let children = Array.from(parent.childNodes)
     .map(deserialize)
     .flat() as ChildNode[];
 
+  if (children.length === 0) {
+    // @ts-expect-error
+    children = [{ text: '' }];
+  }
   if (el.nodeName === 'BODY') {
     return jsx('fragment', {}, children);
   }
