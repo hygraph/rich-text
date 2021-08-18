@@ -1,5 +1,16 @@
 # @graphcms/rich-text-react-renderer
 
+## 0.3.0
+
+### Minor Changes
+
+- [`91495b9`](https://github.com/GraphCMS/rich-text/commit/91495b9f3649c0bf92326d52365473d376ad598f) [#29](https://github.com/GraphCMS/rich-text/pull/29) Thanks [@jpedroschmitz](https://github.com/jpedroschmitz)! - Add support for code blocks
+
+### Patch Changes
+
+- Updated dependencies [[`91495b9`](https://github.com/GraphCMS/rich-text/commit/91495b9f3649c0bf92326d52365473d376ad598f)]:
+  - @graphcms/rich-text-types@0.2.1
+
 ## 0.2.0
 
 ### Minor Changes
