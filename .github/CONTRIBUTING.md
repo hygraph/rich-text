@@ -36,12 +36,12 @@ yarn start
 
 This builds each package to `<packages>/<package>/dist` and runs the project in watch mode so any edits you save inside `<packages>/<package>/src` cause a rebuild to `<packages>/<package>/dist`. The results will stream to to the terminal.
 
-### Using the example/playground
+### Using the React example/playground
 
-You can play with local packages in the Parcel-powered example/playground.
+You can play with local React packages in the Parcel-powered example/playground.
 
 ```sh
-yarn start:app
+yarn start:react:app
 ```
 
 This will start the example/playground on `localhost:1234`. If you have lerna running watch in parallel mode in one terminal, and then you run parcel, your playground will hot reload when you make changes to any imported module whose source is inside of `packages/*/src/*`. Note that to accomplish this, each package's `start` command passes TDSX the `--noClean` flag. This prevents Parcel from exploding between rebuilds because of File Not Found errors.

@@ -1,6 +1,6 @@
 examples:
-  - example/*
-  - example/**/*
+  - examples/*
+  - examples/**/*
 
 html-to-slate-ast:
   - packages/html-to-slate-ast/*
