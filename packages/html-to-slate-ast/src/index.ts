@@ -91,8 +91,9 @@ function deserialize(el: Node) {
     .flat() as ChildNode[];
 
   if (children.length === 0) {
-    // @ts-expect-error
-    children = [{ text: '' }];
+    if (!['COLGROUP', 'COL', 'CAPTION', 'TFOOT'].includes(nodeName))
+      // @ts-expect-error
+      children = [{ text: '' }];
   }
   if (el.nodeName === 'BODY') {
     return jsx('fragment', {}, children);
