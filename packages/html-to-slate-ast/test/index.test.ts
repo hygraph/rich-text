@@ -530,3 +530,62 @@ test('Converts an image pasted from Google Docs into a link node', () => {
     ])
   );
 });
+
+test('Reshape an incorrectly structured table', () => {
+  return htmlToSlateAST(
+    '<table><colgroup><col /><col /></colgroup><tbody><tr><td></td></tr><tr></tr></tbody></table>'
+  ).then((ast) =>
+    expect(ast).toStrictEqual([
+      {
+        type: 'table',
+        children: [
+          {
+            type: 'table_head',
+            children: [],
+          },
+          {
+            type: 'table_body',
+            children: [
+              {
+                type: 'table_row',
+                children: [
+                  {
+                    type: 'table_cell',
+                    children: [
+                      {
+                        type: 'paragraph',
+                        children: [
+                          {
+                            text: '',
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                type: 'table_row',
+                children: [
+                  {
+                    type: 'table_cell',
+                    children: [
+                      {
+                        type: 'paragraph',
+                        children: [
+                          {
+                            text: '',
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+    ])
+  );
+});
