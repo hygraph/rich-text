@@ -42,6 +42,19 @@ export const defaultElements: Required<NodeRendererType> = {
   italic: ({ children }) => <i>{children}</i>,
   underline: ({ children }) => <u>{children}</u>,
   code: ({ children }) => <code>{children}</code>,
+  code_block: ({ children }) => (
+    <pre
+      style={{
+        whiteSpace: 'pre',
+        wordWrap: 'break-word',
+        overflowX: 'auto',
+        WebkitOverflowScrolling: 'touch',
+        fontFamily: 'monospace',
+      }}
+    >
+      {children}
+    </pre>
+  ),
   list_item_child: ({ children }) => <>{children}</>,
   Asset: {
     audio: (props) => <Audio {...props} url={props.url} />,
@@ -97,4 +110,5 @@ export const elementKeys: { [key: string]: string } = {
   italic: 'italic',
   underline: 'underline',
   code: 'code',
+  'code-block': 'code_block',
 };

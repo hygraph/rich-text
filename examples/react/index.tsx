@@ -2,10 +2,18 @@ import 'react-app-polyfill/ie11';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { RichText } from '@graphcms/rich-text-react-renderer';
+import Prism from 'prismjs';
+import 'prismjs/plugins/line-numbers/prism-line-numbers';
+import 'prismjs/themes/prism-tomorrow.css';
+import 'prismjs/plugins/line-numbers/prism-line-numbers.css';
 
 import { content, references } from './content';
 
 const App = () => {
+  React.useEffect(() => {
+    Prism.highlightAll();
+  }, []);
+
   return (
     <div>
       <RichText
@@ -37,6 +45,26 @@ const App = () => {
             <h2 style={{ color: 'darkcyan' }}>{children}</h2>
           ),
           bold: ({ children }) => <strong>{children}</strong>,
+          // code_block: ({ children }) => {
+          //   return (
+          //     <pre
+          //       style={{
+          //         backgroundColor: 'darkcyan',
+          //         padding: '12px',
+          //         borderRadius: '4px',
+          //       }}
+          //     >
+          //       {children}
+          //     </pre>
+          //   );
+          // },
+          code_block: ({ children }) => {
+            return (
+              <pre className="line-numbers language-none">
+                <code>{children}</code>
+              </pre>
+            );
+          },
           Asset: {
             application: () => (
               <div>

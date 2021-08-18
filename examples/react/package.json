@@ -10,6 +10,7 @@
     "watch": "parcel watch index.html"
   },
   "dependencies": {
+    "prismjs": "^1.24.1",
     "react-app-polyfill": "^1.0.0"
   },
   "alias": {

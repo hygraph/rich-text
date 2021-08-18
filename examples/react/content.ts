@@ -63,18 +63,24 @@ export const content: RichTextContent = {
     },
     { type: 'paragraph', children: [{ text: '<Test />', code: true }] },
     {
-      type: 'embed',
-      nodeId: 'cknjbzowggjo90b91kjisy03a',
+      type: 'code-block',
       children: [
         {
-          text: '',
+          text: "const teste = 'teste'",
         },
       ],
-      nodeType: 'Asset',
+    },
+    {
+      type: 'code-block',
+      children: [
+        {
+          text: 'const graph = \'cms\'\n\n<?php $echo "Hello" ?>',
+        },
+      ],
     },
     {
       type: 'embed',
-      nodeId: 'ckq2eek7c00ek0d83iakzoxuh',
+      nodeId: 'cknjbzowggjo90b91kjisy03a',
       children: [
         {
           text: '',
@@ -143,15 +149,6 @@ export const references: EmbedReferences = [
     width: null,
     url: 'https://media.graphcms.com/7M0lXLdCQfeIDXnT2SVS',
     mimeType: 'video/mp4',
-  },
-  {
-    id: 'ckq2eek7c00ek0d83iakzoxuh',
-    handle: 'hUxrMqNSn6EAJiv6bk9l',
-    fileName: 'Screen Recording 2021-06-18 at 10.58.11.mov',
-    height: null,
-    width: null,
-    url: 'https://media.graphcms.com/hUxrMqNSn6EAJiv6bk9l',
-    mimeType: 'video/quicktime',
   },
   {
     id: 'ckrxv7b74g8il0d782lf66dup',
