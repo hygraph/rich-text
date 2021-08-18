@@ -1,5 +1,11 @@
 # @graphcms/html-to-slate-ast
 
+## 0.7.0
+
+### Minor Changes
+
+- [`8e2a3a4`](https://github.com/GraphCMS/rich-text/commit/8e2a3a4660176eb957977f2b01c3c26c79e54dd2) [#31](https://github.com/GraphCMS/rich-text/pull/31) Thanks [@larisachristie](https://github.com/larisachristie)! - Populate empty children array with text node
+
 ## 0.6.0
 
 ### Minor Changes
