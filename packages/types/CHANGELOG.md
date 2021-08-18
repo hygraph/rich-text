@@ -1,5 +1,11 @@
 # @graphcms/rich-text-types
 
+## 0.2.1
+
+### Patch Changes
+
+- [`91495b9`](https://github.com/GraphCMS/rich-text/commit/91495b9f3649c0bf92326d52365473d376ad598f) [#29](https://github.com/GraphCMS/rich-text/pull/29) Thanks [@jpedroschmitz](https://github.com/jpedroschmitz)! - Include `code-block` in the list of types in `Element`
+
 ## 0.2.0
 
 ### Minor Changes
