@@ -73,7 +73,12 @@ function deserialize(el: Node) {
   } else if (el.nodeType !== 1) {
     return null;
   } else if (el.nodeName === 'BR') {
-    return '\n';
+    // wrap parentless breaks in a paragraph
+    if (el.parentElement?.nodeName === 'BODY') {
+      return jsx('element', { type: 'paragraph' }, [{ text: '' }]);
+    } else {
+      return '\n';
+    }
   }
 
   const { nodeName } = el;

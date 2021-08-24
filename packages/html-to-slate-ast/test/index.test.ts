@@ -335,6 +335,14 @@ test('Transforms Google Docs input', () => {
           },
         ],
       },
+      {
+        type: 'paragraph',
+        children: [
+          {
+            text: '',
+          },
+        ],
+      },
     ])
   );
 });
