@@ -155,9 +155,6 @@ test('Transforms Google Docs input', () => {
               },
             ],
           },
-          {
-            text: ' ',
-          },
         ],
       },
       {
@@ -330,6 +327,22 @@ test('Transforms Google Docs input', () => {
                     ],
                   },
                 ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        type: 'paragraph',
+        children: [
+          {
+            type: 'link',
+            href: 'https://lh6.googleusercontent.com/TkJFBZvkyXTa602F0gkp2phU0O1eHu96RdKFcQ8l_EOS_CBfcI9jYRixN6sNRFnFiZ-ssbLbnLDReb3FrEZ1MnLr70c5gIvPmhJtV7appyVEDSeHLIRdNwdNzbIqs3l2GOgGLGC5=s0',
+            title: 'Screenshot 2021-06-10 at 15.56.22.png',
+            openInNewTab: true,
+            children: [
+              {
+                text: 'https://lh6.googleusercontent.com/TkJFBZvkyXTa602F0gkp2phU0O1eHu96RdKFcQ8l_EOS_CBfcI9jYRixN6sNRFnFiZ-ssbLbnLDReb3FrEZ1MnLr70c5gIvPmhJtV7appyVEDSeHLIRdNwdNzbIqs3l2GOgGLGC5=s0',
               },
             ],
           },
