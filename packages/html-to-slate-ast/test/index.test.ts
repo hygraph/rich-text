@@ -146,14 +146,17 @@ test('Transforms Google Docs input', () => {
         children: [
           {
             type: 'link',
-            href: 'https://github.com/GraphCMS/next-webapp/pull/1034',
+            href: 'https://www.google.com/',
             openInNewTab: false,
             children: [
               {
-                text: 'Link to GH',
+                text: 'Link to Google',
                 underline: true,
               },
             ],
+          },
+          {
+            text: '\u00a0',
           },
         ],
       },
@@ -259,10 +262,6 @@ test('Transforms Google Docs input', () => {
       {
         type: 'table',
         children: [
-          {
-            type: 'table_head',
-            children: [],
-          },
           {
             type: 'table_body',
             children: [
@@ -482,7 +481,6 @@ test('Converts word documents', () => {
       {
         type: 'table',
         children: [
-          { type: 'table_head', children: [] },
           {
             type: 'table_body',
             children: [
@@ -560,10 +558,6 @@ test('Reshape an incorrectly structured table', () => {
       {
         type: 'table',
         children: [
-          {
-            type: 'table_head',
-            children: [],
-          },
           {
             type: 'table_body',
             children: [
