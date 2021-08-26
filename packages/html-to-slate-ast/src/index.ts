@@ -145,18 +145,6 @@ function deserialize(el: Node) {
         type: 'list-item-child',
       }));
       return jsx('element', attrs, listItemChildren);
-    } else if (
-      nodeName === 'TABLE' &&
-      !Array.from((el as HTMLTableElement).childNodes).find(
-        (node: ChildNode) => node.nodeName === 'THEAD'
-      )
-    ) {
-      // tables must have thead, otherwise field crashes
-      const thead = {
-        type: 'table_head',
-        children: [],
-      };
-      return jsx('element', attrs, [thead, ...children]);
     } else if (nodeName === 'TR') {
       // if TR is empty, insert a cell with a paragraph to ensure selection can be placed inside
       const modifiedChildren =
