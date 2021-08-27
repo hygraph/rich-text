@@ -604,3 +604,19 @@ test('Reshape an incorrectly structured table', () => {
     ])
   );
 });
+
+test('Transforms pre tags into code-block nodes', () => {
+  const input = fs.readFileSync(__dirname + '/pre.html').toString();
+  return htmlToSlateAST(input).then((ast) =>
+    expect(ast).toStrictEqual([
+      {
+        type: 'code-block',
+        children: [
+          {
+            text: "  L          TE\n    A       A\n      C    V\n       R A\n       DOU\n       LOU\n      REUSE\n      QUE TU\n      PORTES\n    ET QUI T'\n    ORNE O CI\n     VILISÉ\n    OTE-  TU VEUX\n     LA    BIEN\n    SI      RESPI\n            RER       - Apollinaire",
+          },
+        ],
+      },
+    ])
+  );
+});
