@@ -53,7 +53,7 @@ const ELEMENT_TAGS: Record<
       openInNewTab: true,
     };
   },
-  PRE: () => ({ type: 'pre' }),
+  PRE: () => ({ type: 'code-block' }),
 };
 
 const TEXT_TAGS: Record<
