@@ -1,5 +1,11 @@
 # @graphcms/html-to-slate-ast
 
+## 0.8.0
+
+### Minor Changes
+
+- [`5a618d5`](https://github.com/GraphCMS/rich-text/commit/5a618d5a53703f1e0a2a76815a7f9b0f9c98df80) [#34](https://github.com/GraphCMS/rich-text/pull/34) Thanks [@larisachristie](https://github.com/larisachristie)! - Update Slate; refactor types; fix pre tag handling; wrap parentless breaks in a paragraph; do not add thead to headless tables
+
 ## 0.7.0
 
 ### Minor Changes
