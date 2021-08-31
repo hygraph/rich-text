@@ -1,3 +1,4 @@
+import { BaseElement, Descendant, Text as SlateText } from 'slate';
 import { jsx } from 'slate-hyperscript';
 import { sanitizeUrl } from '@braintree/sanitize-url';
 import type { Element, Mark } from '@graphcms/rich-text-types';
@@ -53,7 +54,7 @@ const ELEMENT_TAGS: Record<
       openInNewTab: true,
     };
   },
-  PRE: () => ({ type: 'pre' }),
+  PRE: () => ({ type: 'code-block' }),
 };
 
 const TEXT_TAGS: Record<
@@ -67,13 +68,21 @@ const TEXT_TAGS: Record<
   U: () => ({ underline: true }),
 };
 
+function deserialize(
+  el: Node
+): string | ChildNode[] | BaseElement | Descendant[];
 function deserialize(el: Node) {
   if (el.nodeType === 3) {
     return el.textContent;
   } else if (el.nodeType !== 1) {
     return null;
   } else if (el.nodeName === 'BR') {
-    return '\n';
+    // wrap parentless breaks in a paragraph
+    if (el.parentElement?.nodeName === 'BODY') {
+      return jsx('element', { type: 'paragraph' }, [{ text: '' }]);
+    } else {
+      return '\n';
+    }
   }
 
   const { nodeName } = el;
@@ -86,14 +95,13 @@ function deserialize(el: Node) {
   ) {
     parent = el.childNodes[0];
   }
-  let children = Array.from(parent.childNodes)
-    .map(deserialize)
-    .flat() as ChildNode[];
+  let children = Array.from(parent.childNodes).map(deserialize).flat();
 
   if (children.length === 0) {
-    if (!['COLGROUP', 'COL', 'CAPTION', 'TFOOT'].includes(nodeName))
-      // @ts-expect-error
-      children = [{ text: '' }];
+    if (!['COLGROUP', 'COL', 'CAPTION', 'TFOOT'].includes(nodeName)) {
+      const textNode = jsx('text', {}, '');
+      children = [textNode];
+    }
   }
   if (el.nodeName === 'BODY') {
     return jsx('fragment', {}, children);
@@ -135,23 +143,20 @@ function deserialize(el: Node) {
     const attrs = ELEMENT_TAGS[nodeName](el as HTMLElement);
     // li children must be rendered in spans, like in list plugin
     if (nodeName === 'LI') {
-      const listItemChildren = children.map((child: ChildNode) => ({
-        ...child,
-        type: 'list-item-child',
-      }));
+      const listItemChildren = children.map((child) => {
+        if (typeof child === 'string') {
+          return jsx('element', { type: 'list-item-child' }, [child]);
+        } else if (SlateText.isText(child)) {
+          return jsx('element', { type: 'list-item-child' }, [child.text]);
+        } else if (isChildNode(child)) {
+          return jsx('element', { type: 'list-item-child' }, [
+            child.textContent,
+          ]);
+        } else {
+          return { ...child, type: 'list-item-child' };
+        }
+      });
       return jsx('element', attrs, listItemChildren);
-    } else if (
-      nodeName === 'TABLE' &&
-      !Array.from((el as HTMLTableElement).childNodes).find(
-        (node: ChildNode) => node.nodeName === 'THEAD'
-      )
-    ) {
-      // tables must have thead, otherwise field crashes
-      const thead = {
-        type: 'table_head',
-        children: [],
-      };
-      return jsx('element', attrs, [thead, ...children]);
     } else if (nodeName === 'TR') {
       // if TR is empty, insert a cell with a paragraph to ensure selection can be placed inside
       const modifiedChildren =
@@ -231,13 +236,13 @@ function deserialize(el: Node) {
     })();
     if (tagName) {
       const attrs = TEXT_TAGS[tagName]();
-      return children.map((child: ChildNode) => jsx('text', attrs, child));
+      return children.map((child) => jsx('text', attrs, child));
     }
   }
 
   if (TEXT_TAGS[nodeName]) {
     const attrs = TEXT_TAGS[nodeName](el as HTMLElement);
-    return children.map((child: ChildNode) => jsx('text', attrs, child));
+    return children.map((child) => jsx('text', attrs, child));
   }
 
   // general fallback
@@ -321,6 +326,10 @@ function isTextNode(node: Node): node is Text {
   return node.nodeType === 3;
 }
 
+function isChildNode(node: string | ChildNode | Descendant): node is ChildNode {
+  return node instanceof Node;
+}
+
 function isInlineElement(element: HTMLElement) {
   const allInlineElements: Array<keyof HTMLElementTagNameMap> = [
     'a',
@@ -390,6 +399,9 @@ const parseDomDocument = async (normalizedHTML: string) => {
   }
 };
 
+export function htmlToSlateAST<T>(
+  html: string
+): Promise<string | Descendant | ChildNode[] | Descendant[] | T | T[]>;
 export async function htmlToSlateAST(html: string) {
   const normalizedHTML = normalizeHtml(html);
   const domDocument = await parseDomDocument(normalizedHTML);

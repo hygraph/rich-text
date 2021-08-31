@@ -146,17 +146,17 @@ test('Transforms Google Docs input', () => {
         children: [
           {
             type: 'link',
-            href: 'https://github.com/GraphCMS/next-webapp/pull/1034',
+            href: 'https://www.google.com/',
             openInNewTab: false,
             children: [
               {
-                text: 'Link to GH',
+                text: 'Link to Google',
                 underline: true,
               },
             ],
           },
           {
-            text: ' ',
+            text: '\u00a0',
           },
         ],
       },
@@ -263,10 +263,6 @@ test('Transforms Google Docs input', () => {
         type: 'table',
         children: [
           {
-            type: 'table_head',
-            children: [],
-          },
-          {
             type: 'table_body',
             children: [
               {
@@ -332,6 +328,30 @@ test('Transforms Google Docs input', () => {
                 ],
               },
             ],
+          },
+        ],
+      },
+      {
+        type: 'paragraph',
+        children: [
+          {
+            type: 'link',
+            href: 'https://lh6.googleusercontent.com/TkJFBZvkyXTa602F0gkp2phU0O1eHu96RdKFcQ8l_EOS_CBfcI9jYRixN6sNRFnFiZ-ssbLbnLDReb3FrEZ1MnLr70c5gIvPmhJtV7appyVEDSeHLIRdNwdNzbIqs3l2GOgGLGC5=s0',
+            title: 'Screenshot 2021-06-10 at 15.56.22.png',
+            openInNewTab: true,
+            children: [
+              {
+                text: 'https://lh6.googleusercontent.com/TkJFBZvkyXTa602F0gkp2phU0O1eHu96RdKFcQ8l_EOS_CBfcI9jYRixN6sNRFnFiZ-ssbLbnLDReb3FrEZ1MnLr70c5gIvPmhJtV7appyVEDSeHLIRdNwdNzbIqs3l2GOgGLGC5=s0',
+              },
+            ],
+          },
+        ],
+      },
+      {
+        type: 'paragraph',
+        children: [
+          {
+            text: '',
           },
         ],
       },
@@ -461,7 +481,6 @@ test('Converts word documents', () => {
       {
         type: 'table',
         children: [
-          { type: 'table_head', children: [] },
           {
             type: 'table_body',
             children: [
@@ -540,10 +559,6 @@ test('Reshape an incorrectly structured table', () => {
         type: 'table',
         children: [
           {
-            type: 'table_head',
-            children: [],
-          },
-          {
             type: 'table_body',
             children: [
               {
@@ -583,6 +598,22 @@ test('Reshape an incorrectly structured table', () => {
                 ],
               },
             ],
+          },
+        ],
+      },
+    ])
+  );
+});
+
+test('Transforms pre tags into code-block nodes', () => {
+  const input = fs.readFileSync(__dirname + '/pre.html').toString();
+  return htmlToSlateAST(input).then((ast) =>
+    expect(ast).toStrictEqual([
+      {
+        type: 'code-block',
+        children: [
+          {
+            text: "  L          TE\n    A       A\n      C    V\n       R A\n       DOU\n       LOU\n      REUSE\n      QUE TU\n      PORTES\n    ET QUI T'\n    ORNE O CI\n     VILISÉ\n    OTE-  TU VEUX\n     LA    BIEN\n    SI      RESPI\n            RER       - Apollinaire",
           },
         ],
       },
