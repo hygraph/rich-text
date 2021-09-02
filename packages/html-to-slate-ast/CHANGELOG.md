@@ -1,5 +1,11 @@
 # @graphcms/html-to-slate-ast
 
+## 0.8.1
+
+### Patch Changes
+
+- [`9222643`](https://github.com/GraphCMS/rich-text/commit/9222643f6ac086bcca3d227138ec3deeb2af910b) [#37](https://github.com/GraphCMS/rich-text/pull/37) Thanks [@igneosaur][https://github.com/igneosaur] for the report! - Fix a regression on NodeJS caused by the direct use of the window object instead of a jsdom fallback
+
 ## 0.8.0
 
 ### Minor Changes
