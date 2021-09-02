@@ -68,10 +68,17 @@ const TEXT_TAGS: Record<
   U: () => ({ underline: true }),
 };
 
-function deserialize(
-  el: Node
-): string | ChildNode[] | BaseElement | Descendant[];
-function deserialize(el: Node) {
+function deserialize<
+  T extends {
+    Node: typeof window.Node;
+  }
+>(el: Node, global: T): string | ChildNode[] | BaseElement | Descendant[];
+
+function deserialize<
+  T extends {
+    Node: typeof window.Node;
+  }
+>(el: Node, global: T) {
   if (el.nodeType === 3) {
     return el.textContent;
   } else if (el.nodeType !== 1) {
@@ -95,7 +102,9 @@ function deserialize(el: Node) {
   ) {
     parent = el.childNodes[0];
   }
-  let children = Array.from(parent.childNodes).map(deserialize).flat();
+  let children = Array.from(parent.childNodes)
+    .map((c) => deserialize(c, global))
+    .flat();
 
   if (children.length === 0) {
     if (!['COLGROUP', 'COL', 'CAPTION', 'TFOOT'].includes(nodeName)) {
@@ -148,7 +157,7 @@ function deserialize(el: Node) {
           return jsx('element', { type: 'list-item-child' }, [child]);
         } else if (SlateText.isText(child)) {
           return jsx('element', { type: 'list-item-child' }, [child.text]);
-        } else if (isChildNode(child)) {
+        } else if (isChildNode(child, global)) {
           return jsx('element', { type: 'list-item-child' }, [
             child.textContent,
           ]);
@@ -326,8 +335,11 @@ function isTextNode(node: Node): node is Text {
   return node.nodeType === 3;
 }
 
-function isChildNode(node: string | ChildNode | Descendant): node is ChildNode {
-  return node instanceof Node;
+function isChildNode<T extends { Node: typeof Node }>(
+  node: string | ChildNode | Descendant,
+  global: T
+): node is ChildNode {
+  return node instanceof global.Node;
 }
 
 function isInlineElement(element: HTMLElement) {
@@ -405,7 +417,11 @@ export function htmlToSlateAST<T>(
 export async function htmlToSlateAST(html: string) {
   const normalizedHTML = normalizeHtml(html);
   const domDocument = await parseDomDocument(normalizedHTML);
-  return deserialize(domDocument.body);
+  const global = await (async () => {
+    if (typeof window !== 'undefined') return window;
+    return await import('jsdom').then((jsdom) => new jsdom.JSDOM().window);
+  })();
+  return deserialize(domDocument.body, global);
 }
 
 export default htmlToSlateAST;
