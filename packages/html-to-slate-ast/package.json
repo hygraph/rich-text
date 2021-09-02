@@ -1,6 +1,6 @@
 {
   "name": "@graphcms/html-to-slate-ast",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "Convert HTML to GraphCMS's RichTextAST (slate)",
   "license": "MIT",
   "scripts": {
