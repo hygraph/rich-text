@@ -1,7 +1,11 @@
+import { JSDOM } from 'jsdom';
 import { BaseElement, Descendant, Text as SlateText } from 'slate';
 import { jsx } from 'slate-hyperscript';
 import { sanitizeUrl } from '@braintree/sanitize-url';
 import type { Element, Mark } from '@graphcms/rich-text-types';
+
+// DOM interfaces
+const { Node } = new JSDOM().window;
 
 const ELEMENT_TAGS: Record<
   HTMLElement['nodeName'],
