@@ -4,9 +4,9 @@
 const { htmlToSlateAST } = require('../dist');
 
 async function main() {
-  const htmlString = '<div><p>test</p></div>';
+  const htmlString = '<ul><li>Hey <a href="thing">link text</a> here</li></ul>';
   const ast = await htmlToSlateAST(htmlString);
-  console.log(ast);
+  console.log(JSON.stringify(ast, null, 2));
 }
 
 main()

@@ -1,4 +1,4 @@
-import { BaseElement, Descendant, Text as SlateText } from 'slate';
+import { BaseElement, Descendant } from 'slate';
 import { jsx } from 'slate-hyperscript';
 import { sanitizeUrl } from '@braintree/sanitize-url';
 import type { Element, Mark } from '@graphcms/rich-text-types';
@@ -152,20 +152,22 @@ function deserialize<
     const attrs = ELEMENT_TAGS[nodeName](el as HTMLElement);
     // li children must be rendered in spans, like in list plugin
     if (nodeName === 'LI') {
-      const listItemChildren = children.map((child) => {
-        if (typeof child === 'string') {
-          return jsx('element', { type: 'list-item-child' }, [child]);
-        } else if (SlateText.isText(child)) {
-          return jsx('element', { type: 'list-item-child' }, [child.text]);
-        } else if (isChildNode(child, global)) {
-          return jsx('element', { type: 'list-item-child' }, [
-            child.textContent,
-          ]);
-        } else {
-          return { ...child, type: 'list-item-child' };
-        }
-      });
-      return jsx('element', attrs, listItemChildren);
+      // in any case you add a single list-item-child containing the children
+      const child = jsx('element', { type: 'list-item-child' }, children);
+      // const listItemChildren = children.map((child) => {
+      //   if (typeof child === 'string') {
+      //     return jsx('element', { type: 'list-item-child' }, [child]);
+      //   } else if (SlateText.isText(child)) {
+      //     return jsx('element', { type: 'list-item-child' }, [child.text]);
+      //   } else if (isChildNode(child, global)) {
+      //     return jsx('element', { type: 'list-item-child' }, [
+      //       child.textContent,
+      //     ]);
+      //   } else {
+      //     return { ...child, type: 'list-item-child' };
+      //   }
+      // });
+      return jsx('element', attrs, [child]);
     } else if (nodeName === 'TR') {
       // if TR is empty, insert a cell with a paragraph to ensure selection can be placed inside
       const modifiedChildren =
@@ -245,13 +247,29 @@ function deserialize<
     })();
     if (tagName) {
       const attrs = TEXT_TAGS[tagName]();
-      return children.map((child) => jsx('text', attrs, child));
+      return children.map((child) => {
+        if (typeof child === 'string') {
+          return jsx('text', attrs, child);
+        }
+        return jsx('element', attrs, child);
+      });
     }
   }
 
   if (TEXT_TAGS[nodeName]) {
     const attrs = TEXT_TAGS[nodeName](el as HTMLElement);
-    return children.map((child) => jsx('text', attrs, child));
+    return children.map((child) => {
+      console.log({ child, attrs });
+      if (typeof child === 'string') {
+        return jsx('text', attrs, child);
+      }
+      // @ts-expect-error
+      if (child.children) {
+        // @ts-expect-error
+        child.children = child.children.map((c) => ({ ...c, ...attrs }));
+      }
+      return child;
+    });
   }
 
   // general fallback
@@ -335,12 +353,12 @@ function isTextNode(node: Node): node is Text {
   return node.nodeType === 3;
 }
 
-function isChildNode<T extends { Node: typeof Node }>(
-  node: string | ChildNode | Descendant,
-  global: T
-): node is ChildNode {
-  return node instanceof global.Node;
-}
+// function isChildNode<T extends { Node: typeof Node }>(
+//   node: string | ChildNode | Descendant,
+//   global: T
+// ): node is ChildNode {
+//   return node instanceof global.Node;
+// }
 
 function isInlineElement(element: HTMLElement) {
   const allInlineElements: Array<keyof HTMLElementTagNameMap> = [
