@@ -178,7 +178,12 @@ test('Transforms Google Docs input', () => {
                 type: 'list-item-child',
                 children: [
                   {
-                    text: 'One',
+                    type: 'paragraph',
+                    children: [
+                      {
+                        text: 'One',
+                      },
+                    ],
                   },
                 ],
               },
@@ -191,7 +196,12 @@ test('Transforms Google Docs input', () => {
                 type: 'list-item-child',
                 children: [
                   {
-                    text: 'Two',
+                    type: 'paragraph',
+                    children: [
+                      {
+                        text: 'Two',
+                      },
+                    ],
                   },
                 ],
               },
@@ -204,7 +214,12 @@ test('Transforms Google Docs input', () => {
                 type: 'list-item-child',
                 children: [
                   {
-                    text: 'Three',
+                    type: 'paragraph',
+                    children: [
+                      {
+                        text: 'Three',
+                      },
+                    ],
                   },
                 ],
               },
@@ -230,7 +245,12 @@ test('Transforms Google Docs input', () => {
                 type: 'list-item-child',
                 children: [
                   {
-                    text: 'One',
+                    type: 'paragraph',
+                    children: [
+                      {
+                        text: 'One',
+                      },
+                    ],
                   },
                 ],
               },
@@ -243,7 +263,12 @@ test('Transforms Google Docs input', () => {
                 type: 'list-item-child',
                 children: [
                   {
-                    text: 'Two',
+                    type: 'paragraph',
+                    children: [
+                      {
+                        text: 'Two',
+                      },
+                    ],
                   },
                 ],
               },
@@ -404,7 +429,12 @@ test('Converts word documents', () => {
             children: [
               {
                 type: 'list-item-child',
-                children: [{ text: 'Unordered\u00a0' }],
+                children: [
+                  {
+                    type: 'paragraph',
+                    children: [{ text: 'Unordered\u00a0' }],
+                  },
+                ],
               },
             ],
           },
@@ -413,14 +443,21 @@ test('Converts word documents', () => {
             children: [
               {
                 type: 'list-item-child',
-                children: [{ text: 'Bulleted\u00a0' }],
+                children: [
+                  { type: 'paragraph', children: [{ text: 'Bulleted\u00a0' }] },
+                ],
               },
             ],
           },
           {
             type: 'list-item',
             children: [
-              { type: 'list-item-child', children: [{ text: 'List\u00a0' }] },
+              {
+                type: 'list-item-child',
+                children: [
+                  { type: 'paragraph', children: [{ text: 'List\u00a0' }] },
+                ],
+              },
             ],
           },
         ],
@@ -445,7 +482,9 @@ test('Converts word documents', () => {
             children: [
               {
                 type: 'list-item-child',
-                children: [{ text: 'Ordered\u00a0' }],
+                children: [
+                  { type: 'paragraph', children: [{ text: 'Ordered\u00a0' }] },
+                ],
               },
             ],
           },
@@ -459,7 +498,9 @@ test('Converts word documents', () => {
             children: [
               {
                 type: 'list-item-child',
-                children: [{ text: 'Numbered\u00a0' }],
+                children: [
+                  { type: 'paragraph', children: [{ text: 'Numbered\u00a0' }] },
+                ],
               },
             ],
           },
@@ -471,7 +512,12 @@ test('Converts word documents', () => {
           {
             type: 'list-item',
             children: [
-              { type: 'list-item-child', children: [{ text: 'List\u00a0' }] },
+              {
+                type: 'list-item-child',
+                children: [
+                  { type: 'paragraph', children: [{ text: 'List\u00a0' }] },
+                ],
+              },
             ],
           },
         ],
@@ -619,4 +665,77 @@ test('Transforms pre tags into code-block nodes', () => {
       },
     ])
   );
+});
+
+describe('Should apply marks to anchor text node', () => {
+  test('if the parent has a mark', async () => {
+    const input =
+      '<p><em>Emphasized <a href="www.graphcms.com">link</a></em></p>';
+    const ast = await htmlToSlateAST(input);
+    expect(ast).toStrictEqual([
+      {
+        type: 'paragraph',
+        children: [
+          {
+            text: 'Emphasized ',
+            italic: true,
+          },
+          {
+            type: 'link',
+            href: 'www.graphcms.com',
+            openInNewTab: false,
+            children: [
+              {
+                italic: true,
+                text: 'link',
+              },
+            ],
+          },
+        ],
+      },
+    ]);
+  });
+
+  test('if the mark is inside the anchor tag', async () => {
+    const input =
+      '<p>Emphasized <a href="www.graphcms.com"><strong>link</strong></a></p>';
+    const ast = await htmlToSlateAST(input);
+
+    expect(ast).toStrictEqual([
+      {
+        type: 'paragraph',
+        children: [
+          { text: 'Emphasized ' },
+          {
+            type: 'link',
+            href: 'www.graphcms.com',
+            openInNewTab: false,
+            children: [{ text: 'link', bold: true }],
+          },
+        ],
+      },
+    ]);
+  });
+});
+
+test('Should ignore inline comments', async () => {
+  const input =
+    '<p>Example<!-- Comment --><a href="www.google.com">Google<!-- Comment in anchor --></a><!-- Comment after anchor --><em>Emphasized text</em></p>';
+  const ast = await htmlToSlateAST(input);
+
+  expect(ast).toStrictEqual([
+    {
+      type: 'paragraph',
+      children: [
+        { text: 'Example' },
+        {
+          type: 'link',
+          href: 'www.google.com',
+          openInNewTab: false,
+          children: [{ text: 'Google' }],
+        },
+        { text: 'Emphasized text', italic: true },
+      ],
+    },
+  ]);
 });
