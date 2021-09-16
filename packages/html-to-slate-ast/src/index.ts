@@ -157,7 +157,7 @@ function deserialize<
     const attrs = ELEMENT_TAGS[nodeName](el as HTMLElement);
     // li children must be rendered in spans, like in list plugin
     if (nodeName === 'LI') {
-      // in any case you add a single list-item-child containing the children
+      // in any case we add a single list-item-child containing the children
       const child = jsx('element', { type: 'list-item-child' }, children);
       return jsx('element', attrs, [child]);
     } else if (nodeName === 'TR') {
