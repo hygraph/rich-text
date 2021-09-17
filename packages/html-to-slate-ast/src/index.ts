@@ -1,4 +1,9 @@
-import { BaseElement, Descendant, Text as SlateText } from 'slate';
+import {
+  BaseElement,
+  Descendant,
+  Element as SlateElement,
+  Text as SlateText,
+} from 'slate';
 import { jsx } from 'slate-hyperscript';
 import { sanitizeUrl } from '@braintree/sanitize-url';
 import type { Element, Mark } from '@graphcms/rich-text-types';
@@ -152,20 +157,9 @@ function deserialize<
     const attrs = ELEMENT_TAGS[nodeName](el as HTMLElement);
     // li children must be rendered in spans, like in list plugin
     if (nodeName === 'LI') {
-      const listItemChildren = children.map((child) => {
-        if (typeof child === 'string') {
-          return jsx('element', { type: 'list-item-child' }, [child]);
-        } else if (SlateText.isText(child)) {
-          return jsx('element', { type: 'list-item-child' }, [child.text]);
-        } else if (isChildNode(child, global)) {
-          return jsx('element', { type: 'list-item-child' }, [
-            child.textContent,
-          ]);
-        } else {
-          return { ...child, type: 'list-item-child' };
-        }
-      });
-      return jsx('element', attrs, listItemChildren);
+      // in any case we add a single list-item-child containing the children
+      const child = jsx('element', { type: 'list-item-child' }, children);
+      return jsx('element', attrs, [child]);
     } else if (nodeName === 'TR') {
       // if TR is empty, insert a cell with a paragraph to ensure selection can be placed inside
       const modifiedChildren =
@@ -228,30 +222,59 @@ function deserialize<
     const element = el as HTMLElement;
     // handles italic, bold and undeline that are not expressed as tags
     // important for pasting from Google Docs
-    const tagName = (() => {
+    const tagNames = (() => {
+      const names = [];
       if (element.style.textDecoration === 'underline') {
-        return 'U';
+        names.push('U');
       }
       if (element.style.fontStyle === 'italic') {
-        return 'EM';
+        names.push('EM');
       }
       if (
         parseInt(element.style.fontWeight, 10) > 400 ||
         element.style.fontWeight === 'bold'
       ) {
-        return 'STRONG';
+        names.push('STRONG');
       }
-      return undefined;
+      return names.length > 0 ? names : undefined;
     })();
-    if (tagName) {
-      const attrs = TEXT_TAGS[tagName]();
-      return children.map((child) => jsx('text', attrs, child));
+    if (tagNames) {
+      const attrs = tagNames.reduce((acc, current) => {
+        return ({...acc, ...TEXT_TAGS[current]() });
+      }, {});
+      return children.map((child) => {
+        if (typeof child === 'string') {
+          return jsx('text', attrs, child);
+        }
+  
+        if (isChildNode(child, global)) return child;
+  
+        if (SlateElement.isElement(child) && !SlateText.isText(child)) {
+          child.children = child.children.map((c) => ({ ...c, ...attrs }));
+          return child;
+        }
+  
+        return child;
+      });
     }
   }
 
   if (TEXT_TAGS[nodeName]) {
     const attrs = TEXT_TAGS[nodeName](el as HTMLElement);
-    return children.map((child) => jsx('text', attrs, child));
+    return children.map((child) => {
+      if (typeof child === 'string') {
+        return jsx('text', attrs, child);
+      }
+
+      if (isChildNode(child, global)) return child;
+
+      if (SlateElement.isElement(child) && !SlateText.isText(child)) {
+        child.children = child.children.map((c) => ({ ...c, ...attrs }));
+        return child;
+      }
+
+      return child;
+    });
   }
 
   // general fallback
@@ -341,7 +364,6 @@ function isChildNode<T extends { Node: typeof Node }>(
 ): node is ChildNode {
   return node instanceof global.Node;
 }
-
 function isInlineElement(element: HTMLElement) {
   const allInlineElements: Array<keyof HTMLElementTagNameMap> = [
     'a',

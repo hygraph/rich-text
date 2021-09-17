@@ -7,6 +7,7 @@
     "start": "tsdx watch --tsconfig tsconfig.build.json --verbose --noClean",
     "build": "tsdx build --tsconfig tsconfig.build.json",
     "test": "tsdx test --passWithNoTests",
+    "test:watch": "tsdx test --watch --passWithNoTests",
     "lint": "tsdx lint",
     "prepublish": "npm run build"
   },
@@ -47,7 +48,7 @@
   },
   "jest": {},
   "dependencies": {
-    "@graphcms/rich-text-types": "^0.2.0",
-    "@braintree/sanitize-url": "^5.0.2"
+    "@braintree/sanitize-url": "^5.0.2",
+    "@graphcms/rich-text-types": "^0.2.0"
   }
 }
