@@ -222,28 +222,39 @@ function deserialize<
     const element = el as HTMLElement;
     // handles italic, bold and undeline that are not expressed as tags
     // important for pasting from Google Docs
-    const tagName = (() => {
+    const tagNames = (() => {
+      const names = [];
       if (element.style.textDecoration === 'underline') {
-        return 'U';
+        names.push('U');
       }
       if (element.style.fontStyle === 'italic') {
-        return 'EM';
+        names.push('EM');
       }
       if (
         parseInt(element.style.fontWeight, 10) > 400 ||
         element.style.fontWeight === 'bold'
       ) {
-        return 'STRONG';
+        names.push('STRONG');
       }
-      return undefined;
+      return names.length > 0 ? names : undefined;
     })();
-    if (tagName) {
-      const attrs = TEXT_TAGS[tagName]();
+    if (tagNames) {
+      const attrs = tagNames.reduce((acc, current) => {
+        return ({...acc, ...TEXT_TAGS[current]() });
+      }, {});
       return children.map((child) => {
         if (typeof child === 'string') {
           return jsx('text', attrs, child);
         }
-        return jsx('element', attrs, child);
+  
+        if (isChildNode(child, global)) return child;
+  
+        if (SlateElement.isElement(child) && !SlateText.isText(child)) {
+          child.children = child.children.map((c) => ({ ...c, ...attrs }));
+          return child;
+        }
+  
+        return child;
       });
     }
   }

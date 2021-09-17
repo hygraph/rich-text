@@ -152,6 +152,7 @@ test('Transforms Google Docs input', () => {
               {
                 text: 'Link to Google',
                 underline: true,
+                bold: true,
               },
             ],
           },
