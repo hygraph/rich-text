@@ -1,5 +1,11 @@
 # @graphcms/html-to-slate-ast
 
+## 0.9.0
+
+### Minor Changes
+
+- [`f6871a6`](https://github.com/GraphCMS/rich-text/commit/f6871a60e56af84b6c6276a84a0e6cb1d95dd062) [#39](https://github.com/GraphCMS/rich-text/pull/39) Thanks [@larisachristie](https://github.com/larisachristie)! - Add marks to links; apply multiple marks if multiple style attributes are present; wrap li tag content in a list-item-child node; add tests
+
 ## 0.8.1
 
 ### Patch Changes
