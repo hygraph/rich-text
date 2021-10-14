@@ -57,11 +57,18 @@ describe('@graphcms/rich-text-react-renderer', () => {
     `);
   });
 
-  it('renders content correctly if received a object with empty children', () => {
+  it('should not render elements if received a object with empty children', () => {
     const { container } = render(<RichText content={emptyContent} />);
 
     expect(container).toMatchInlineSnapshot(`
       <div>
+        <h2>
+          <a
+            href="https://graphcms.com"
+          >
+            Testing Link
+          </a>
+        </h2>
         <table>
           <tbody>
             <tr>

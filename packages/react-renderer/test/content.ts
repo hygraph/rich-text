@@ -14,6 +14,23 @@ export const defaultContent: RichTextContent = [
 
 export const emptyContent: RichTextContent = [
   {
+    type: 'heading-two',
+    children: [
+      {
+        text: '',
+      },
+      {
+        href: 'https://graphcms.com',
+        type: 'link',
+        children: [
+          {
+            text: 'Testing Link',
+          },
+        ],
+      },
+    ],
+  },
+  {
     type: 'heading-one',
     children: [
       {
