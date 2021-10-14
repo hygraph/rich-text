@@ -85,7 +85,7 @@ function RenderElement({
    * Since there won't be duplicated ID's, it's safe to use the first element.
    */
   const referenceValues = isEmbed
-    ? references?.filter((ref) => ref.id === nodeId)[0]
+    ? references?.filter(ref => ref.id === nodeId)[0]
     : null;
 
   /**
@@ -251,9 +251,7 @@ export function RichText({
     If it isn't defined and there's embed elements, it will show a warning
   */
   if (__DEV__) {
-    const embedElements = elements.filter(
-      (element) => element.type === 'embed'
-    );
+    const embedElements = elements.filter(element => element.type === 'embed');
 
     if (embedElements.length > 0 && !references) {
       console.warn(

@@ -7,7 +7,7 @@ test('Transforms top level span into paragraph', () => {
   in fact, is the very CSS and HTML rendered as I type this blog. There are calls to HTML element classes that style
   certain properties. For example, the font-family properties in the ".postArticle-content .graf — p" class has a serif
   font value, hence the text rendered in this article is of the serif family. All this to say, if you as a pro</span>`).then(
-    (ast) =>
+    ast =>
       expect(ast).toEqual([
         {
           type: 'paragraph',
@@ -30,7 +30,7 @@ test('Transforms inner span into paragraph', () => {
   in fact, is the very CSS and HTML rendered as I type this blog. There are calls to HTML element classes that style
   certain properties. For example, the font-family properties in</span><span> the ".postArticle-content .graf — p" class has a serif
   font value, hence the text rendered in this article is of the serif family. All this to say, if you as a pro</span></p>`).then(
-    (ast) =>
+    ast =>
       expect(ast).toEqual([
         {
           type: 'paragraph',
@@ -49,7 +49,7 @@ test('Transforms inner span into paragraph', () => {
 
 test('Transforms inner spans wrapped in a div into paragraph', () => {
   const input = fs.readFileSync(__dirname + '/html_input.html').toString();
-  return htmlToSlateAST(input).then((ast) =>
+  return htmlToSlateAST(input).then(ast =>
     expect(ast).toStrictEqual([
       {
         type: 'paragraph',
@@ -91,7 +91,7 @@ test('Transforms Google Docs input', () => {
   const input = fs
     .readFileSync(__dirname + '/google-docs_input.html')
     .toString();
-  return htmlToSlateAST(input).then((ast) =>
+  return htmlToSlateAST(input).then(ast =>
     expect(ast).toEqual([
       {
         type: 'heading-one',
@@ -362,12 +362,14 @@ test('Transforms Google Docs input', () => {
         children: [
           {
             type: 'link',
-            href: 'https://lh6.googleusercontent.com/TkJFBZvkyXTa602F0gkp2phU0O1eHu96RdKFcQ8l_EOS_CBfcI9jYRixN6sNRFnFiZ-ssbLbnLDReb3FrEZ1MnLr70c5gIvPmhJtV7appyVEDSeHLIRdNwdNzbIqs3l2GOgGLGC5=s0',
+            href:
+              'https://lh6.googleusercontent.com/TkJFBZvkyXTa602F0gkp2phU0O1eHu96RdKFcQ8l_EOS_CBfcI9jYRixN6sNRFnFiZ-ssbLbnLDReb3FrEZ1MnLr70c5gIvPmhJtV7appyVEDSeHLIRdNwdNzbIqs3l2GOgGLGC5=s0',
             title: 'Screenshot 2021-06-10 at 15.56.22.png',
             openInNewTab: true,
             children: [
               {
-                text: 'https://lh6.googleusercontent.com/TkJFBZvkyXTa602F0gkp2phU0O1eHu96RdKFcQ8l_EOS_CBfcI9jYRixN6sNRFnFiZ-ssbLbnLDReb3FrEZ1MnLr70c5gIvPmhJtV7appyVEDSeHLIRdNwdNzbIqs3l2GOgGLGC5=s0',
+                text:
+                  'https://lh6.googleusercontent.com/TkJFBZvkyXTa602F0gkp2phU0O1eHu96RdKFcQ8l_EOS_CBfcI9jYRixN6sNRFnFiZ-ssbLbnLDReb3FrEZ1MnLr70c5gIvPmhJtV7appyVEDSeHLIRdNwdNzbIqs3l2GOgGLGC5=s0',
               },
             ],
           },
@@ -388,7 +390,7 @@ test('Transforms Google Docs input', () => {
 test('Converts word documents', () => {
   return htmlToSlateAST(
     fs.readFileSync(__dirname + '/word-document.html').toString()
-  ).then((ast) =>
+  ).then(ast =>
     expect(ast).toStrictEqual([
       {
         type: 'heading-one',
@@ -580,16 +582,18 @@ test('Converts word documents', () => {
 test('Converts an image pasted from Google Docs into a link node', () => {
   return htmlToSlateAST(
     fs.readFileSync(__dirname + '/image.html').toString()
-  ).then((ast) =>
+  ).then(ast =>
     expect(ast).toStrictEqual([
       {
         type: 'link',
-        href: 'https://lh5.googleusercontent.com/EqByyE2l_VVSU6KoXFlkpPjJIBsbMTb4Dkr0cuvy2K5ctn8BoJsDHBXO0rU2wyck72_ZF1rqJ5kJ0iMEjU4Jwf7mKhRaLWoHJAzX5WvpfMytIR9sw3EwBcdQdRlIwSrsQ3odhUYq',
+        href:
+          'https://lh5.googleusercontent.com/EqByyE2l_VVSU6KoXFlkpPjJIBsbMTb4Dkr0cuvy2K5ctn8BoJsDHBXO0rU2wyck72_ZF1rqJ5kJ0iMEjU4Jwf7mKhRaLWoHJAzX5WvpfMytIR9sw3EwBcdQdRlIwSrsQ3odhUYq',
         title: "this is this image's title",
         openInNewTab: true,
         children: [
           {
-            text: 'https://lh5.googleusercontent.com/EqByyE2l_VVSU6KoXFlkpPjJIBsbMTb4Dkr0cuvy2K5ctn8BoJsDHBXO0rU2wyck72_ZF1rqJ5kJ0iMEjU4Jwf7mKhRaLWoHJAzX5WvpfMytIR9sw3EwBcdQdRlIwSrsQ3odhUYq',
+            text:
+              'https://lh5.googleusercontent.com/EqByyE2l_VVSU6KoXFlkpPjJIBsbMTb4Dkr0cuvy2K5ctn8BoJsDHBXO0rU2wyck72_ZF1rqJ5kJ0iMEjU4Jwf7mKhRaLWoHJAzX5WvpfMytIR9sw3EwBcdQdRlIwSrsQ3odhUYq',
           },
         ],
       },
@@ -600,7 +604,7 @@ test('Converts an image pasted from Google Docs into a link node', () => {
 test('Reshape an incorrectly structured table', () => {
   return htmlToSlateAST(
     '<table><colgroup><col /><col /></colgroup><tbody><tr><td></td></tr><tr></tr></tbody></table>'
-  ).then((ast) =>
+  ).then(ast =>
     expect(ast).toStrictEqual([
       {
         type: 'table',
@@ -654,13 +658,14 @@ test('Reshape an incorrectly structured table', () => {
 
 test('Transforms pre tags into code-block nodes', () => {
   const input = fs.readFileSync(__dirname + '/pre.html').toString();
-  return htmlToSlateAST(input).then((ast) =>
+  return htmlToSlateAST(input).then(ast =>
     expect(ast).toStrictEqual([
       {
         type: 'code-block',
         children: [
           {
-            text: "  L          TE\n    A       A\n      C    V\n       R A\n       DOU\n       LOU\n      REUSE\n      QUE TU\n      PORTES\n    ET QUI T'\n    ORNE O CI\n     VILISÉ\n    OTE-  TU VEUX\n     LA    BIEN\n    SI      RESPI\n            RER       - Apollinaire",
+            text:
+              "  L          TE\n    A       A\n      C    V\n       R A\n       DOU\n       LOU\n      REUSE\n      QUE TU\n      PORTES\n    ET QUI T'\n    ORNE O CI\n     VILISÉ\n    OTE-  TU VEUX\n     LA    BIEN\n    SI      RESPI\n            RER       - Apollinaire",
           },
         ],
       },

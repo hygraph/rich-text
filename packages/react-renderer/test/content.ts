@@ -164,7 +164,8 @@ export const iframeContent: RichTextContent = [
 
 export const imageContent: RichTextContent = [
   {
-    src: 'https://media.graphcms.com/output=format:webp/resize=,width:667,height:1000/8xrjYm4CR721mAZ1YAoy',
+    src:
+      'https://media.graphcms.com/output=format:webp/resize=,width:667,height:1000/8xrjYm4CR721mAZ1YAoy',
     type: 'image',
     title: 'photo-1564631027894-5bdb17618445.jpg',
     width: 667,
