@@ -17,6 +17,7 @@ import {
 } from './defaultElements';
 import { RenderText } from './RenderText';
 import { getElements } from './util/getElements';
+import { elementIsEmpty } from './util/elementIsEmpty';
 
 function RenderNode({
   node,
@@ -65,7 +66,7 @@ function RenderElement({
   const { nodeId, nodeType } = rest;
 
   /**
-   * Checks if element has empty text, so it can be removed.
+   * Checks if the element is empty, so that it can be removed.
    *
    * Elements that can be removed with empty text are defined in `defaultRemoveEmptyElements`
    */
@@ -73,7 +74,7 @@ function RenderElement({
     defaultRemoveEmptyElements?.[
       elementKeys[type] as keyof RemoveEmptyElementType
     ] &&
-    children[0].text === ''
+    elementIsEmpty({ children })
   ) {
     return <Fragment />;
   }

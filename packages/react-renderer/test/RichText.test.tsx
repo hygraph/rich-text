@@ -63,11 +63,21 @@ describe('@graphcms/rich-text-react-renderer', () => {
     expect(container).toMatchInlineSnapshot(`
       <div>
         <h2>
+          
           <a
             href="https://graphcms.com"
           >
             Testing Link
           </a>
+        </h2>
+        <h2>
+          
+          <a
+            href="https://graphcms.com"
+          >
+            Link
+          </a>
+           2
         </h2>
         <table>
           <tbody>

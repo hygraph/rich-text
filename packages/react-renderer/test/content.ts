@@ -31,6 +31,26 @@ export const emptyContent: RichTextContent = [
     ],
   },
   {
+    type: 'heading-two',
+    children: [
+      {
+        text: '',
+      },
+      {
+        href: 'https://graphcms.com',
+        type: 'link',
+        children: [
+          {
+            text: 'Link',
+          },
+        ],
+      },
+      {
+        text: ' 2',
+      },
+    ],
+  },
+  {
     type: 'heading-one',
     children: [
       {
