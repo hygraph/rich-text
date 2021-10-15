@@ -48,7 +48,11 @@ The content from the example above will render:
 </p>
 ```
 
-### Custom elements
+## Query `RichText`
+
+For more information on how you can query the `RichText` content, please [check our docs](https://graphcms.com/docs/api-reference/schema/field-types#rich-text).
+
+## Custom elements
 
 By default, the elements won't have any styling, despite the `IFrame`, which we designed to be responsive. But if you have, for example, a design system and wants to use your own components with styling, you can pass a `renderers` prop to the `RichText` component. Let's see an example:
 
@@ -324,15 +328,31 @@ References are required on the `RichText` component. You also need to include yo
 }
 ```
 
-### Empty elements
+## Empty elements
 
 By default, we remove empty headings from the element list to prevent SEO issues. Other elements, such as `thead` are also removed. You can find the complete list [here](https://github.com/GraphCMS/rich-text/blob/main/packages/react-renderer/src/defaultElements.tsx).
 
-### TypeScript
+## TypeScript
 
 If you are using TypeScript in your project, we highly recommend you install the `@graphcms/rich-text-types` package. It contains types for the elements, alongside the props accepted by each of them. You can use them in your application to create custom components.
 
-#### Custom Embeds/Assets
+### Children Type
+
+If you need to type the content from the Rich Text field, you can do so by using the types package. Example:
+
+```ts
+import { ElementNode } from '@graphcms/rich-text-types';
+
+type Content = {
+  content: {
+    raw: {
+      children: ElementNode[];
+    };
+  };
+};
+```
+
+### Custom Embeds/Assets
 
 Depending on your reference query and model, fields may change, and the same applies to types. To have a better DX using the package, we have `EmbedProps` type that can be imported from `@graphcms/rich-text-types` (you may need to install it if you don't have done it already).
 
@@ -370,9 +390,9 @@ function App() {
 }
 ```
 
-### Examples
+## Examples
 
-#### Next.js Link component
+### Next.js Link component
 
 ```tsx
 import Link from 'next/link';
@@ -413,7 +433,7 @@ function App() {
 }
 ```
 
-#### Next.js Image component
+### Next.js Image component
 
 ```js
 import Image from 'next/image';
@@ -453,7 +473,7 @@ module.exports = {
 };
 ```
 
-#### Gatsby Link component
+### Gatsby Link component
 
 ```js
 import { Link } from 'gatsby';
@@ -494,7 +514,11 @@ function App() {
 }
 ```
 
-#### Code blocks with [Prism.js](https://prismjs.com/)
+### Gatsby Image component
+
+Unfortunately, there's no way to use the Gatsby Image component with this package at the moment. The `GatsbyImage` component (for dynamic images) fetches the image from a query during build time, which is not possible to accomplish right now. For more information, see [GraphCMS/rich-text#16](https://github.com/GraphCMS/rich-text/pull/16).
+
+### Code blocks with [Prism.js](https://prismjs.com/)
 
 By default, as you may have already realized, the code-blocks rendered by the package don't have any unique styling since we're unopinionated on how it should look on your application. But, if you need, you can create your code block, add a background color for it, add some padding, and adjust based on your needs.
 
