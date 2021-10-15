@@ -6,7 +6,7 @@ import {
 } from 'slate';
 import { jsx } from 'slate-hyperscript';
 import { sanitizeUrl } from '@braintree/sanitize-url';
-import type { Element, Mark } from '@graphcms/rich-text-types';
+import { Element, Mark } from '@graphcms/rich-text-types';
 
 const ELEMENT_TAGS: Record<
   HTMLElement['nodeName'],
@@ -16,7 +16,7 @@ const ELEMENT_TAGS: Record<
   OL: () => ({ type: 'numbered-list' }),
   UL: () => ({ type: 'bulleted-list' }),
   P: () => ({ type: 'paragraph' }),
-  A: (el) => {
+  A: el => {
     const href = el.getAttribute('href');
     if (href === null) return {};
     return {
@@ -44,7 +44,7 @@ const ELEMENT_TAGS: Record<
   TR: () => ({ type: 'table_row' }),
   TD: () => ({ type: 'table_cell' }),
   TH: () => ({ type: 'table_cell' }),
-  IMG: (el) => {
+  IMG: el => {
     const href = el.getAttribute('src');
     const title = Boolean(el.getAttribute('alt'))
       ? el.getAttribute('alt')
@@ -108,7 +108,7 @@ function deserialize<
     parent = el.childNodes[0];
   }
   let children = Array.from(parent.childNodes)
-    .map((c) => deserialize(c, global))
+    .map(c => deserialize(c, global))
     .flat();
 
   if (children.length === 0) {
@@ -124,7 +124,7 @@ function deserialize<
   if (
     isElementNode(el) &&
     Array.from(el.attributes).find(
-      (attr) => attr.name == 'role' && attr.value === 'heading'
+      attr => attr.name === 'role' && attr.value === 'heading'
     )
   ) {
     const level = el.attributes.getNamedItem('aria-level')?.value;
@@ -190,7 +190,7 @@ function deserialize<
                 children: [{ text: '' }],
               },
             ]
-          : childNodes.map((child) => ({
+          : childNodes.map(child => ({
               type: 'paragraph',
               children: [{ text: child.textContent ? child.textContent : '' }],
             }));
@@ -204,7 +204,7 @@ function deserialize<
   if (nodeName === 'DIV') {
     const childNodes = Array.from(el.childNodes);
     const isParagraph = childNodes.every(
-      (child) =>
+      child =>
         (isElementNode(child) && isInlineElement(child)) || isTextNode(child)
     );
     if (isParagraph) {
@@ -240,20 +240,20 @@ function deserialize<
     })();
     if (tagNames) {
       const attrs = tagNames.reduce((acc, current) => {
-        return ({...acc, ...TEXT_TAGS[current]() });
+        return { ...acc, ...TEXT_TAGS[current]() };
       }, {});
-      return children.map((child) => {
+      return children.map(child => {
         if (typeof child === 'string') {
           return jsx('text', attrs, child);
         }
-  
+
         if (isChildNode(child, global)) return child;
-  
+
         if (SlateElement.isElement(child) && !SlateText.isText(child)) {
-          child.children = child.children.map((c) => ({ ...c, ...attrs }));
+          child.children = child.children.map(c => ({ ...c, ...attrs }));
           return child;
         }
-  
+
         return child;
       });
     }
@@ -261,7 +261,7 @@ function deserialize<
 
   if (TEXT_TAGS[nodeName]) {
     const attrs = TEXT_TAGS[nodeName](el as HTMLElement);
-    return children.map((child) => {
+    return children.map(child => {
       if (typeof child === 'string') {
         return jsx('text', attrs, child);
       }
@@ -269,7 +269,7 @@ function deserialize<
       if (isChildNode(child, global)) return child;
 
       if (SlateElement.isElement(child) && !SlateText.isText(child)) {
-        child.children = child.children.map((c) => ({ ...c, ...attrs }));
+        child.children = child.children.map(c => ({ ...c, ...attrs }));
         return child;
       }
 
@@ -441,7 +441,7 @@ export async function htmlToSlateAST(html: string) {
   const domDocument = await parseDomDocument(normalizedHTML);
   const global = await (async () => {
     if (typeof window !== 'undefined') return window;
-    return await import('jsdom').then((jsdom) => new jsdom.JSDOM().window);
+    return await import('jsdom').then(jsdom => new jsdom.JSDOM().window);
   })();
   return deserialize(domDocument.body, global);
 }

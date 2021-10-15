@@ -17,6 +17,7 @@ import {
 } from './defaultElements';
 import { RenderText } from './RenderText';
 import { getElements } from './util/getElements';
+import { elementIsEmpty } from './util/elementIsEmpty';
 
 function RenderNode({
   node,
@@ -65,7 +66,7 @@ function RenderElement({
   const { nodeId, nodeType } = rest;
 
   /**
-   * Checks if element has empty text, so it can be removed.
+   * Checks if the element is empty, so that it can be removed.
    *
    * Elements that can be removed with empty text are defined in `defaultRemoveEmptyElements`
    */
@@ -73,7 +74,7 @@ function RenderElement({
     defaultRemoveEmptyElements?.[
       elementKeys[type] as keyof RemoveEmptyElementType
     ] &&
-    children[0].text === ''
+    elementIsEmpty({ children })
   ) {
     return <Fragment />;
   }
@@ -85,7 +86,7 @@ function RenderElement({
    * Since there won't be duplicated ID's, it's safe to use the first element.
    */
   const referenceValues = isEmbed
-    ? references?.filter((ref) => ref.id === nodeId)[0]
+    ? references?.filter(ref => ref.id === nodeId)[0]
     : null;
 
   /**
@@ -251,9 +252,7 @@ export function RichText({
     If it isn't defined and there's embed elements, it will show a warning
   */
   if (__DEV__) {
-    const embedElements = elements.filter(
-      (element) => element.type === 'embed'
-    );
+    const embedElements = elements.filter(element => element.type === 'embed');
 
     if (embedElements.length > 0 && !references) {
       console.warn(
