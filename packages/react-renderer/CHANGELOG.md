@@ -1,5 +1,13 @@
 # @graphcms/rich-text-react-renderer
 
+## 0.3.1
+
+### Patch Changes
+
+- [`6835755`](https://github.com/GraphCMS/rich-text/commit/6835755e2f7b07adbd3ca0b8497730d19a858bda) [#42](https://github.com/GraphCMS/rich-text/pull/42) Thanks [@jpedroschmitz](https://github.com/jpedroschmitz)! - docs: add note about query, types and gatsby image
+
+* [`c7ea848`](https://github.com/GraphCMS/rich-text/commit/c7ea8483ed3353843e1eb43d00ff57e785d046c3) [#41](https://github.com/GraphCMS/rich-text/pull/41) Thanks [@jpedroschmitz](https://github.com/jpedroschmitz)! - Fix heading with links not being rendered
+
 ## 0.3.0
 
 ### Minor Changes
