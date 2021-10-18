@@ -12,6 +12,7 @@ import {
   inlineContent,
   emptyContent,
   embedAssetContent,
+  simpleH1Content,
 } from './content';
 
 describe('@graphcms/rich-text-react-renderer', () => {
@@ -95,6 +96,18 @@ describe('@graphcms/rich-text-react-renderer', () => {
             </tr>
           </tbody>
         </table>
+      </div>
+    `);
+  });
+
+  it('should should render H1 with some text', () => {
+    const { container } = render(<RichText content={simpleH1Content} />);
+
+    expect(container).toMatchInlineSnapshot(`
+      <div>
+        <h1>
+          heading
+        </h1>
       </div>
     `);
   });

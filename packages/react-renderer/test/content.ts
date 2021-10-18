@@ -141,6 +141,17 @@ export const emptyContent: RichTextContent = [
   },
 ];
 
+export const simpleH1Content: RichTextContent = [
+  {
+    type: 'heading-one',
+    children: [
+      {
+        text: 'heading',
+      },
+    ],
+  },
+];
+
 export const inlineContent: RichTextContent = [
   {
     type: 'paragraph',
