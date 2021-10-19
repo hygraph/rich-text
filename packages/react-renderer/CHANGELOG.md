@@ -1,5 +1,11 @@
 # @graphcms/rich-text-react-renderer
 
+## 0.3.2
+
+### Patch Changes
+
+- [`5dd9acb`](https://github.com/GraphCMS/rich-text/commit/5dd9acb12b13cca098a4bdc01906f173cf1d65a2) [#45](https://github.com/GraphCMS/rich-text/pull/45) Thanks [@nrandell](https://github.com/nrandell)! - fix(react): simple elements are not empty
+
 ## 0.3.1
 
 ### Patch Changes
