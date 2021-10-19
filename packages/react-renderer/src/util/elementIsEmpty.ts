@@ -28,5 +28,5 @@ export function elementIsEmpty({
     return hasText.length > 0 ? false : true;
   } else if (children[0].text === '') return true;
 
-  return true;
+  return false;
 }
