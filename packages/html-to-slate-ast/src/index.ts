@@ -157,12 +157,12 @@ function deserialize<
     const attrs = ELEMENT_TAGS[nodeName](el as HTMLElement);
     // li children must be rendered in spans, like in list plugin
     if (nodeName === 'LI') {
-      // if element has a nested list as a child, all children must be wrapped in individual list-item-child nodes
-      // TODO: sync with GCMS types for Slate elements
-      // @ts-expect-error
       const hasNestedListChild = children.find(
         (item) =>
           SlateElement.isElement(item) &&
+          // if element has a nested list as a child, all children must be wrapped in individual list-item-child nodes
+          // TODO: sync with GCMS types for Slate elements
+          // @ts-expect-error
           (item.type === 'numbered-list' || item.type === 'bulleted-list')
       );
       if (hasNestedListChild) {

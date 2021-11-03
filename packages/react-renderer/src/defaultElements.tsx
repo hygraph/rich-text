@@ -57,9 +57,9 @@ export const defaultElements: Required<NodeRendererType> = {
   ),
   list_item_child: ({ children }) => <>{children}</>,
   Asset: {
-    audio: props => <Audio {...props} url={props.url} />,
-    image: props => <Image {...props} src={props.url} />,
-    video: props => <Video {...props} src={props.url} />,
+    audio: (props) => <Audio {...props} url={props.url} />,
+    image: (props) => <Image {...props} src={props.url} />,
+    video: (props) => <Video {...props} src={props.url} />,
     font: FallbackForCustomAsset,
     application: FallbackForCustomAsset,
     model: FallbackForCustomAsset,
