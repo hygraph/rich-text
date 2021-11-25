@@ -1,5 +1,11 @@
 # @graphcms/html-to-slate-ast
 
+## 0.10.0
+
+### Minor Changes
+
+- [`28455b3`](https://github.com/GraphCMS/rich-text/commit/28455b3cb7407785ed6ddce3dfd6d29504888f01) [#48](https://github.com/GraphCMS/rich-text/pull/48) Thanks [@larisachristie](https://github.com/larisachristie)! - Refactor nested lists handling
+
 ## 0.9.0
 
 ### Minor Changes
