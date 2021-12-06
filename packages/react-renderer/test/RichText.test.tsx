@@ -695,4 +695,85 @@ describe('custom embeds and assets', () => {
     expect(console.warn).toHaveBeenCalledTimes(1);
     expect(container).toMatchInlineSnapshot(`<div />`);
   });
+
+  it('should render inline embeds', () => {
+    const content: RichTextContent = [
+      {
+        type: 'embed',
+        nodeId: 'custom_post_id_1',
+        children: [
+          {
+            text: '',
+          },
+        ],
+        nodeType: 'Post',
+        isInline: true,
+      },
+      {
+        type: 'embed',
+        nodeId: 'custom_post_id_2',
+        children: [
+          {
+            text: '',
+          },
+        ],
+        nodeType: 'Post',
+      },
+    ];
+
+    const references = [
+      {
+        id: 'custom_post_id_1',
+        title: 'GraphCMS is awesome :rocket:',
+      },
+      {
+        id: 'custom_post_id_2',
+        title: 'Post template',
+      },
+    ];
+
+    const { container } = render(
+      <RichText
+        content={content}
+        references={references}
+        renderers={{
+          embed: {
+            Post: ({
+              title,
+              nodeId,
+              isInline,
+            }: EmbedProps<{ title: string }>) => {
+              return (
+                <div>
+                  <h3>{title}</h3>
+                  {isInline ? <span>{nodeId}</span> : <div>{nodeId}</div>}
+                </div>
+              );
+            },
+          },
+        }}
+      />
+    );
+
+    expect(container).toMatchInlineSnapshot(`
+      <div>
+        <div>
+          <h3>
+            GraphCMS is awesome :rocket:
+          </h3>
+          <span>
+            custom_post_id_1
+          </span>
+        </div>
+        <div>
+          <h3>
+            Post template
+          </h3>
+          <div>
+            custom_post_id_2
+          </div>
+        </div>
+      </div>
+    `);
+  });
 });
