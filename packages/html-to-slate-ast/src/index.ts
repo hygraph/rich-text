@@ -175,12 +175,31 @@ function deserialize<
       const child = jsx('element', { type: 'list-item-child' }, children);
       return jsx('element', attrs, [child]);
     } else if (nodeName === 'TR') {
+      if (
+        el.parentElement?.nodeName === 'THEAD' &&
+        (el as HTMLTableRowElement).cells.length === 0
+      ) {
+        return [
+          {
+            type: 'table_header_cell',
+            children: [
+              {
+                type: 'paragraph',
+                children: [{ text: el.textContent ? el.textContent : '' }],
+              },
+            ],
+          },
+        ];
+      }
       // if TR is empty, insert a cell with a paragraph to ensure selection can be placed inside
       const modifiedChildren =
         (el as HTMLTableRowElement).cells.length === 0
           ? [
               {
-                type: 'table_cell',
+                type:
+                  el.parentElement?.nodeName === 'THEAD'
+                    ? 'table_header_cell'
+                    : 'table_cell',
                 children: [
                   {
                     type: 'paragraph',
@@ -191,8 +210,8 @@ function deserialize<
             ]
           : children;
       return jsx('element', attrs, modifiedChildren);
-    } else if (nodeName === 'TD') {
-      // if TD is empty, insert a a paragraph to ensure selection can be placed inside
+    } else if (nodeName === 'TD' || nodeName === 'TH') {
+      // if TD or TH is empty, insert a paragraph to ensure selection can be placed inside
       const childNodes = Array.from((el as HTMLTableCellElement).childNodes);
       const modifiedChildren =
         childNodes.length === 0

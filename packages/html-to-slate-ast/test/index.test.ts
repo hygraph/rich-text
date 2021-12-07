@@ -1007,12 +1007,36 @@ test('Converts an image pasted from Google Docs into a link node', () => {
 
 test('Reshape an incorrectly structured table', () => {
   return htmlToSlateAST(
-    '<table><colgroup><col /><col /></colgroup><tbody><tr><td></td></tr><tr></tr></tbody></table>'
-  ).then(ast =>
+    '<table><colgroup><col /><col /></colgroup><thead><tr><th></th></tr></thead><tbody><tr><td></td></tr><tr></tr></tbody></table>'
+  ).then(ast => {
+    console.log(JSON.stringify(ast, null, 2));
     expect(ast).toStrictEqual([
       {
         type: 'table',
         children: [
+          {
+            type: 'table_head',
+            children: [
+              {
+                type: 'table_row',
+                children: [
+                  {
+                    type: 'table_header_cell',
+                    children: [
+                      {
+                        type: 'paragraph',
+                        cghildren: [
+                          {
+                            text: '',
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
           {
             type: 'table_body',
             children: [
@@ -1056,8 +1080,8 @@ test('Reshape an incorrectly structured table', () => {
           },
         ],
       },
-    ])
-  );
+    ]);
+  });
 });
 
 test('Transforms pre tags into code-block nodes', () => {
