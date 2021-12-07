@@ -131,6 +131,8 @@ Below you can check the full list of elements you can customize, alongside the p
   - `children`: ReactNode;
 - `table_head`
   - `children`: ReactNode;
+- `table_header`
+  - `children`: ReactNode;
 - `table_body`
   - `children`: ReactNode;
 - `table_row`
