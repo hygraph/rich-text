@@ -2,4 +2,4 @@
 '@graphcms/rich-text-types': minor
 ---
 
-Update EmbedProps type
+Add isInline to EmbedProps type
