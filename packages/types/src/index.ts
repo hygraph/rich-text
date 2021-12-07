@@ -12,7 +12,6 @@ export interface Element {
     | 'table_body'
     | 'table_row'
     | 'table_cell'
-    | 'table_header_cell'
     | 'block-quote'
     | 'paragraph'
     | 'heading-one'
@@ -211,7 +210,6 @@ export interface NodeRendererType {
   table_body?: DefaultNodeRenderer;
   table_row?: DefaultNodeRenderer;
   table_cell?: DefaultNodeRenderer;
-  table_header_cell?: DefaultNodeRenderer;
   blockquote?: DefaultNodeRenderer;
   bold?: DefaultNodeRenderer;
   italic?: DefaultNodeRenderer;

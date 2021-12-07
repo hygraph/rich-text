@@ -141,86 +141,6 @@ export const emptyContent: RichTextContent = [
   },
 ];
 
-export const tableContent: RichTextContent = [
-  {
-    type: 'table',
-    children: [
-      {
-        type: 'table_head',
-        children: [
-          {
-            type: 'table_row',
-            children: [
-              {
-                type: 'table_header_cell',
-                children: [
-                  {
-                    type: 'paragraph',
-                    children: [
-                      {
-                        text: 'Row 1 - Header 1',
-                      },
-                    ],
-                  },
-                ],
-              },
-              {
-                type: 'table_header_cell',
-                children: [
-                  {
-                    type: 'paragraph',
-                    children: [
-                      {
-                        text: 'Row 1 - Header 2',
-                      },
-                    ],
-                  },
-                ],
-              },
-            ],
-          },
-        ],
-      },
-      {
-        type: 'table_body',
-        children: [
-          {
-            type: 'table_row',
-            children: [
-              {
-                type: 'table_cell',
-                children: [
-                  {
-                    type: 'paragraph',
-                    children: [
-                      {
-                        text: 'Row 2 - Col 1',
-                      },
-                    ],
-                  },
-                ],
-              },
-              {
-                type: 'table_cell',
-                children: [
-                  {
-                    type: 'paragraph',
-                    children: [
-                      {
-                        text: 'Row 2 - Col 2',
-                      },
-                    ],
-                  },
-                ],
-              },
-            ],
-          },
-        ],
-      },
-    ],
-  },
-];
-
 export const simpleH1Content: RichTextContent = [
   {
     type: 'heading-one',
@@ -275,8 +195,7 @@ export const iframeContent: RichTextContent = [
 
 export const imageContent: RichTextContent = [
   {
-    src:
-      'https://media.graphcms.com/output=format:webp/resize=,width:667,height:1000/8xrjYm4CR721mAZ1YAoy',
+    src: 'https://media.graphcms.com/output=format:webp/resize=,width:667,height:1000/8xrjYm4CR721mAZ1YAoy',
     type: 'image',
     title: 'photo-1564631027894-5bdb17618445.jpg',
     width: 667,
