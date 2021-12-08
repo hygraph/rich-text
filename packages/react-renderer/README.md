@@ -473,6 +473,145 @@ module.exports = {
 };
 ```
 
+### Placeholder images for Next.js Image component
+
+For low quality image placeholders (LQIP) we can use [Plaiceholder](https://github.com/joe-bell/plaiceholder). Plaiceholder will generate base64 encoded images which we pass to `next/image` as the [`blurDataUrl`](https://nextjs.org/docs/api-reference/next/image#blurdataurl) prop. In this example we'll query a rich text field and generate a placeholder image for each embedded asset.
+
+First, install Plaiceholder:
+
+```sh
+# npm
+npm i plaiceholder
+
+# Yarn
+yarn add plaiceholder
+```
+
+Note that Plaiceholder uses `sharp` under the hood, but as `next/image` ships with it, we don't need to install it separately.
+
+Here's a full blown example for a single blog post page with rich text content.
+
+```js
+// [slug.jsx]
+import { RichText } from '@graphcms/rich-text-react-renderer';
+import { getPlaiceholder } from 'plaiceholder';
+import { fetchFromGraphCMS } from '../../lib/graphcms';
+import Image from 'next/image';
+
+// Page template
+const SinglePostPage = ({ data }) => {
+  const { title, description, content } = data;
+
+  return (
+    <>
+      {/* ... */}
+      <RichText
+        content={content.json}
+        references={content.references}
+        renderers={{
+          Asset: {
+            image: ({ url, alt, caption, width, height, blurDataUrl }) => {
+              return (
+                <Image
+                  src={url}
+                  alt={alt}
+                  width={width}
+                  height={height}
+                  placeholder={blurDataUrl ? 'blur' : 'empty'}
+                  blurDataURL={blurDataUrl}
+                />
+              );
+            },
+          },
+        }}
+      />
+    </>
+  );
+};
+
+// Relevant paths from CMS to Next
+export const getStaticPaths = async () => {
+  const data = await fetchFromGraphCMS({
+    query: `
+      {
+        posts {
+          slug
+        }
+      }`,
+    variables: {},
+    preview: true,
+  });
+
+  const postPaths = data.posts.map((item) => {
+    return {
+      params: {
+        slug: item.slug,
+      },
+    };
+  });
+
+  return {
+    paths: postPaths,
+    fallback: false,
+  };
+};
+
+export const getStaticProps = async (context) => {
+  const data = await fetchFromGraphCMS({
+    // Sample query, adjust to your content structure.
+    // Note: 'id' and 'mimeType' are required for custom components.
+    query: `
+      query ($slug: String!) {
+        post(where: { slug: $slug }) {
+          slug
+          content {
+            json
+            references {
+              ... on Asset {
+                id
+                mimeType
+                url
+                alt
+                caption
+                width
+                height
+              }
+            }
+          }
+        }
+      }
+    `,
+    variables: {
+      slug: context.params?.slug,
+    },
+    preview: context.preview,
+  });
+
+  // Pick images from assets
+  const images = data.post.content.references.filter((asset) =>
+    asset.mimeType.includes('image')
+  );
+
+  // Use Plaiceholder to generate placeholder images (LQIP)
+  // As a result the images will have a `blurDataUrl` prop with the
+  // base64 encoded image.
+  await Promise.all(
+    images.map(async (image) => {
+      const { base64 } = await getPlaiceholder(image.url);
+      image.blurDataUrl = base64;
+    })
+  );
+
+  return {
+    props: {
+      data: data.post,
+    },
+  };
+};
+
+export default SinglePostPage;
+```
+
 ### Gatsby Link component
 
 ```js
