@@ -1009,7 +1009,6 @@ test('Reshape an incorrectly structured table', () => {
   return htmlToSlateAST(
     '<table><colgroup><col /><col /></colgroup><thead><tr><th></th></tr></thead><tbody><tr><td></td></tr><tr></tr></tbody></table>'
   ).then(ast => {
-    console.log(JSON.stringify(ast, null, 2));
     expect(ast).toStrictEqual([
       {
         type: 'table',
