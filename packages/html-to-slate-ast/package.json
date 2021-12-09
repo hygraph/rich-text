@@ -1,6 +1,6 @@
 {
   "name": "@graphcms/html-to-slate-ast",
-  "version": "0.10.0",
+  "version": "0.10.1",
   "description": "Convert HTML to GraphCMS's RichTextAST (slate)",
   "license": "MIT",
   "scripts": {
@@ -49,6 +49,6 @@
   "jest": {},
   "dependencies": {
     "@braintree/sanitize-url": "^5.0.2",
-    "@graphcms/rich-text-types": "^0.2.0"
+    "@graphcms/rich-text-types": "^0.3.0"
   }
 }

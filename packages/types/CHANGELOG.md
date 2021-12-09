@@ -1,5 +1,11 @@
 # @graphcms/rich-text-types
 
+## 0.3.0
+
+### Minor Changes
+
+- [`bc9e612`](https://github.com/GraphCMS/rich-text/commit/bc9e61293ec0535328541c95c33e71f51ec09c43) [#52](https://github.com/GraphCMS/rich-text/pull/52) Thanks [@larisachristie](https://github.com/larisachristie)! - Add isInline to EmbedProps type
+
 ## 0.2.1
 
 ### Patch Changes

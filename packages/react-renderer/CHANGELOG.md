@@ -1,5 +1,12 @@
 # @graphcms/rich-text-react-renderer
 
+## 0.3.3
+
+### Patch Changes
+
+- Updated dependencies [[`bc9e612`](https://github.com/GraphCMS/rich-text/commit/bc9e61293ec0535328541c95c33e71f51ec09c43)]:
+  - @graphcms/rich-text-types@0.3.0
+
 ## 0.3.2
 
 ### Patch Changes
