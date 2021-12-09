@@ -529,31 +529,8 @@ const SinglePostPage = ({ data }) => {
   );
 };
 
-// Relevant paths from CMS to Next
 export const getStaticPaths = async () => {
-  const data = await fetchFromGraphCMS({
-    query: `
-      {
-        posts {
-          slug
-        }
-      }`,
-    variables: {},
-    preview: true,
-  });
-
-  const postPaths = data.posts.map((item) => {
-    return {
-      params: {
-        slug: item.slug,
-      },
-    };
-  });
-
-  return {
-    paths: postPaths,
-    fallback: false,
-  };
+  // Get your paths here.
 };
 
 export const getStaticProps = async (context) => {
