@@ -1,5 +1,11 @@
 # @graphcms/rich-text-types
 
+## 0.3.1
+
+### Patch Changes
+
+- [`c2e0a75`](https://github.com/GraphCMS/rich-text/commit/c2e0a75e995591bb299250f4d14092b1843b1183) [#53](https://github.com/GraphCMS/rich-text/pull/53) Thanks [@anmolarora1](https://github.com/anmolarora1)! - Add `table_header_cell` in `Element` and `NodeRendererType`
+
 ## 0.3.0
 
 ### Minor Changes
