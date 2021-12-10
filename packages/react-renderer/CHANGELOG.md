@@ -1,5 +1,16 @@
 # @graphcms/rich-text-react-renderer
 
+## 0.4.0
+
+### Minor Changes
+
+- [`17f5244`](https://github.com/GraphCMS/rich-text/commit/17f52440c3fae398f8fd49d4ef61a6fe46ff8635) [#53](https://github.com/GraphCMS/rich-text/pull/53) Thanks [@anmolarora1](https://github.com/anmolarora1)! - feat: adds `<th>` table_header_cell element support
+
+### Patch Changes
+
+- Updated dependencies [[`c2e0a75`](https://github.com/GraphCMS/rich-text/commit/c2e0a75e995591bb299250f4d14092b1843b1183)]:
+  - @graphcms/rich-text-types@0.3.1
+
 ## 0.3.3
 
 ### Patch Changes
