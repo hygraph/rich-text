@@ -4,7 +4,7 @@ import { htmlToSlateAST } from '@graphcms/html-to-slate-ast';
 describe('Transforms lists', () => {
   test('simple one-level', () => {
     const input = `<ul><li>Class 1. Explosive substances (incl. ammunition, fireworks, flares and certain fertilizers);</li><li>Class 2. Gases:- compressed, liquefied or dissolved under pressure;</li><li>Class 3. Flammable liquids;</li><li>Class 4.1. Flammable solids;</li><li>Class 4.2. Substances liable to spontaneous combustion;</li><li>Class 4.3. Substances which, in contact with water, emit flammable gases;</li><li>Class 5.1. Oxidising substances;</li><li>Class 5.2. Organic peroxides;</li><li>Class 6.1. Toxic substances;</li><li>Class 6.2. Infectious substances;</li><li>Class 8. Corrosive substances; and</li><li>Class 9. Miscellaneous dangerous substances and articles.</li></ul>`;
-    return htmlToSlateAST(input).then(ast =>
+    return htmlToSlateAST(input).then((ast) =>
       expect(ast).toEqual([
         {
           type: 'bulleted-list',
@@ -16,8 +16,7 @@ describe('Transforms lists', () => {
                   type: 'list-item-child',
                   children: [
                     {
-                      text:
-                        'Class 1. Explosive substances (incl. ammunition, fireworks, flares and certain fertilizers);',
+                      text: 'Class 1. Explosive substances (incl. ammunition, fireworks, flares and certain fertilizers);',
                     },
                   ],
                 },
@@ -30,8 +29,7 @@ describe('Transforms lists', () => {
                   type: 'list-item-child',
                   children: [
                     {
-                      text:
-                        'Class 2. Gases:- compressed, liquefied or dissolved under pressure;',
+                      text: 'Class 2. Gases:- compressed, liquefied or dissolved under pressure;',
                     },
                   ],
                 },
@@ -70,8 +68,7 @@ describe('Transforms lists', () => {
                   type: 'list-item-child',
                   children: [
                     {
-                      text:
-                        'Class 4.2. Substances liable to spontaneous combustion;',
+                      text: 'Class 4.2. Substances liable to spontaneous combustion;',
                     },
                   ],
                 },
@@ -84,8 +81,7 @@ describe('Transforms lists', () => {
                   type: 'list-item-child',
                   children: [
                     {
-                      text:
-                        'Class 4.3. Substances which, in contact with water, emit flammable gases;',
+                      text: 'Class 4.3. Substances which, in contact with water, emit flammable gases;',
                     },
                   ],
                 },
@@ -163,8 +159,7 @@ describe('Transforms lists', () => {
                   type: 'list-item-child',
                   children: [
                     {
-                      text:
-                        'Class 9. Miscellaneous dangerous substances and articles.',
+                      text: 'Class 9. Miscellaneous dangerous substances and articles.',
                     },
                   ],
                 },
@@ -177,7 +172,7 @@ describe('Transforms lists', () => {
   });
   test('nested, two leves', () => {
     const input = `<ol><li>First item</li><li>Second item<ul><li>First nested item</li><li>Second nested item<ul><li>First deeply nested item</li></ul></li></ul></li><li>Third item</li></ol>`;
-    return htmlToSlateAST(input).then(ast => {
+    return htmlToSlateAST(input).then((ast) => {
       expect(ast).toEqual([
         {
           type: 'numbered-list',
@@ -287,7 +282,7 @@ describe('Transforms lists', () => {
   });
   test('nested, two leves, with a link', () => {
     const input = `<ol><li>First item</li><li><a href="https://graphcms.com" target="_blank">Second item</a><ul><li>First nested item</li><li>Second nested item<ul><li>First deeply nested item</li></ul></li></ul></li><li>Third item</li></ol>`;
-    return htmlToSlateAST(input).then(ast => {
+    return htmlToSlateAST(input).then((ast) => {
       expect(ast).toEqual([
         {
           type: 'numbered-list',
@@ -411,7 +406,7 @@ test('Transforms top level span into paragraph', () => {
   in fact, is the very CSS and HTML rendered as I type this blog. There are calls to HTML element classes that style
   certain properties. For example, the font-family properties in the ".postArticle-content .graf — p" class has a serif
   font value, hence the text rendered in this article is of the serif family. All this to say, if you as a pro</span>`).then(
-    ast =>
+    (ast) =>
       expect(ast).toEqual([
         {
           type: 'paragraph',
@@ -434,7 +429,7 @@ test('Transforms inner span into paragraph', () => {
   in fact, is the very CSS and HTML rendered as I type this blog. There are calls to HTML element classes that style
   certain properties. For example, the font-family properties in</span><span> the ".postArticle-content .graf — p" class has a serif
   font value, hence the text rendered in this article is of the serif family. All this to say, if you as a pro</span></p>`).then(
-    ast =>
+    (ast) =>
       expect(ast).toEqual([
         {
           type: 'paragraph',
@@ -453,7 +448,7 @@ test('Transforms inner span into paragraph', () => {
 
 test('Transforms inner spans wrapped in a div into paragraph', () => {
   const input = fs.readFileSync(__dirname + '/html_input.html').toString();
-  return htmlToSlateAST(input).then(ast =>
+  return htmlToSlateAST(input).then((ast) =>
     expect(ast).toStrictEqual([
       {
         type: 'paragraph',
@@ -495,7 +490,7 @@ test('Transforms Google Docs input', () => {
   const input = fs
     .readFileSync(__dirname + '/google-docs_input.html')
     .toString();
-  return htmlToSlateAST(input).then(ast =>
+  return htmlToSlateAST(input).then((ast) =>
     expect(ast).toEqual([
       {
         type: 'heading-one',
@@ -766,14 +761,12 @@ test('Transforms Google Docs input', () => {
         children: [
           {
             type: 'link',
-            href:
-              'https://lh6.googleusercontent.com/TkJFBZvkyXTa602F0gkp2phU0O1eHu96RdKFcQ8l_EOS_CBfcI9jYRixN6sNRFnFiZ-ssbLbnLDReb3FrEZ1MnLr70c5gIvPmhJtV7appyVEDSeHLIRdNwdNzbIqs3l2GOgGLGC5=s0',
+            href: 'https://lh6.googleusercontent.com/TkJFBZvkyXTa602F0gkp2phU0O1eHu96RdKFcQ8l_EOS_CBfcI9jYRixN6sNRFnFiZ-ssbLbnLDReb3FrEZ1MnLr70c5gIvPmhJtV7appyVEDSeHLIRdNwdNzbIqs3l2GOgGLGC5=s0',
             title: 'Screenshot 2021-06-10 at 15.56.22.png',
             openInNewTab: true,
             children: [
               {
-                text:
-                  'https://lh6.googleusercontent.com/TkJFBZvkyXTa602F0gkp2phU0O1eHu96RdKFcQ8l_EOS_CBfcI9jYRixN6sNRFnFiZ-ssbLbnLDReb3FrEZ1MnLr70c5gIvPmhJtV7appyVEDSeHLIRdNwdNzbIqs3l2GOgGLGC5=s0',
+                text: 'https://lh6.googleusercontent.com/TkJFBZvkyXTa602F0gkp2phU0O1eHu96RdKFcQ8l_EOS_CBfcI9jYRixN6sNRFnFiZ-ssbLbnLDReb3FrEZ1MnLr70c5gIvPmhJtV7appyVEDSeHLIRdNwdNzbIqs3l2GOgGLGC5=s0',
               },
             ],
           },
@@ -794,7 +787,7 @@ test('Transforms Google Docs input', () => {
 test('Converts word documents', () => {
   return htmlToSlateAST(
     fs.readFileSync(__dirname + '/word-document.html').toString()
-  ).then(ast =>
+  ).then((ast) =>
     expect(ast).toStrictEqual([
       {
         type: 'heading-one',
@@ -986,18 +979,16 @@ test('Converts word documents', () => {
 test('Converts an image pasted from Google Docs into a link node', () => {
   return htmlToSlateAST(
     fs.readFileSync(__dirname + '/image.html').toString()
-  ).then(ast =>
+  ).then((ast) =>
     expect(ast).toStrictEqual([
       {
         type: 'link',
-        href:
-          'https://lh5.googleusercontent.com/EqByyE2l_VVSU6KoXFlkpPjJIBsbMTb4Dkr0cuvy2K5ctn8BoJsDHBXO0rU2wyck72_ZF1rqJ5kJ0iMEjU4Jwf7mKhRaLWoHJAzX5WvpfMytIR9sw3EwBcdQdRlIwSrsQ3odhUYq',
+        href: 'https://lh5.googleusercontent.com/EqByyE2l_VVSU6KoXFlkpPjJIBsbMTb4Dkr0cuvy2K5ctn8BoJsDHBXO0rU2wyck72_ZF1rqJ5kJ0iMEjU4Jwf7mKhRaLWoHJAzX5WvpfMytIR9sw3EwBcdQdRlIwSrsQ3odhUYq',
         title: "this is this image's title",
         openInNewTab: true,
         children: [
           {
-            text:
-              'https://lh5.googleusercontent.com/EqByyE2l_VVSU6KoXFlkpPjJIBsbMTb4Dkr0cuvy2K5ctn8BoJsDHBXO0rU2wyck72_ZF1rqJ5kJ0iMEjU4Jwf7mKhRaLWoHJAzX5WvpfMytIR9sw3EwBcdQdRlIwSrsQ3odhUYq',
+            text: 'https://lh5.googleusercontent.com/EqByyE2l_VVSU6KoXFlkpPjJIBsbMTb4Dkr0cuvy2K5ctn8BoJsDHBXO0rU2wyck72_ZF1rqJ5kJ0iMEjU4Jwf7mKhRaLWoHJAzX5WvpfMytIR9sw3EwBcdQdRlIwSrsQ3odhUYq',
           },
         ],
       },
@@ -1008,7 +999,7 @@ test('Converts an image pasted from Google Docs into a link node', () => {
 test('Reshape an incorrectly structured table', () => {
   return htmlToSlateAST(
     '<table><colgroup><col /><col /></colgroup><thead><tr><th></th></tr></thead><tbody><tr><td></td></tr><tr></tr></tbody></table>'
-  ).then(ast => {
+  ).then((ast) => {
     expect(ast).toStrictEqual([
       {
         type: 'table',
@@ -1024,7 +1015,7 @@ test('Reshape an incorrectly structured table', () => {
                     children: [
                       {
                         type: 'paragraph',
-                        cghildren: [
+                        children: [
                           {
                             text: '',
                           },
@@ -1085,14 +1076,13 @@ test('Reshape an incorrectly structured table', () => {
 
 test('Transforms pre tags into code-block nodes', () => {
   const input = fs.readFileSync(__dirname + '/pre.html').toString();
-  return htmlToSlateAST(input).then(ast =>
+  return htmlToSlateAST(input).then((ast) =>
     expect(ast).toStrictEqual([
       {
         type: 'code-block',
         children: [
           {
-            text:
-              "  L          TE\n    A       A\n      C    V\n       R A\n       DOU\n       LOU\n      REUSE\n      QUE TU\n      PORTES\n    ET QUI T'\n    ORNE O CI\n     VILISÉ\n    OTE-  TU VEUX\n     LA    BIEN\n    SI      RESPI\n            RER       - Apollinaire",
+            text: "  L          TE\n    A       A\n      C    V\n       R A\n       DOU\n       LOU\n      REUSE\n      QUE TU\n      PORTES\n    ET QUI T'\n    ORNE O CI\n     VILISÉ\n    OTE-  TU VEUX\n     LA    BIEN\n    SI      RESPI\n            RER       - Apollinaire",
           },
         ],
       },
