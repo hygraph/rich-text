@@ -280,11 +280,8 @@ describe('Transforms lists', () => {
       ]);
     });
   });
-  test.only('nested, two leves, with a link', () => {
+  test('nested, two leves, with a link', () => {
     const input = `<ol><li>First item</li><li><a href="https://graphcms.com" target="_blank">Second item</a><ul><li>First nested item</li><li>Second nested item<ul><li>First deeply nested item</li></ul></li></ul></li><li>Third item</li></ol>`;
-    htmlToSlateAST(input).then((ast) =>
-      console.log(JSON.stringify(ast, null, 2))
-    );
     return htmlToSlateAST(input).then((ast) => {
       expect(ast).toEqual([
         {
@@ -1001,12 +998,35 @@ test('Converts an image pasted from Google Docs into a link node', () => {
 
 test('Reshape an incorrectly structured table', () => {
   return htmlToSlateAST(
-    '<table><colgroup><col /><col /></colgroup><tbody><tr><td></td></tr><tr></tr></tbody></table>'
-  ).then((ast) =>
+    '<table><colgroup><col /><col /></colgroup><thead><tr><th></th></tr></thead><tbody><tr><td></td></tr><tr></tr></tbody></table>'
+  ).then((ast) => {
     expect(ast).toStrictEqual([
       {
         type: 'table',
         children: [
+          {
+            type: 'table_head',
+            children: [
+              {
+                type: 'table_row',
+                children: [
+                  {
+                    type: 'table_header_cell',
+                    children: [
+                      {
+                        type: 'paragraph',
+                        children: [
+                          {
+                            text: '',
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
           {
             type: 'table_body',
             children: [
@@ -1050,8 +1070,8 @@ test('Reshape an incorrectly structured table', () => {
           },
         ],
       },
-    ])
-  );
+    ]);
+  });
 });
 
 test('Transforms pre tags into code-block nodes', () => {

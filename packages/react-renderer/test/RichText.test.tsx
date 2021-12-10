@@ -13,6 +13,7 @@ import {
   emptyContent,
   embedAssetContent,
   simpleH1Content,
+  tableContent,
 } from './content';
 
 describe('@graphcms/rich-text-react-renderer', () => {
@@ -91,6 +92,45 @@ describe('@graphcms/rich-text-react-renderer', () => {
               <td>
                 <p>
                   Row 1 - Col 2
+                </p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    `);
+  });
+
+  it('should render a table', () => {
+    const { container } = render(<RichText content={tableContent} />);
+
+    expect(container).toMatchInlineSnapshot(`
+      <div>
+        <table>
+          <thead>
+            <tr>
+              <th>
+                <p>
+                  Row 1 - Header 1
+                </p>
+              </th>
+              <th>
+                <p>
+                  Row 1 - Header 2
+                </p>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <p>
+                  Row 2 - Col 1
+                </p>
+              </td>
+              <td>
+                <p>
+                  Row 2 - Col 2
                 </p>
               </td>
             </tr>
