@@ -184,6 +184,7 @@ function RenderElement({
         <RenderElements
           content={children as ElementNode[]}
           renderers={renderers}
+          references={references}
         />
       </NodeRenderer>
     );

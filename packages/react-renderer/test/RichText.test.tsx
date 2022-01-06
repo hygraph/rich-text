@@ -14,6 +14,7 @@ import {
   embedAssetContent,
   simpleH1Content,
   tableContent,
+  nestedEmbedAssetContent,
 } from './content';
 
 describe('@graphcms/rich-text-react-renderer', () => {
@@ -813,6 +814,46 @@ describe('custom embeds and assets', () => {
             custom_post_id_2
           </div>
         </div>
+      </div>
+    `);
+  });
+
+  it('should render nested embeds', () => {
+    const references = [
+      {
+        id: 'ckrus0f14ao760b32mz2dwvgx',
+        url: 'https://media.graphcms.com/7M0lXLdCQfeIDXnT2SVS',
+        mimeType: 'video/mp4',
+      },
+    ];
+
+    const { container } = render(
+      <RichText content={nestedEmbedAssetContent} references={references} />
+    );
+
+    expect(container).toMatchInlineSnapshot(`
+      <div>
+        <p>
+          Inline asset
+          <video
+            controls=""
+            height="100%"
+            src="https://media.graphcms.com/7M0lXLdCQfeIDXnT2SVS"
+            width="100%"
+          >
+            <p>
+              Your browser doesn't support HTML5 video. Here is a
+               
+              <a
+                href="https://media.graphcms.com/7M0lXLdCQfeIDXnT2SVS"
+              >
+                link to the video
+              </a>
+               instead.
+            </p>
+          </video>
+          continued
+        </p>
       </div>
     `);
   });
