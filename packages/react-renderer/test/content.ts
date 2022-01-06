@@ -431,3 +431,27 @@ export const embedAssetContent: RichTextContent = [
     nodeType: 'Asset',
   },
 ];
+
+export const nestedEmbedAssetContent: RichTextContent = [
+  {
+    type: 'paragraph',
+    children: [
+      {
+        text: 'Inline asset',
+      },
+      {
+        type: 'embed',
+        nodeId: 'ckrus0f14ao760b32mz2dwvgx',
+        children: [
+          {
+            text: '',
+          },
+        ],
+        nodeType: 'Asset',
+      },
+      {
+        text: 'continued',
+      },
+    ],
+  },
+];
