@@ -1,5 +1,11 @@
 # @graphcms/rich-text-react-renderer
 
+## 0.4.1
+
+### Patch Changes
+
+- [`805119b`](https://github.com/GraphCMS/rich-text/commit/805119bb157d3d359df844f7159453cfefbda0a9) [#59](https://github.com/GraphCMS/rich-text/pull/59) Thanks [@feychenie](https://github.com/feychenie)! - Fix missing references in inline embeds
+
 ## 0.4.0
 
 ### Minor Changes
