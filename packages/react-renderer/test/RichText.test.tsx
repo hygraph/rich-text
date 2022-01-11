@@ -66,7 +66,7 @@ describe('@graphcms/rich-text-react-renderer', () => {
     expect(container).toMatchInlineSnapshot(`
       <div>
         <h2>
-          
+
           <a
             href="https://graphcms.com"
           >
@@ -74,7 +74,7 @@ describe('@graphcms/rich-text-react-renderer', () => {
           </a>
         </h2>
         <h2>
-          
+
           <a
             href="https://graphcms.com"
           >
@@ -401,6 +401,33 @@ describe('@graphcms/rich-text-react-renderer', () => {
     const { container } = render(<RichText content={content} />);
 
     expect(container).toMatchSnapshot();
+  });
+
+  it('should replace all \n in a string with <br /> elements', () => {
+    const content: RichTextContent = [
+      {
+        type: 'paragraph',
+        children: [
+          {
+            text: "Hello,\n⁠My name is joão pedro,\n⁠I'm testing a bug",
+          },
+        ],
+      },
+    ];
+
+    const { container } = render(<RichText content={content} />);
+
+    expect(container).toMatchInlineSnapshot(`
+      <div>
+        <p>
+          Hello,
+          <br />
+          My name is joão pedro,
+          <br />
+          I'm testing a bug
+        </p>
+      </div>
+    `);
   });
 });
 
@@ -843,7 +870,7 @@ describe('custom embeds and assets', () => {
           >
             <p>
               Your browser doesn't support HTML5 video. Here is a
-               
+
               <a
                 href="https://media.graphcms.com/7M0lXLdCQfeIDXnT2SVS"
               >
