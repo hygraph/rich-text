@@ -1,5 +1,11 @@
 # @graphcms/rich-text-react-renderer
 
+## 0.4.2
+
+### Patch Changes
+
+- [`2f3c345`](https://github.com/GraphCMS/rich-text/commit/2f3c34517b4bec585bed3c334fd2526a45354088) [#61](https://github.com/GraphCMS/rich-text/pull/61) Thanks [@jpedroschmitz](https://github.com/jpedroschmitz)! - fix \n is not converted to <br />
+
 ## 0.4.1
 
 ### Patch Changes
