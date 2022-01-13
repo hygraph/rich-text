@@ -402,6 +402,23 @@ describe('@graphcms/rich-text-react-renderer', () => {
 
     expect(container).toMatchSnapshot();
   });
+
+  it('should replace all \n in a string with <br /> elements', () => {
+    const content: RichTextContent = [
+      {
+        type: 'paragraph',
+        children: [
+          {
+            text: "Hello,\n⁠My name is joão pedro,\n⁠I'm testing a bug",
+          },
+        ],
+      },
+    ];
+
+    const { container } = render(<RichText content={content} />);
+
+    expect(container).toMatchSnapshot();
+  });
 });
 
 describe('custom embeds and assets', () => {

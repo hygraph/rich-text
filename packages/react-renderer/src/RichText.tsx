@@ -21,15 +21,28 @@ import { elementIsEmpty } from './util/elementIsEmpty';
 
 function RenderNode({
   node,
+  parent,
   renderers,
   references,
 }: {
   node: Node;
+  parent: Node | null;
   renderers?: NodeRendererType;
   references?: EmbedReferences;
 }) {
   if (isText(node)) {
-    return <RenderText textNode={node} renderers={renderers} />;
+    let text = node.text;
+
+    const shouldSerialize =
+      parent && isElement(parent) && parent.type !== 'code-block';
+
+    return (
+      <RenderText
+        textNode={{ ...node, text }}
+        renderers={renderers}
+        shouldSerialize={shouldSerialize as boolean}
+      />
+    );
   }
 
   if (isElement(node)) {
@@ -185,6 +198,7 @@ function RenderElement({
           content={children as ElementNode[]}
           renderers={renderers}
           references={references}
+          parent={element}
         />
       </NodeRenderer>
     );
@@ -193,7 +207,16 @@ function RenderElement({
   return <Fragment />;
 }
 
-function RenderElements({ content, references, renderers }: RichTextProps) {
+type RenderElementsProps = RichTextProps & {
+  parent?: Node | null;
+};
+
+function RenderElements({
+  content,
+  references,
+  renderers,
+  parent,
+}: RenderElementsProps) {
   const elements = getElements({ content });
 
   return (
@@ -202,6 +225,7 @@ function RenderElements({ content, references, renderers }: RichTextProps) {
         return (
           <RenderNode
             node={node}
+            parent={parent || null}
             renderers={renderers}
             references={references}
             key={index}

@@ -110,6 +110,19 @@ exports[`@graphcms/rich-text-react-renderer should render empty text spaces 1`] 
 </div>
 `;
 
+exports[`@graphcms/rich-text-react-renderer should replace all 
+ in a string with <br /> elements 1`] = `
+<div>
+  <p>
+    Hello,
+    <br />
+    ⁠My name is joão pedro,
+    <br />
+    ⁠I'm testing a bug
+  </p>
+</div>
+`;
+
 exports[`custom embeds and assets should render embed video, image, and audio assets 1`] = `
 <div>
   <img
