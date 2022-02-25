@@ -49,6 +49,17 @@ mutation newArticle($title: String!, $content: RichTextAST) {
 }
 ```
 
+For sending the generated output from htmlToSlateAST using a GraphQL client, you should transform it into a RichText compatible object, for example:
+
+```js
+const data = await client.request(newArticleQuery, {
+  title: 'Example title for an article',
+  content: { children: ast },
+});
+```
+
+You can see the full example using [graphql-request](https://github.com/prisma-labs/graphql-request) to mutate the data into GraphCMS [here](https://github.com/GraphCMS/rich-text/blob/main/packages/html-to-slate-ast/examples/graphql-request-script.js)
+
 See the docs about the [Rich Text field type](https://graphcms.com/docs/schema/field-types#rich-text) and [Content Api mutations](https://graphcms.com/docs/content-api/mutations)
 
 ## 📝 License
