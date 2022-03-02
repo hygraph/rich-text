@@ -13,7 +13,7 @@ export function Video({ src, width, height, title }: Partial<VideoProps>) {
     >
       <p>
         Your browser doesn't support HTML5 video. Here is a{' '}
-        <a href={src}>link to the video</a> instead.
+        <a href={escapeHtml(src)}>link to the video</a> instead.
       </p>
     </video>
   );
