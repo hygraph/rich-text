@@ -1,5 +1,11 @@
 # @graphcms/html-to-slate-ast
 
+## 0.11.1
+
+### Patch Changes
+
+- [`30a4886`](https://github.com/GraphCMS/rich-text/commit/30a4886511a313075cd36c2c38f2891ceaf95ad8) [#72](https://github.com/GraphCMS/rich-text/pull/72) Thanks [@larisachristie](https://github.com/larisachristie)! - Clarify the htmlToSlateAST Readme on mutation variable
+
 ## 0.11.0
 
 ### Minor Changes
