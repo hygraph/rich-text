@@ -1,5 +1,11 @@
 # @graphcms/rich-text-react-renderer
 
+## 0.4.3
+
+### Patch Changes
+
+- [`9d7bead`](https://github.com/GraphCMS/rich-text/commit/9d7bead10fa1a0de7d4742e097b58ad738205fc1) [#74](https://github.com/GraphCMS/rich-text/pull/74) Thanks [@jpedroschmitz](https://github.com/jpedroschmitz)! - Use index as key on line break to fix React warning of same keys
+
 ## 0.4.2
 
 ### Patch Changes
