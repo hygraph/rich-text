@@ -8,7 +8,7 @@ function serialize(text: string) {
     const splitText = text.split('\n');
 
     return splitText.map((line, index) => (
-      <React.Fragment key={line}>
+      <React.Fragment key={index}>
         {line}
         {index === splitText.length - 1 ? null : <br />}
       </React.Fragment>
