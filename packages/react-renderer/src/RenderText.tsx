@@ -1,7 +1,9 @@
 import React, { ReactNode } from 'react';
-import { NodeRendererType, Text } from '@graphcms/rich-text-types';
-
-import { elementKeys } from './defaultElements';
+import {
+  NodeRendererType,
+  Text,
+  elementTypeKeys,
+} from '@graphcms/rich-text-types';
 
 function serialize(text: string) {
   if (text.includes('\n')) {
@@ -32,19 +34,19 @@ export function RenderText({
   const parsedText = shouldSerialize ? serialize(text) : text;
 
   const Bold = renderers?.[
-    elementKeys['bold'] as keyof NodeRendererType
+    elementTypeKeys['bold'] as keyof NodeRendererType
   ] as React.ElementType;
 
   const Italic = renderers?.[
-    elementKeys['italic'] as keyof NodeRendererType
+    elementTypeKeys['italic'] as keyof NodeRendererType
   ] as React.ElementType;
 
   const Underline = renderers?.[
-    elementKeys['underline'] as keyof NodeRendererType
+    elementTypeKeys['underline'] as keyof NodeRendererType
   ] as React.ElementType;
 
   const Code = renderers?.[
-    elementKeys['code'] as keyof NodeRendererType
+    elementTypeKeys['code'] as keyof NodeRendererType
   ] as React.ElementType;
 
   let element: ReactNode = parsedText;

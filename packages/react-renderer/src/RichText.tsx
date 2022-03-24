@@ -3,21 +3,18 @@ import {
   RichTextProps,
   NodeRendererType,
   ElementNode,
-  RemoveEmptyElementType,
+  EmptyElementsToRemove,
   Node,
   isElement,
   isText,
+  isEmpty,
+  elementTypeKeys,
   EmbedReferences,
+  getArrayOfElements,
 } from '@graphcms/rich-text-types';
 
-import {
-  defaultElements,
-  defaultRemoveEmptyElements,
-  elementKeys,
-} from './defaultElements';
+import { defaultElements } from './defaultElements';
 import { RenderText } from './RenderText';
-import { getElements } from './util/getElements';
-import { elementIsEmpty } from './util/elementIsEmpty';
 
 function RenderNode({
   node,
@@ -78,17 +75,8 @@ function RenderElement({
   const { children, type, ...rest } = element;
   const { nodeId, nodeType } = rest;
 
-  /**
-   * Checks if the element is empty, so that it can be removed.
-   *
-   * Elements that can be removed with empty text are defined in `defaultRemoveEmptyElements`
-   */
-  if (
-    defaultRemoveEmptyElements?.[
-      elementKeys[type] as keyof RemoveEmptyElementType
-    ] &&
-    elementIsEmpty({ children })
-  ) {
+  // Checks if the element is empty so that it can be removed.
+  if (type in EmptyElementsToRemove && isEmpty({ children })) {
     return <Fragment />;
   }
 
@@ -185,7 +173,7 @@ function RenderElement({
 
   const elementNodeRenderer = isEmbed
     ? elementToRender
-    : renderers?.[elementKeys[type] as keyof NodeRendererType];
+    : renderers?.[elementTypeKeys[type] as keyof NodeRendererType];
 
   const NodeRenderer = elementNodeRenderer as React.ElementType;
 
@@ -217,7 +205,7 @@ function RenderElements({
   renderers,
   parent,
 }: RenderElementsProps) {
-  const elements = getElements({ content });
+  const elements = getArrayOfElements(content);
 
   return (
     <>
@@ -269,7 +257,7 @@ export function RichText({
     return <Fragment />;
   }
 
-  const elements = getElements({ content });
+  const elements = getArrayOfElements(content);
 
   /*
     Checks if there's a embed type inside the content and if the `references` prop is defined
@@ -287,12 +275,10 @@ export function RichText({
   }
 
   return (
-    <>
-      <RenderElements
-        content={elements}
-        renderers={renderers}
-        references={references}
-      />
-    </>
+    <RenderElements
+      content={elements}
+      renderers={renderers}
+      references={references}
+    />
   );
 }

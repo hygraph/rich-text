@@ -1,8 +1,5 @@
 import React, { Fragment } from 'react';
-import {
-  NodeRendererType,
-  RemoveEmptyElementType,
-} from '@graphcms/rich-text-types';
+import { NodeRendererType } from '@graphcms/rich-text-types';
 
 import { IFrame, Image, Video, Class, Link, Audio } from './elements';
 
@@ -67,50 +64,4 @@ export const defaultElements: Required<NodeRendererType> = {
     text: FallbackForCustomAsset,
   },
   embed: {},
-};
-
-/**
- * List of elements that shouldn't render when they are empty.
- *
- * This fixes issues like validate DOM nesting and others - look at [#5](https://github.com/GraphCMS/rich-text/issues/5)
- */
-export const defaultRemoveEmptyElements: Required<RemoveEmptyElementType> = {
-  h1: true,
-  h2: true,
-  h3: true,
-  h4: true,
-  h5: true,
-  h6: true,
-  table_head: true,
-};
-
-export const elementKeys: { [key: string]: string } = {
-  'heading-one': 'h1',
-  'heading-two': 'h2',
-  'heading-three': 'h3',
-  'heading-four': 'h4',
-  'heading-five': 'h5',
-  'heading-six': 'h6',
-  class: 'class',
-  link: 'a',
-  image: 'img',
-  iframe: 'iframe',
-  video: 'video',
-  'bulleted-list': 'ul',
-  'numbered-list': 'ol',
-  'list-item': 'li',
-  'list-item-child': 'list_item_child',
-  table: 'table',
-  table_head: 'table_head',
-  table_body: 'table_body',
-  table_row: 'table_row',
-  table_cell: 'table_cell',
-  table_header_cell: 'table_header_cell',
-  'block-quote': 'blockquote',
-  paragraph: 'p',
-  bold: 'bold',
-  italic: 'italic',
-  underline: 'underline',
-  code: 'code',
-  'code-block': 'code_block',
 };

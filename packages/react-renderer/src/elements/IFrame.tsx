@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/iframe-has-title */
 import React from 'react';
 import escapeHtml from 'escape-html';
 import { IFrameProps } from '@graphcms/rich-text-types';

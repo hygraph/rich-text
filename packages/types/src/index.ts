@@ -51,12 +51,12 @@ export interface Text extends Mark {
   text: string;
 }
 
-export interface Mark {
+type Mark = {
   bold?: boolean;
   italic?: boolean;
   underline?: boolean;
   code?: boolean;
-}
+};
 
 export interface ClassProps {
   className: string;
@@ -171,13 +171,13 @@ export interface LinkRendererProps
   extends DefaultElementProps,
     Partial<LinkProps> {}
 
-type DefaultNodeRenderer = (props: DefaultElementProps) => JSX.Element;
-type LinkNodeRenderer = (props: LinkRendererProps) => JSX.Element;
-type ClassNodeRenderer = (props: ClassRendererProps) => JSX.Element;
-type ImageNodeRenderer = (props: Partial<ImageProps>) => JSX.Element;
-type VideoNodeRenderer = (props: Partial<VideoProps>) => JSX.Element;
-type IFrameNodeRenderer = (props: Partial<IFrameProps>) => JSX.Element;
-type EmbedNodeRenderer = (props: any) => JSX.Element;
+type DefaultNodeRenderer = (props: DefaultElementProps) => JSX.Element | string;
+type LinkNodeRenderer = (props: LinkRendererProps) => JSX.Element | string;
+type ClassNodeRenderer = (props: ClassRendererProps) => JSX.Element | string;
+type ImageNodeRenderer = (props: Partial<ImageProps>) => JSX.Element | string;
+type VideoNodeRenderer = (props: Partial<VideoProps>) => JSX.Element | string;
+type IFrameNodeRenderer = (props: Partial<IFrameProps>) => JSX.Element | string;
+type EmbedNodeRenderer = (props: any) => JSX.Element | string;
 
 interface AssetRendererType {
   application?: EmbedNodeRenderer;
@@ -225,15 +225,48 @@ export interface NodeRendererType {
   };
 }
 
-export interface RemoveEmptyElementType {
-  h1?: Boolean;
-  h2?: Boolean;
-  h3?: Boolean;
-  h4?: Boolean;
-  h5?: Boolean;
-  h6?: Boolean;
-  table_head?: Boolean;
+export enum EmptyElementsToRemove {
+  'heading-one',
+  'heading-two',
+  'heading-three',
+  'heading-four',
+  'heading-five',
+  'heading-six',
+  'table_head',
 }
+
+export const elementTypeKeys: { [key: string]: string } = {
+  'heading-one': 'h1',
+  'heading-two': 'h2',
+  'heading-three': 'h3',
+  'heading-four': 'h4',
+  'heading-five': 'h5',
+  'heading-six': 'h6',
+  class: 'class',
+  link: 'a',
+  image: 'img',
+  iframe: 'iframe',
+  video: 'video',
+  'bulleted-list': 'ul',
+  'numbered-list': 'ol',
+  'list-item': 'li',
+  'list-item-child': 'list_item_child',
+  table: 'table',
+  table_head: 'table_head',
+  table_body: 'table_body',
+  table_row: 'table_row',
+  table_cell: 'table_cell',
+  table_header_cell: 'table_header_cell',
+  'block-quote': 'blockquote',
+  paragraph: 'p',
+  bold: 'bold',
+  italic: 'italic',
+  underline: 'underline',
+  code: 'code',
+  'code-block': 'code_block',
+};
 
 export * from './util/isElement';
 export * from './util/isText';
+export * from './util/isEmpty';
+export * from './util/getArrayOfElements';
