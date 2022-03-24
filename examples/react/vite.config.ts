@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite';
-import { svelte } from '@sveltejs/vite-plugin-svelte';
+import react from '@vitejs/plugin-react';
 import { join } from 'path';
 
 // https://vitejs.dev/config/
@@ -7,11 +7,11 @@ export default defineConfig({
   resolve: {
     alias: {
       '@graphcms/rich-text-types': join(__dirname, '../../packages/types'),
-      '@graphcms/rich-text-html-renderer': join(
+      '@graphcms/rich-text-react-renderer': join(
         __dirname,
-        '../../packages/html-renderer'
+        '../../packages/react-renderer'
       ),
     },
   },
-  plugins: [svelte()],
+  plugins: [react()],
 });
