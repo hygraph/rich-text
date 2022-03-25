@@ -51,7 +51,7 @@ export interface Text extends Mark {
   text: string;
 }
 
-type Mark = {
+export type Mark = {
   bold?: boolean;
   italic?: boolean;
   underline?: boolean;
@@ -153,12 +153,6 @@ export type Reference = {
 
 export type EmbedReferences = Array<Reference | AssetReference>;
 
-export type RichTextProps = {
-  content: RichTextContent;
-  renderers?: NodeRendererType;
-  references?: EmbedReferences;
-};
-
 export interface DefaultElementProps {
   children: ReactNode;
 }
@@ -170,60 +164,6 @@ export interface ClassRendererProps
 export interface LinkRendererProps
   extends DefaultElementProps,
     Partial<LinkProps> {}
-
-type DefaultNodeRenderer = (props: DefaultElementProps) => JSX.Element | string;
-type LinkNodeRenderer = (props: LinkRendererProps) => JSX.Element | string;
-type ClassNodeRenderer = (props: ClassRendererProps) => JSX.Element | string;
-type ImageNodeRenderer = (props: Partial<ImageProps>) => JSX.Element | string;
-type VideoNodeRenderer = (props: Partial<VideoProps>) => JSX.Element | string;
-type IFrameNodeRenderer = (props: Partial<IFrameProps>) => JSX.Element | string;
-type EmbedNodeRenderer = (props: any) => JSX.Element | string;
-
-interface AssetRendererType {
-  application?: EmbedNodeRenderer;
-  audio?: EmbedNodeRenderer;
-  font?: EmbedNodeRenderer;
-  image?: EmbedNodeRenderer;
-  model?: EmbedNodeRenderer;
-  text?: EmbedNodeRenderer;
-  video?: EmbedNodeRenderer;
-  [key: string]: EmbedNodeRenderer | undefined;
-}
-
-export interface NodeRendererType {
-  a?: LinkNodeRenderer;
-  class?: ClassNodeRenderer;
-  img?: ImageNodeRenderer;
-  video?: VideoNodeRenderer;
-  iframe?: IFrameNodeRenderer;
-  h1?: DefaultNodeRenderer;
-  h2?: DefaultNodeRenderer;
-  h3?: DefaultNodeRenderer;
-  h4?: DefaultNodeRenderer;
-  h5?: DefaultNodeRenderer;
-  h6?: DefaultNodeRenderer;
-  p?: DefaultNodeRenderer;
-  ul?: DefaultNodeRenderer;
-  ol?: DefaultNodeRenderer;
-  li?: DefaultNodeRenderer;
-  list_item_child?: DefaultNodeRenderer;
-  table?: DefaultNodeRenderer;
-  table_head?: DefaultNodeRenderer;
-  table_body?: DefaultNodeRenderer;
-  table_row?: DefaultNodeRenderer;
-  table_cell?: DefaultNodeRenderer;
-  table_header_cell?: DefaultNodeRenderer;
-  blockquote?: DefaultNodeRenderer;
-  bold?: DefaultNodeRenderer;
-  italic?: DefaultNodeRenderer;
-  underline?: DefaultNodeRenderer;
-  code?: DefaultNodeRenderer;
-  code_block?: DefaultNodeRenderer;
-  Asset?: AssetRendererType;
-  embed?: {
-    [key: string]: EmbedNodeRenderer | undefined;
-  };
-}
 
 export enum EmptyElementsToRemove {
   'heading-one',
@@ -269,4 +209,3 @@ export const elementTypeKeys: { [key: string]: string } = {
 export * from './util/isElement';
 export * from './util/isText';
 export * from './util/isEmpty';
-export * from './util/getArrayOfElements';

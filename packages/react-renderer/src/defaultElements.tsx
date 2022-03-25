@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { NodeRendererType } from '@graphcms/rich-text-types';
+import { RichTextProps } from './types';
 
 import { IFrame, Image, Video, Class, Link, Audio } from './elements';
 
@@ -13,7 +13,7 @@ function FallbackForCustomAsset({ mimeType }: { mimeType: string }) {
   return <Fragment />;
 }
 
-export const defaultElements: Required<NodeRendererType> = {
+export const defaultElements: Required<RichTextProps['renderers']> = {
   a: Link,
   class: Class,
   video: Video,
