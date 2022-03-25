@@ -3,7 +3,17 @@
 
   import { content, references } from '../../content-example';
 
-  const html = slateToHtml({ content, references });
+  const html = slateToHtml({
+    content,
+    references,
+    renderers: {
+      bold: props => `<strong>${props.children}</strong>`,
+      Asset: {
+        application: () => `<div><p>Asset</p></div>`,
+        text: () => `<div><p>text plain</p></div>`,
+      },
+    },
+  });
 </script>
 
 <div>
