@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`@graphcms/rich-text-html-renderer renders iframe 1`] = `"<p>test</p>"`;
+
+exports[`@graphcms/rich-text-html-renderer renders inline content 1`] = `"<p>test</p>"`;
+
+exports[`@graphcms/rich-text-html-renderer renders inline content with custom renderers 1`] = `"<p>test</p>"`;
+
+exports[`@graphcms/rich-text-html-renderer renders video 1`] = `"<p>test</p>"`;
+
+exports[`@graphcms/rich-text-html-renderer should render empty text spaces 1`] = `"<p>test</p>"`;
+
+exports[`@graphcms/rich-text-html-renderer should replace all 
+ in a string with <br /> elements 1`] = `"<p>test</p>"`;
+
+exports[`custom embeds and assets should render embed video, image, and audio assets 1`] = `"<p>test</p>"`;
