@@ -51,12 +51,12 @@
       "limit": "6 KB"
     },
     {
-      "path": "packages/types/dist/rich-text-types.cjs.production.min.js",
-      "limit": "75 B"
+      "path": "packages/react-renderer/dist/rich-text-html-renderer.cjs.production.min.js",
+      "limit": "6 KB"
     },
     {
-      "path": "packages/types/dist/rich-text-types.esm.js",
-      "limit": "100 B"
+      "path": "packages/react-renderer/dist/rich-text-html-renderer.esm.js",
+      "limit": "6 KB"
     }
   ]
 }
