@@ -233,6 +233,14 @@ function deserialize<
   }
 
   if (nodeName === 'DIV') {
+    if (isElementNode(el)) {
+      const nodeType = el.getAttribute('data-gcms-embed-type');
+      const nodeId = el.getAttribute('data-gcms-embed-id');
+      if (nodeType && nodeId) {
+        return jsx('element', { type: 'embed', nodeId, nodeType }, children);
+      }
+    }
+
     const childNodes = Array.from(el.childNodes);
     const isParagraph = childNodes.every(
       child =>
@@ -251,28 +259,27 @@ function deserialize<
       return jsx('element', { type: 'paragraph' }, children);
     }
     const element = el as HTMLElement;
+
+    // boolean attribute
+    const isInlineEmbed = element.getAttribute('data-gcms-embed-inline');
+
+    if (isInlineEmbed !== null && isElementNode(element)) {
+      const nodeType = element.getAttribute('data-gcms-embed-type');
+      const nodeId = element.getAttribute('data-gcms-embed-id');
+      if (nodeId && nodeType) {
+        return jsx(
+          'element',
+          { type: 'embed', nodeId, nodeType, isInline: true },
+          children
+        );
+      }
+    }
+
     // handles italic, bold and undeline that are not expressed as tags
     // important for pasting from Google Docs
-    const tagNames = (() => {
-      const names = [];
-      if (element.style.textDecoration === 'underline') {
-        names.push('U');
-      }
-      if (element.style.fontStyle === 'italic') {
-        names.push('EM');
-      }
-      if (
-        parseInt(element.style.fontWeight, 10) > 400 ||
-        element.style.fontWeight === 'bold'
-      ) {
-        names.push('STRONG');
-      }
-      return names.length > 0 ? names : undefined;
-    })();
-    if (tagNames) {
-      const attrs = tagNames.reduce((acc, current) => {
-        return { ...acc, ...TEXT_TAGS[current]() };
-      }, {});
+    const attrs = getSpanAttributes(element);
+
+    if (attrs) {
       return children.map(child => {
         if (typeof child === 'string') {
           return jsx('text', attrs, child);
@@ -327,7 +334,7 @@ function normalizeSafariSpaceSpans(htmlString: string) {
         ? ' '
         : Array(spaces.length + 1)
             .join('\u00A0 ')
-            .substr(0, spaces.length);
+            .substring(0, spaces.length + 1);
     }
   );
 }
@@ -452,6 +459,26 @@ function isInlineElement(element: HTMLElement) {
   return allInlineElements.includes(
     element.tagName.toLowerCase() as keyof HTMLElementTagNameMap
   );
+}
+
+function getSpanAttributes(element: HTMLElement) {
+  const names = [];
+  if (element.style.textDecoration === 'underline') {
+    names.push('U');
+  }
+  if (element.style.fontStyle === 'italic') {
+    names.push('EM');
+  }
+  if (
+    parseInt(element.style.fontWeight, 10) > 400 ||
+    element.style.fontWeight === 'bold'
+  ) {
+    names.push('STRONG');
+  }
+  const attrs: Record<string, any> = names.reduce((acc, current) => {
+    return { ...acc, ...TEXT_TAGS[current]() };
+  }, {});
+  return Object.values(attrs).length > 0 ? attrs : undefined;
 }
 
 const parseDomDocument = async (normalizedHTML: string) => {

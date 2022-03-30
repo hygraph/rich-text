@@ -1172,3 +1172,96 @@ test('Should ignore inline comments', async () => {
     },
   ]);
 });
+
+describe('Should parse embeds', () => {
+  describe('Block embeds', () => {
+    test('Assets', () => {
+      const input = `<div data-gcms-embed-type=\"Asset\" data-gcms-embed-id=\"cl0wps6je01cw0cubrunozmfs\"></div>`;
+      return htmlToSlateAST(input).then(result => {
+        expect(result).toStrictEqual([
+          {
+            type: 'embed',
+            nodeId: 'cl0wps6je01cw0cubrunozmfs',
+            children: [
+              {
+                text: '',
+              },
+            ],
+            nodeType: 'Asset',
+          },
+        ]);
+      });
+    });
+    test('Non-asset models', () => {
+      const input = `<div data-gcms-embed-type=\"SourceModel\" data-gcms-embed-id=\"cl13daqqz00bi08uctxdel1x3\"></div>`;
+      return htmlToSlateAST(input).then(result => {
+        expect(result).toStrictEqual([
+          {
+            type: 'embed',
+            nodeId: 'cl13daqqz00bi08uctxdel1x3',
+            children: [
+              {
+                text: '',
+              },
+            ],
+            nodeType: 'SourceModel',
+          },
+        ]);
+      });
+    });
+  });
+  describe('Inline embeds', () => {
+    test('Asset model', () => {
+      const input = `<p>Some text with an inline asset embed: <span data-gcms-embed-type=\"Asset\" data-gcms-embed-id=\"cl0wps6je01cw0cubrunozmfs\" data-gcms-embed-inline></span></p>`;
+      return htmlToSlateAST(input).then(result => {
+        expect(result).toStrictEqual([
+          {
+            type: 'paragraph',
+            children: [
+              {
+                text: 'Some text with an inline asset embed: ',
+              },
+              {
+                type: 'embed',
+                nodeId: 'cl0wps6je01cw0cubrunozmfs',
+                children: [
+                  {
+                    text: '',
+                  },
+                ],
+                isInline: true,
+                nodeType: 'Asset',
+              },
+            ],
+          },
+        ]);
+      });
+    });
+    test('Non-asset model', () => {
+      const input = `<p>Some text with a titled inline embed after it: <span data-gcms-embed-type=\"SourceModel\" data-gcms-embed-id=\"cl13daqqz00bi08uctxdel1x3\" data-gcms-embed-inline></span></p>`;
+      return htmlToSlateAST(input).then(result => {
+        expect(result).toStrictEqual([
+          {
+            type: 'paragraph',
+            children: [
+              {
+                text: 'Some text with a titled inline embed after it: ',
+              },
+              {
+                type: 'embed',
+                nodeId: 'cl13daqqz00bi08uctxdel1x3',
+                children: [
+                  {
+                    text: '',
+                  },
+                ],
+                isInline: true,
+                nodeType: 'SourceModel',
+              },
+            ],
+          },
+        ]);
+      });
+    });
+  });
+});
