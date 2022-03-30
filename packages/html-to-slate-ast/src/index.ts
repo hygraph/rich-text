@@ -8,9 +8,11 @@ import { jsx } from 'slate-hyperscript';
 import { sanitizeUrl } from '@braintree/sanitize-url';
 import { Element, Mark } from '@graphcms/rich-text-types';
 
+type AttributesType = Omit<Element, 'children'>;
+
 const ELEMENT_TAGS: Record<
   HTMLElement['nodeName'],
-  (el: HTMLElement) => Omit<Element, 'children'>
+  (el: HTMLElement) => AttributesType
 > = {
   LI: () => ({ type: 'list-item' }),
   OL: () => ({ type: 'numbered-list' }),
@@ -461,7 +463,7 @@ function isInlineElement(element: HTMLElement) {
   );
 }
 
-function getSpanAttributes(element: HTMLElement) {
+function getSpanAttributes(element: HTMLElement): AttributesType | null {
   const names = [];
   if (element.style.textDecoration === 'underline') {
     names.push('U');
@@ -475,10 +477,11 @@ function getSpanAttributes(element: HTMLElement) {
   ) {
     names.push('STRONG');
   }
-  const attrs: Record<string, any> = names.reduce((acc, current) => {
+  if (names.length === 0) return null;
+  const attrs: AttributesType = names.reduce((acc, current) => {
     return { ...acc, ...TEXT_TAGS[current]() };
   }, {});
-  return Object.values(attrs).length > 0 ? attrs : undefined;
+  return attrs;
 }
 
 const parseDomDocument = async (normalizedHTML: string) => {
