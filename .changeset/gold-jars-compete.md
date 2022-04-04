@@ -8,3 +8,6 @@ This update has no new features, only new types.
 
 - Add `NodeRendererType` type
 - Add `RichTextProps` type
+- Add `DefaultElementProps` type
+- Add `ClassRendererProps` type
+- Add `LinkRendererProps` type

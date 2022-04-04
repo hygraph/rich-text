@@ -12,8 +12,11 @@
 
 ⚠️ Breaking Changes
 
-> The `RichTextProps` and the `NodeRendererType` type are now available on the `@graphcms/rich-text-react-renderer` package.
+> The `RichTextProps`, `ClassRendererProps`, `LinkRendererProps`, `DefaultElementProps` and the `NodeRendererType` type are now available on the `@graphcms/rich-text-react-renderer` package.
 
 - Remove `RichTextProps` type
 - Remove `NodeRendererType` type
 - Remove `RemoveEmptyElementType` type
+- Remove `ClassRendererProps` type
+- Remove `LinkRendererProps` type
+- Remove `DefaultElementProps` type

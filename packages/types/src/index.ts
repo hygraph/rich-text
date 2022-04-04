@@ -1,5 +1,3 @@
-import { ReactNode } from 'react';
-
 export interface Element {
   children: Array<ElementNode | Text>;
   type:
@@ -152,18 +150,6 @@ export type Reference = {
 };
 
 export type EmbedReferences = Array<Reference | AssetReference>;
-
-export interface DefaultElementProps {
-  children: ReactNode;
-}
-
-export interface ClassRendererProps
-  extends DefaultElementProps,
-    Partial<ClassProps> {}
-
-export interface LinkRendererProps
-  extends DefaultElementProps,
-    Partial<LinkProps> {}
 
 export enum EmptyElementsToRemove {
   'heading-one',

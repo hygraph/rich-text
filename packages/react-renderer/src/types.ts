@@ -1,13 +1,25 @@
+import { ReactNode } from 'react';
 import {
-  ClassRendererProps,
-  DefaultElementProps,
   EmbedReferences,
   IFrameProps,
   ImageProps,
-  LinkRendererProps,
   RichTextContent,
   VideoProps,
+  ClassProps,
+  LinkProps,
 } from '@graphcms/rich-text-types';
+
+export interface DefaultElementProps {
+  children: ReactNode;
+}
+
+export interface ClassRendererProps
+  extends DefaultElementProps,
+    Partial<ClassProps> {}
+
+export interface LinkRendererProps
+  extends DefaultElementProps,
+    Partial<LinkProps> {}
 
 type DefaultNodeRenderer = (props: DefaultElementProps) => JSX.Element;
 type LinkNodeRenderer = (props: LinkRendererProps) => JSX.Element;
