@@ -76,7 +76,7 @@ const html = astToHtmlString({
 Below you can check the full list of elements you can customize, alongside the props available for each of them.
 
 - `a`
-  - `children`: ReactNode;
+  - `children`: string;
   - `href`: string;
   - `className`: string;
   - `rel`: string;
@@ -84,7 +84,7 @@ Below you can check the full list of elements you can customize, alongside the p
   - `title`: string;
   - `openInNewTab`: boolean;
 - `class`
-  - `children`: ReactNode;
+  - `children`: string;
   - `className`: string;
 - `img`
   - `src`: string;
@@ -103,49 +103,49 @@ Below you can check the full list of elements you can customize, alongside the p
   - `width`: number;
   - `height`: number;
 - `h1`
-  - `children`: ReactNode;
+  - `children`: string;
 - `h2`
-  - `children`: ReactNode;
+  - `children`: string;
 - `h3`
-  - `children`: ReactNode;
+  - `children`: string;
 - `h4`
-  - `children`: ReactNode;
+  - `children`: string;
 - `h5`
-  - `children`: ReactNode;
+  - `children`: string;
 - `h6`
-  - `children`: ReactNode;
+  - `children`: string;
 - `p`
-  - `children`: ReactNode;
+  - `children`: string;
 - `ul`
-  - `children`: ReactNode;
+  - `children`: string;
 - `ol`
-  - `children`: ReactNode;
+  - `children`: string;
 - `li`
-  - `children`: ReactNode;
+  - `children`: string;
 - `table`
-  - `children`: ReactNode;
+  - `children`: string;
 - `table_head`
-  - `children`: ReactNode;
+  - `children`: string;
 - `table_header_cell`
-  - `children`: ReactNode;
+  - `children`: string;
 - `table_body`
-  - `children`: ReactNode;
+  - `children`: string;
 - `table_row`
-  - `children`: ReactNode;
+  - `children`: string;
 - `table_cell`
-  - `children`: ReactNode;
+  - `children`: string;
 - `blockquote`
-  - `children`: ReactNode;
+  - `children`: string;
 - `bold`
-  - `children`: ReactNode;
+  - `children`: string;
 - `italic`
-  - `children`: ReactNode;
+  - `children`: string;
 - `underline`
-  - `children`: ReactNode;
+  - `children`: string;
 - `code`
-  - `children`: ReactNode;
+  - `children`: string;
 - `code_block`
-  - `children`: ReactNode;
+  - `children`: string;
 
 ## Custom assets
 
