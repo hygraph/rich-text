@@ -1,9 +1,9 @@
 <script lang="ts">
-  import { slateToHtml } from '@graphcms/rich-text-html-renderer';
+  import { astToHtmlString } from '@graphcms/rich-text-html-renderer';
 
   import { content, references } from '../../content-example';
 
-  const html = slateToHtml({
+  const html = astToHtmlString({
     content,
     references,
     renderers: {

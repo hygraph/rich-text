@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
-import { slateToHtml } from '@graphcms/rich-text-html-renderer';
+import { astToHtmlString } from '@graphcms/rich-text-html-renderer';
 
 import { content, references } from '../../content-example';
 
-const html = slateToHtml({
+const html = astToHtmlString({
   content,
   references,
   renderers: {

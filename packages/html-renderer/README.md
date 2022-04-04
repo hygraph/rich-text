@@ -16,12 +16,12 @@ yarn add @graphcms/rich-text-html-renderer
 
 ## 🔥 Usage/Examples
 
-To render the content on your application, you'll need to provide the array of elements returned from the GraphCMS API to the `slateToHtml` function.
+To render the content on your application, you'll need to provide the array of elements returned from the GraphCMS API to the `astToHtmlString` function.
 
 For more information on how you can query the Rich Text content, [check our documentation](https://graphcms.com/docs/api-reference/schema/field-types#rich-text).
 
 ```js
-import { slateToHtml } from '@graphcms/rich-text-html-renderer';
+import { astToHtmlString } from '@graphcms/rich-text-html-renderer';
 
 const content = {
   children: [
@@ -37,7 +37,7 @@ const content = {
   ],
 };
 
-const html = slateToHtml({
+const html = astToHtmlString({
   content,
 });
 ```
@@ -59,13 +59,13 @@ For more information on how you can query Rich Text content, please [check our d
 By default, the elements won't have any styling, despite the `IFrame`, which we designed to be responsive. If you need to customize the elements, you can do it using the renderers argument.
 
 ```js
-import { slateToHtml } from '@graphcms/rich-text-html-renderer';
+import { astToHtmlString } from '@graphcms/rich-text-html-renderer';
 
 const content = {
   /* ... */
 };
 
-const html = slateToHtml({
+const html = astToHtmlString({
   content: inlineContent,
   renderers: {
     bold: ({ children }) => `<strong>${children}</strong>`,
@@ -162,7 +162,7 @@ The Rich Text field allows you to embed assets. By default, we render images, vi
 We don't have components to render fonts, models, text and application files, but you can write your own depending on your needs and project. If you need, you can also have a custom renderer for a specific `mimeType`. Here's an example:
 
 ```js
-import { slateToHtml } from '@graphcms/rich-text-html-renderer';
+import { astToHtmlString } from '@graphcms/rich-text-html-renderer';
 
 const content = [
   {
@@ -200,7 +200,7 @@ const references = [
   },
 ];
 
-const html = slateToHtml({
+const html = astToHtmlString({
   content,
   references,
   renderers: {
@@ -219,7 +219,7 @@ As mentioned, you can write renderers for all `mimeType` groups or to specific `
 
 ### References
 
-References are required on the `slateToHtml` function to render embed assets.
+References are required on the `astToHtmlString` function to render embed assets.
 
 `id`, `mimeType` and `url` are required in your `Asset` query.
 
@@ -247,7 +247,7 @@ References are required on the `slateToHtml` function to render embed assets.
 Imagine you have an embed `Post` on your Rich Text field. To render it, you can have a custom renderer. Let's see an example:
 
 ```js
-import { slateToHtml } from '@graphcms/rich-text-html-renderer';
+import { astToHtmlString } from '@graphcms/rich-text-html-renderer';
 
 const content = [
   {
@@ -269,7 +269,7 @@ const references = [
   },
 ];
 
-const html = slateToHtml({
+const html = astToHtmlString({
   content,
   references,
   renderers: {
@@ -289,7 +289,7 @@ const html = slateToHtml({
 
 ### References
 
-References are required on the `slateToHtml` function. You also need to include your model in your query.
+References are required on the `astToHtmlString` function. You also need to include your model in your query.
 
 - `id` is always required in your model query. It won't render if it's not present.
 
@@ -348,7 +348,7 @@ Depending on your reference query and model, fields may change, which applies to
 In this example, we have seen how to write a renderer for a `Post` model, but it applies the same way to any other model and `Asset` on your project.
 
 ```ts
-import { slateToHtml } from '@graphcms/rich-text-html-renderer';
+import { astToHtmlString } from '@graphcms/rich-text-html-renderer';
 import { EmbedProps } from '@graphcms/rich-text-types';
 
 type Post = {
@@ -365,7 +365,7 @@ const references = [
   /* ... */
 ];
 
-const html = slateToHtml({
+const html = astToHtmlString({
   content,
   references,
   renderers: {

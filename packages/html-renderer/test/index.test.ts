@@ -1,4 +1,4 @@
-import { slateToHtml } from '@graphcms/rich-text-html-renderer';
+import { astToHtmlString } from '@graphcms/rich-text-html-renderer';
 import { RichTextContent, EmbedProps } from '@graphcms/rich-text-types';
 
 import {
@@ -17,7 +17,7 @@ import {
 
 describe('@graphcms/rich-text-html-renderer', () => {
   it('renders content', () => {
-    const html = slateToHtml({ content });
+    const html = astToHtmlString({ content });
 
     expect(html).toMatchInlineSnapshot(`
       <div>
@@ -45,7 +45,7 @@ describe('@graphcms/rich-text-html-renderer', () => {
       ],
     };
 
-    const html = slateToHtml({ content: contentObject });
+    const html = astToHtmlString({ content: contentObject });
 
     expect(html).toMatchInlineSnapshot(`
       <div>
@@ -59,7 +59,7 @@ describe('@graphcms/rich-text-html-renderer', () => {
   });
 
   it('should not render elements if received a object with empty children', () => {
-    const html = slateToHtml({ content: emptyContent });
+    const html = astToHtmlString({ content: emptyContent });
 
     expect(html).toMatchInlineSnapshot(`
       <div>
@@ -101,7 +101,7 @@ describe('@graphcms/rich-text-html-renderer', () => {
   });
 
   it('should render a table', () => {
-    const html = slateToHtml({ content: tableContent });
+    const html = astToHtmlString({ content: tableContent });
 
     expect(html).toMatchInlineSnapshot(`
       <div>
@@ -140,7 +140,7 @@ describe('@graphcms/rich-text-html-renderer', () => {
   });
 
   it('should should render H1 with some text', () => {
-    const html = slateToHtml({ content: simpleH1Content });
+    const html = astToHtmlString({ content: simpleH1Content });
 
     expect(html).toMatchInlineSnapshot(`
       <div>
@@ -152,7 +152,7 @@ describe('@graphcms/rich-text-html-renderer', () => {
   });
 
   it('renders content with custom elements', () => {
-    const html = slateToHtml({
+    const html = astToHtmlString({
       content: content,
       renderers: {
         p: ({ children }) => `<p class="text-white">${children}</p>`,
@@ -177,13 +177,13 @@ describe('@graphcms/rich-text-html-renderer', () => {
   });
 
   it('renders inline content', () => {
-    const html = slateToHtml({ content: inlineContent });
+    const html = astToHtmlString({ content: inlineContent });
 
     expect(html).toMatchSnapshot();
   });
 
   it('renders inline content with custom renderers', () => {
-    const html = slateToHtml({
+    const html = astToHtmlString({
       content: inlineContent,
       renderers: {
         bold: ({ children }) => `<strong>${children}</strong>`,
@@ -216,7 +216,7 @@ describe('@graphcms/rich-text-html-renderer', () => {
       },
     ];
 
-    const html = slateToHtml({ content: linkContent });
+    const html = astToHtmlString({ content: linkContent });
 
     expect(html).toMatchInlineSnapshot(`
       <div>
@@ -247,13 +247,13 @@ describe('@graphcms/rich-text-html-renderer', () => {
       },
     ];
 
-    const html = slateToHtml({ content: iframeContent });
+    const html = astToHtmlString({ content: iframeContent });
 
     expect(html).toMatchSnapshot();
   });
 
   it('renders class', () => {
-    const html = slateToHtml({ content: iframeContent });
+    const html = astToHtmlString({ content: iframeContent });
 
     expect(html).toMatchInlineSnapshot(`
       <div>
@@ -269,7 +269,7 @@ describe('@graphcms/rich-text-html-renderer', () => {
   });
 
   it('renders class with custom renderer', () => {
-    const html = slateToHtml({
+    const html = astToHtmlString({
       content: iframeContent,
       renderers: {
         class: ({ children, className }) =>
@@ -291,7 +291,7 @@ describe('@graphcms/rich-text-html-renderer', () => {
   });
 
   it('renders image', () => {
-    const html = slateToHtml({ content: imageContent });
+    const html = astToHtmlString({ content: imageContent });
 
     expect(html).toMatchInlineSnapshot(`
       <div>
@@ -308,7 +308,7 @@ describe('@graphcms/rich-text-html-renderer', () => {
   });
 
   it('renders image with custom renderer', () => {
-    const html = slateToHtml({
+    const html = astToHtmlString({
       content: iframeContent,
       renderers: {
         img: ({ src, altText }) => `<img src="${src}" alt="${altText}" />`,
@@ -326,13 +326,13 @@ describe('@graphcms/rich-text-html-renderer', () => {
   });
 
   it('renders video', () => {
-    const html = slateToHtml({ content: videoContent });
+    const html = astToHtmlString({ content: videoContent });
 
     expect(html).toMatchSnapshot();
   });
 
   it('renders lists', () => {
-    const html = slateToHtml({ content: listContent });
+    const html = astToHtmlString({ content: listContent });
 
     expect(html).toMatchInlineSnapshot(`
       <div>
@@ -359,7 +359,7 @@ describe('@graphcms/rich-text-html-renderer', () => {
       { type: 'paragraph', children: [{ text: '<Test />', code: true }] },
     ];
 
-    const html = slateToHtml({ content: contentObject });
+    const html = astToHtmlString({ content: contentObject });
 
     expect(html).toHaveTextContent('<Test />');
   });
@@ -382,7 +382,7 @@ describe('@graphcms/rich-text-html-renderer', () => {
       },
     ];
 
-    const html = slateToHtml({ content: contentObject });
+    const html = astToHtmlString({ content: contentObject });
 
     expect(html).toMatchSnapshot();
   });
@@ -399,7 +399,7 @@ describe('@graphcms/rich-text-html-renderer', () => {
       },
     ];
 
-    const html = slateToHtml({ content: contentObject });
+    const html = astToHtmlString({ content: contentObject });
 
     expect(html).toMatchSnapshot();
   });
@@ -425,7 +425,7 @@ describe('custom embeds and assets', () => {
       },
     ];
 
-    const html = slateToHtml({ content: embedAssetContent, references });
+    const html = astToHtmlString({ content: embedAssetContent, references });
 
     expect(html).toMatchSnapshot();
   });
@@ -444,7 +444,7 @@ describe('custom embeds and assets', () => {
       },
     ];
 
-    const html = slateToHtml({
+    const html = astToHtmlString({
       content: embedAssetContent,
       references,
       renderers: {
@@ -493,7 +493,7 @@ describe('custom embeds and assets', () => {
       },
     ];
 
-    const html = slateToHtml({ content: embedAssetContent, references });
+    const html = astToHtmlString({ content: embedAssetContent, references });
 
     expect(console.warn).toHaveBeenCalledTimes(4);
     expect(html).toMatchInlineSnapshot(`<div />`);
@@ -555,7 +555,7 @@ describe('custom embeds and assets', () => {
     /**
      * `id` is required in `references`, but if you remove it, or if it's empty, it can't render
      */
-    const html = slateToHtml({
+    const html = astToHtmlString({
       content: contentObject,
       references,
     });
@@ -578,7 +578,7 @@ describe('custom embeds and assets', () => {
       },
     ];
 
-    const html = slateToHtml({
+    const html = astToHtmlString({
       content: embedAssetContent,
       references: references,
       renderers: {
@@ -636,7 +636,7 @@ describe('custom embeds and assets', () => {
       },
     ];
 
-    const html = slateToHtml({
+    const html = astToHtmlString({
       content: contentObject,
       references,
     });
@@ -666,7 +666,7 @@ describe('custom embeds and assets', () => {
       },
     ];
 
-    const html = slateToHtml({
+    const html = astToHtmlString({
       content: contentObject,
       references,
       renderers: {
@@ -722,7 +722,7 @@ describe('custom embeds and assets', () => {
       },
     ];
 
-    const html = slateToHtml({
+    const html = astToHtmlString({
       content: contentObject,
       references,
     });
@@ -767,7 +767,7 @@ describe('custom embeds and assets', () => {
       },
     ];
 
-    const html = slateToHtml({
+    const html = astToHtmlString({
       content: contentObject,
       references,
       renderers: {
@@ -819,7 +819,7 @@ describe('custom embeds and assets', () => {
       },
     ];
 
-    const html = slateToHtml({
+    const html = astToHtmlString({
       content: nestedEmbedAssetContent,
       references,
     });

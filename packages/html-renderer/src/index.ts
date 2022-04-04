@@ -231,7 +231,7 @@ function renderElements({
   });
 }
 
-export function slateToHtml({
+export function astToHtmlString({
   renderers: resolvers,
   content,
   references,
