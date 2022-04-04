@@ -34,7 +34,6 @@
     "format": "prettier --ignore-path .gitignore \"**/*.+(ts|tsx)\" --write",
     "build": "lerna run build",
     "prepublish": "lerna run prepublish",
-    "start:react:app": "yarn build && yarn --cwd examples/react && yarn --cwd examples/react start",
     "changeset": "changeset",
     "release": "changeset publish",
     "size": "size-limit",
