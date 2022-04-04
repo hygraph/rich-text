@@ -1,13 +1,24 @@
 import {
-  ClassRendererProps,
-  DefaultElementProps,
   EmbedReferences,
   IFrameProps,
   ImageProps,
-  LinkRendererProps,
   RichTextContent,
   VideoProps,
+  ClassProps,
+  LinkProps,
 } from '@graphcms/rich-text-types';
+
+export interface DefaultElementProps {
+  children: string;
+}
+
+export interface ClassRendererProps
+  extends DefaultElementProps,
+    Partial<ClassProps> {}
+
+export interface LinkRendererProps
+  extends DefaultElementProps,
+    Partial<LinkProps> {}
 
 type DefaultNodeRenderer = (props: DefaultElementProps) => string;
 type LinkNodeRenderer = (props: LinkRendererProps) => string;

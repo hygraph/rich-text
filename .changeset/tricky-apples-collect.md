@@ -7,5 +7,5 @@ Initial version of the `html-renderer` for Rich Text content.
 ## Features
 
 - `astToHtmlString` function for returning HTML
-- `RichTextProps` and `NodeRendererType` types
+- Types for the package
 - Vue and Svelte examples

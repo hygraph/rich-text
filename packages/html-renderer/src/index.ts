@@ -49,19 +49,19 @@ function renderText({ shouldSerialize, textNode, renderers }: RenderText) {
   const Code: NodeRendererType['code'] = renderers?.['code'];
 
   if (bold && Bold) {
-    parsedText = Bold({ children: parsedText });
+    parsedText = Bold({ children: parsedText as string });
   }
 
   if (italic && Italic) {
-    parsedText = Italic({ children: parsedText });
+    parsedText = Italic({ children: parsedText as string });
   }
 
   if (underline && Underline) {
-    parsedText = Underline({ children: parsedText });
+    parsedText = Underline({ children: parsedText as string });
   }
 
   if (code && Code) {
-    parsedText = Code({ children: parsedText });
+    parsedText = Code({ children: parsedText as string });
   }
 
   return parsedText as string;
