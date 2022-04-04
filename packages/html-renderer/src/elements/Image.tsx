@@ -18,10 +18,10 @@ export function Image({
     <img
       loading="lazy"
       src="${escapeHtml(src)}"
-      width="${width}"
-      height="${height}"
-      alt="${altText}"
-      title="${title}"
+      width="${width || ''}"
+      height="${height || ''}"
+      alt="${altText || ''}"
+      title="${title || ''}"
     />
   `;
 }

@@ -8,7 +8,7 @@ export function Video({ src, width, height, title }: Partial<VideoProps>) {
       controls
       width="${width || '100%'}"
       height="${height || '100%'}"
-      title="${title}"
+      title="${title || ''}"
     >
       <p>
         Your browser doesn't support HTML5 video. Here is a

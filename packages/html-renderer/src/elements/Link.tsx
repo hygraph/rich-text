@@ -7,11 +7,11 @@ export function Link({ children, ...rest }: LinkRendererProps) {
   return `
     <a
       href="${escapeHtml(href)}"
-      class="${className}"
+      class="${className || ''}"
       target="${openInNewTab ? '_blank' : '_self'}"
-      title="${title}"
-      id="${id}"
-      rel="${rel}"
+      title="${title || ''}"
+      id="${id || ''}"
+      rel="${rel || ''}"
     >
       ${children}
     </a>

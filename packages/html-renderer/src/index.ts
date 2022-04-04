@@ -22,10 +22,12 @@ function serialize(text: string) {
   if (text.includes('\n')) {
     const splitText = text.split('\n');
 
-    return splitText.map(
-      (line, index) =>
-        `${line}${index === splitText.length - 1 ? null : '<br />'}`
-    );
+    return splitText
+      .map(
+        (line, index) =>
+          `${line}${index === splitText.length - 1 ? '' : '<br />'}`
+      )
+      .join('');
   }
 
   return text;

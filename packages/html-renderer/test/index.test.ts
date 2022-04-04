@@ -19,15 +19,7 @@ describe('@graphcms/rich-text-html-renderer', () => {
   it('renders content', () => {
     const html = astToHtmlString({ content });
 
-    expect(html).toMatchInlineSnapshot(`
-      <div>
-        <p>
-          <b>
-            Hello World!
-          </b>
-        </p>
-      </div>
-    `);
+    expect(html).toEqual(`<p><b>Hello World!</b></p>`);
   });
 
   it('renders content correctly if received a object with children', () => {
@@ -47,108 +39,49 @@ describe('@graphcms/rich-text-html-renderer', () => {
 
     const html = astToHtmlString({ content: contentObject });
 
-    expect(html).toMatchInlineSnapshot(`
-      <div>
-        <p>
-          <b>
-            Hello World!
-          </b>
-        </p>
-      </div>
-    `);
+    expect(html).toEqual(`<p><b>Hello World!</b></p>`);
   });
 
   it('should not render elements if received a object with empty children', () => {
     const html = astToHtmlString({ content: emptyContent });
 
-    expect(html).toMatchInlineSnapshot(`
-      <div>
-        <h2>
-
-          <a
-            href="https://graphcms.com"
-          >
-            Testing Link
-          </a>
-        </h2>
-        <h2>
-
-          <a
-            href="https://graphcms.com"
-          >
-            Link
-          </a>
-           2
-        </h2>
-        <table>
-          <tbody>
-            <tr>
-              <td>
-                <p>
-                  Row 1 - Col 1
-                </p>
-              </td>
-              <td>
-                <p>
-                  Row 1 - Col 2
-                </p>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    `);
+    expect(html).toEqual(`<h2>
+    <a
+      href="https://graphcms.com"
+      class=""
+      target="_self"
+      title=""
+      id=""
+      rel=""
+    >
+      Testing Link
+    </a>
+  </h2><h2>
+    <a
+      href="https://graphcms.com"
+      class=""
+      target="_self"
+      title=""
+      id=""
+      rel=""
+    >
+      Link
+    </a>
+   2</h2><table><tbody><tr><td><p>Row 1 - Col 1</p></td><td><p>Row 1 - Col 2</p></td></tr></tbody></table>`);
   });
 
   it('should render a table', () => {
     const html = astToHtmlString({ content: tableContent });
 
-    expect(html).toMatchInlineSnapshot(`
-      <div>
-        <table>
-          <thead>
-            <tr>
-              <th>
-                <p>
-                  Row 1 - Header 1
-                </p>
-              </th>
-              <th>
-                <p>
-                  Row 1 - Header 2
-                </p>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <p>
-                  Row 2 - Col 1
-                </p>
-              </td>
-              <td>
-                <p>
-                  Row 2 - Col 2
-                </p>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    `);
+    expect(html).toEqual(
+      `<table><thead><tr><th><p>Row 1 - Header 1</p></th><th><p>Row 1 - Header 2</p></th></tr></thead><tbody><tr><td><p>Row 2 - Col 1</p></td><td><p>Row 2 - Col 2</p></td></tr></tbody></table>`
+    );
   });
 
   it('should should render H1 with some text', () => {
     const html = astToHtmlString({ content: simpleH1Content });
 
-    expect(html).toMatchInlineSnapshot(`
-      <div>
-        <h1>
-          heading
-        </h1>
-      </div>
-    `);
+    expect(html).toEqual(`<h1>heading</h1>`);
   });
 
   it('renders content with custom elements', () => {
@@ -161,25 +94,17 @@ describe('@graphcms/rich-text-html-renderer', () => {
       },
     });
 
-    expect(html).toMatchInlineSnapshot(`
-      <div>
-        <p
-          class="text-white"
-        >
-          <strong
-            class="text-black"
-          >
-            Hello World!
-          </strong>
-        </p>
-      </div>
-    `);
+    expect(html).toEqual(
+      `<p class="text-white"><strong class="text-black">Hello World!</strong></p>`
+    );
   });
 
   it('renders inline content', () => {
     const html = astToHtmlString({ content: inlineContent });
 
-    expect(html).toMatchSnapshot();
+    expect(html).toEqual(
+      `<p><b>Hey, </b><i>how</i><u>are</u><code>you?</code></p>`
+    );
   });
 
   it('renders inline content with custom renderers', () => {
@@ -188,14 +113,16 @@ describe('@graphcms/rich-text-html-renderer', () => {
       renderers: {
         bold: ({ children }) => `<strong>${children}</strong>`,
         italic: ({ children }) =>
-          `<i class="italic-class" style={{ color: 'red' }}>${children}</i>`,
+          `<i class="italic-class" style="color: red">${children}</i>`,
         underline: ({ children }) => `<u role="button">${children} test</u>`,
         code: ({ children }) =>
-          `<code style={{ fontStyle: 'italic' }}>${children}</code>`,
+          `<code style="font-style: italic">${children}</code>`,
       },
     });
 
-    expect(html).toMatchSnapshot();
+    expect(html).toEqual(
+      `<p><strong>Hey, </strong><i class="italic-class" style="color: red">how</i><u role="button">are test</u><code style="font-style: italic">you?</code></p>`
+    );
   });
 
   it('renders link', () => {
@@ -218,20 +145,18 @@ describe('@graphcms/rich-text-html-renderer', () => {
 
     const html = astToHtmlString({ content: linkContent });
 
-    expect(html).toMatchInlineSnapshot(`
-      <div>
-        <a
-          class="text-white"
-          href="https://graphcms.com"
-          id="test"
-          rel="noreferrer"
-          target="_blank"
-          title="GraphCMS website"
-        >
-          GraphCMS
-        </a>
-      </div>
-    `);
+    expect(html).toEqual(`
+    <a
+      href="https://graphcms.com"
+      class="text-white"
+      target="_blank"
+      title="GraphCMS website"
+      id="test"
+      rel="noreferrer"
+    >
+      GraphCMS
+    </a>
+  `);
   });
 
   it('renders iframe', () => {
@@ -249,23 +174,39 @@ describe('@graphcms/rich-text-html-renderer', () => {
 
     const html = astToHtmlString({ content: iframeContent });
 
-    expect(html).toMatchSnapshot();
+    expect(html).toEqual(`
+    <div
+      style="
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        padding-top: 56.25%;
+      "
+    >
+      <iframe
+        style="
+          position: absolute;
+          top: 0px;
+          bottom: 0px;
+          right: 0px;
+          left: 0px;
+          width: 100%;
+          height: 100%;
+        "
+        src="https://www.youtube.com/watch?v=Ylmd737tw5w"
+        loading="lazy"
+        allow="fullscreen"
+        frameBorder="0"
+        referrerPolicy="no-referrer"
+      />
+    </div>
+  `);
   });
 
   it('renders class', () => {
     const html = astToHtmlString({ content: iframeContent });
 
-    expect(html).toMatchInlineSnapshot(`
-      <div>
-        <div
-          class="test"
-        >
-          <p>
-            wow
-          </p>
-        </div>
-      </div>
-    `);
+    expect(html).toEqual(`<div class="test"><p>wow</p></div>`);
   });
 
   it('renders class with custom renderer', () => {
@@ -277,34 +218,22 @@ describe('@graphcms/rich-text-html-renderer', () => {
       },
     });
 
-    expect(html).toMatchInlineSnapshot(`
-      <div>
-        <section
-          class="bg-white test"
-        >
-          <p>
-            wow
-          </p>
-        </section>
-      </div>
-    `);
+    expect(html).toEqual(`<section class="bg-white test"><p>wow</p></section>`);
   });
 
   it('renders image', () => {
     const html = astToHtmlString({ content: imageContent });
 
-    expect(html).toMatchInlineSnapshot(`
-      <div>
-        <img
-          alt="photo-1564631027894-5bdb17618445.jpg"
-          height="1000"
-          loading="lazy"
-          src="https://media.graphcms.com/output=format:webp/resize=,width:667,height:1000/8xrjYm4CR721mAZ1YAoy"
-          title="photo-1564631027894-5bdb17618445.jpg"
-          width="667"
-        />
-      </div>
-    `);
+    expect(html).toEqual(`
+    <img
+      loading="lazy"
+      src="https://media.graphcms.com/output=format:webp/resize=,width:667,height:1000/8xrjYm4CR721mAZ1YAoy"
+      width="667"
+      height="1000"
+      alt="photo-1564631027894-5bdb17618445.jpg"
+      title="photo-1564631027894-5bdb17618445.jpg"
+    />
+  `);
   });
 
   it('renders image with custom renderer', () => {
@@ -315,43 +244,34 @@ describe('@graphcms/rich-text-html-renderer', () => {
       },
     });
 
-    expect(html).toMatchInlineSnapshot(`
-      <div>
-        <img
-          alt="photo-1564631027894-5bdb17618445.jpg"
-          src="https://media.graphcms.com/output=format:webp/resize=,width:667,height:1000/8xrjYm4CR721mAZ1YAoy"
-        />
-      </div>
-    `);
+    expect(html).toEqual(`<div class="test"><p>wow</p></div>`);
   });
 
   it('renders video', () => {
     const html = astToHtmlString({ content: videoContent });
 
-    expect(html).toMatchSnapshot();
+    expect(html).toEqual(`
+    <video
+      src="https://media.graphcms.com/oWd7OYr5Q5KGRJW9ujRO"
+      controls
+      width="400"
+      height="400"
+      title="file_example_MP4_480_1_5MG.m4v"
+    >
+      <p>
+        Your browser doesn't support HTML5 video. Here is a
+        <a href="https://media.graphcms.com/oWd7OYr5Q5KGRJW9ujRO">link to the video</a> instead.
+      </p>
+    </video>
+  `);
   });
 
   it('renders lists', () => {
     const html = astToHtmlString({ content: listContent });
 
-    expect(html).toMatchInlineSnapshot(`
-      <div>
-        <ul>
-          <li>
-            Embroided logo
-          </li>
-          <li>
-            Fits well
-          </li>
-          <li>
-            Comes in black
-          </li>
-          <li>
-            Reasonably priced
-          </li>
-        </ul>
-      </div>
-    `);
+    expect(html).toEqual(
+      `<ul><li>Embroided logo</li><li>Fits well</li><li>Comes in black</li><li>Reasonably priced</li></ul>`
+    );
   });
 
   it('should render HTML and JSX tags correctly', () => {
@@ -361,7 +281,7 @@ describe('@graphcms/rich-text-html-renderer', () => {
 
     const html = astToHtmlString({ content: contentObject });
 
-    expect(html).toHaveTextContent('<Test />');
+    expect(html).toEqual(`<p><code>&lt;Test /&gt;</code></p>`);
   });
 
   it('should render empty text spaces', () => {
@@ -384,7 +304,9 @@ describe('@graphcms/rich-text-html-renderer', () => {
 
     const html = astToHtmlString({ content: contentObject });
 
-    expect(html).toMatchSnapshot();
+    expect(html).toEqual(
+      `<p>Sweet black <b>cap</b> <u>with</u> <i>embroidered</i> <b>GraphCMS</b> logo.</p>`
+    );
   });
 
   it('should replace all \n in a string with <br /> elements', () => {
@@ -393,7 +315,7 @@ describe('@graphcms/rich-text-html-renderer', () => {
         type: 'paragraph',
         children: [
           {
-            text: "Hello,\n⁠My name is joão pedro,\n⁠I'm testing a bug",
+            text: 'Hello, \n my name is joão, \n I love pizza',
           },
         ],
       },
@@ -401,7 +323,9 @@ describe('@graphcms/rich-text-html-renderer', () => {
 
     const html = astToHtmlString({ content: contentObject });
 
-    expect(html).toMatchSnapshot();
+    expect(html).toEqual(
+      '<p>Hello, <br /> my name is joão, <br /> I love pizza</p>'
+    );
   });
 });
 
@@ -427,7 +351,9 @@ describe('custom embeds and assets', () => {
 
     const html = astToHtmlString({ content: embedAssetContent, references });
 
-    expect(html).toMatchSnapshot();
+    console.log(html);
+
+    expect(html).toMatchSnapshot(``);
   });
 
   it('should render specific mimeType if favour of the mimeType group', () => {
@@ -455,16 +381,7 @@ describe('custom embeds and assets', () => {
       },
     });
 
-    expect(html).toMatchInlineSnapshot(`
-      <div>
-        <div>
-          custom video/mp4
-        </div>
-        <div>
-          custom video
-        </div>
-      </div>
-    `);
+    expect(html).toEqual('<div>custom video/mp4</div><div>custom video</div>');
   });
 
   it(`should show warnings if the embed asset file isn't rendered by the package`, () => {
@@ -496,7 +413,7 @@ describe('custom embeds and assets', () => {
     const html = astToHtmlString({ content: embedAssetContent, references });
 
     expect(console.warn).toHaveBeenCalledTimes(4);
-    expect(html).toMatchInlineSnapshot(`<div />`);
+    expect(html).toEqual(``);
   });
 
   it(`shouldn't render embeds or assets if id is missing in references`, () => {
@@ -561,7 +478,7 @@ describe('custom embeds and assets', () => {
     });
 
     expect(console.error).toHaveBeenCalledTimes(3);
-    expect(html).toMatchInlineSnapshot(`<div />`);
+    expect(html).toEqual(``);
   });
 
   it('should render custom embed assets', () => {
@@ -589,16 +506,7 @@ describe('custom embeds and assets', () => {
       },
     });
 
-    expect(html).toMatchInlineSnapshot(`
-      <div>
-        <div>
-          custom IMAGE
-        </div>
-        <div>
-          custom VIDEO
-        </div>
-      </div>
-    `);
+    expect(html).toEqual(`<div>custom IMAGE</div><div>custom VIDEO</div>`);
   });
 
   it(`shouldn't render embed assets due to missing mimeType or url`, () => {
@@ -642,7 +550,7 @@ describe('custom embeds and assets', () => {
     });
 
     expect(console.error).toHaveBeenCalledTimes(2);
-    expect(html).toMatchInlineSnapshot(`<div />`);
+    expect(html).toEqual(``);
   });
 
   it('should render custom embed models', () => {
@@ -672,31 +580,15 @@ describe('custom embeds and assets', () => {
       renderers: {
         embed: {
           Post: ({ title, nodeId }: EmbedProps<{ title: string }>) => {
-            return `
-              <div class="post">
-                <h3>${title}</h3>
-                <p>${nodeId}</p>
-              </div>
-            `;
+            return `<div class="post"><h3>${title}</h3><p>${nodeId}</p></div>`;
           },
         },
       },
     });
 
-    expect(html).toMatchInlineSnapshot(`
-      <div>
-        <div
-          class="post"
-        >
-          <h3>
-            GraphCMS is awesome :rocket:
-          </h3>
-          <p>
-            custom_post_id
-          </p>
-        </div>
-      </div>
-    `);
+    expect(html).toEqual(
+      `<div class="post"><h3>GraphCMS is awesome :rocket:</h3><p>custom_post_id</p></div>`
+    );
   });
 
   it(`should show a warning if embeds are found but there aren't any renderer for it`, () => {
@@ -728,7 +620,7 @@ describe('custom embeds and assets', () => {
     });
 
     expect(console.warn).toHaveBeenCalledTimes(1);
-    expect(html).toMatchInlineSnapshot(`<div />`);
+    expect(html).toEqual(``);
   });
 
   it('should render inline embeds', () => {
@@ -744,26 +636,12 @@ describe('custom embeds and assets', () => {
         nodeType: 'Post',
         isInline: true,
       },
-      {
-        type: 'embed',
-        nodeId: 'custom_post_id_2',
-        children: [
-          {
-            text: '',
-          },
-        ],
-        nodeType: 'Post',
-      },
     ];
 
     const references = [
       {
         id: 'custom_post_id_1',
         title: 'GraphCMS is awesome :rocket:',
-      },
-      {
-        id: 'custom_post_id_2',
-        title: 'Post template',
       },
     ];
 
@@ -777,37 +655,17 @@ describe('custom embeds and assets', () => {
             nodeId,
             isInline,
           }: EmbedProps<{ title: string }>) => {
-            return `
-              <div>
-                <h3>${title}</h3>
-                ${isInline ? `<span>${nodeId}</span>` : `<div>${nodeId}</div>`}
-              </div>
-            `;
+            return `<div><h3>${title}</h3>${
+              isInline ? `<span>${nodeId}</span>` : `<div>${nodeId}</div>`
+            }</div>`;
           },
         },
       },
     });
 
-    expect(html).toMatchInlineSnapshot(`
-      <div>
-        <div>
-          <h3>
-            GraphCMS is awesome :rocket:
-          </h3>
-          <span>
-            custom_post_id_1
-          </span>
-        </div>
-        <div>
-          <h3>
-            Post template
-          </h3>
-          <div>
-            custom_post_id_2
-          </div>
-        </div>
-      </div>
-    `);
+    expect(html).toEqual(
+      `<div><h3>GraphCMS is awesome :rocket:</h3><span>custom_post_id_1</span></div>`
+    );
   });
 
   it('should render nested embeds', () => {
@@ -824,30 +682,19 @@ describe('custom embeds and assets', () => {
       references,
     });
 
-    expect(html).toMatchInlineSnapshot(`
-      <div>
-        <p>
-          Inline asset
-          <video
-            controls=""
-            height="100%"
-            src="https://media.graphcms.com/7M0lXLdCQfeIDXnT2SVS"
-            width="100%"
-          >
-            <p>
-              Your browser doesn't support HTML5 video. Here is a
-
-              <a
-                href="https://media.graphcms.com/7M0lXLdCQfeIDXnT2SVS"
-              >
-                link to the video
-              </a>
-               instead.
-            </p>
-          </video>
-          continued
-        </p>
-      </div>
-    `);
+    expect(html).toEqual(`<p>Inline asset
+    <video
+      src="https://media.graphcms.com/7M0lXLdCQfeIDXnT2SVS"
+      controls
+      width="100%"
+      height="100%"
+      title=""
+    >
+      <p>
+        Your browser doesn't support HTML5 video. Here is a
+        <a href="https://media.graphcms.com/7M0lXLdCQfeIDXnT2SVS">link to the video</a> instead.
+      </p>
+    </video>
+  continued</p>`);
   });
 });
