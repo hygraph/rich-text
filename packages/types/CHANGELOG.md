@@ -1,5 +1,28 @@
 # @graphcms/rich-text-types
 
+## 0.4.0
+
+### Minor Changes
+
+- [`b7f16fa`](https://github.com/GraphCMS/rich-text/commit/b7f16fa76a28ad0f5cdbe6cb1f58d7fafa63df15) [#77](https://github.com/GraphCMS/rich-text/pull/77) Thanks [@jpedroschmitz](https://github.com/jpedroschmitz)! - ⚠️ This release has breaking changes!
+
+  ⚡️ New
+
+  - Add `isEmpty` utility function
+  - Add `EmptyElementsToRemove` enum as a replacement for `RemoveEmptyElementType`
+  - Add `elementTypeKeys`
+
+  ⚠️ Breaking Changes
+
+  > The `RichTextProps`, `ClassRendererProps`, `LinkRendererProps`, `DefaultElementProps` and the `NodeRendererType` type are now available on the `@graphcms/rich-text-react-renderer` package.
+
+  - Remove `RichTextProps` type
+  - Remove `NodeRendererType` type
+  - Remove `RemoveEmptyElementType` type
+  - Remove `ClassRendererProps` type
+  - Remove `LinkRendererProps` type
+  - Remove `DefaultElementProps` type
+
 ## 0.3.1
 
 ### Patch Changes
