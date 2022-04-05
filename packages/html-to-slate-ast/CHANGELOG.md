@@ -1,5 +1,16 @@
 # @graphcms/html-to-slate-ast
 
+## 0.12.0
+
+### Minor Changes
+
+- [`3f454e8`](https://github.com/GraphCMS/rich-text/commit/3f454e82d2c84506b70554af75b66971858e238f) [#78](https://github.com/GraphCMS/rich-text/pull/78) Thanks [@larisachristie](https://github.com/larisachristie)! - Parse GCMS embeds
+
+### Patch Changes
+
+- Updated dependencies [[`b7f16fa`](https://github.com/GraphCMS/rich-text/commit/b7f16fa76a28ad0f5cdbe6cb1f58d7fafa63df15)]:
+  - @graphcms/rich-text-types@0.4.0
+
 ## 0.11.1
 
 ### Patch Changes
