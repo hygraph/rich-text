@@ -8,6 +8,7 @@
     "paths": {
       "@graphcms/rich-text-types": ["packages/types/src"],
       "@graphcms/rich-text-react-renderer": ["packages/react-renderer/src"],
+      "@graphcms/rich-text-html-renderer": ["packages/html-renderer/src"],
       "@graphcms/html-to-slate-ast": ["packages/html-to-slate-ast/src"],
       "$test/*": ["test/*"]
     }

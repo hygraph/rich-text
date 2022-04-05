@@ -12,8 +12,7 @@
     "prepublish": "npm run build"
   },
   "dependencies": {
-    "@graphcms/rich-text-types": "^0.4.0",
-    "@graphcms/rich-text-react-renderer": "^0.5.0"
+    "@graphcms/rich-text-types": "^0.4.0"
   },
   "publishConfig": {
     "access": "public"
