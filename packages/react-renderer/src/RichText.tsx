@@ -1,23 +1,21 @@
 import React, { Fragment } from 'react';
 import {
-  RichTextProps,
-  NodeRendererType,
   ElementNode,
-  RemoveEmptyElementType,
+  EmptyElementsToRemove,
   Node,
   isElement,
   isText,
-  EmbedReferences,
+  isEmpty,
+  elementTypeKeys,
 } from '@graphcms/rich-text-types';
 
-import {
-  defaultElements,
-  defaultRemoveEmptyElements,
-  elementKeys,
-} from './defaultElements';
+import { defaultElements } from './defaultElements';
 import { RenderText } from './RenderText';
-import { getElements } from './util/getElements';
-import { elementIsEmpty } from './util/elementIsEmpty';
+import { RichTextProps } from './types';
+
+function getArrayOfElements(content: RichTextProps['content']) {
+  return Array.isArray(content) ? content : content.children;
+}
 
 function RenderNode({
   node,
@@ -27,8 +25,8 @@ function RenderNode({
 }: {
   node: Node;
   parent: Node | null;
-  renderers?: NodeRendererType;
-  references?: EmbedReferences;
+  renderers?: RichTextProps['renderers'];
+  references?: RichTextProps['references'];
 }) {
   if (isText(node)) {
     let text = node.text;
@@ -72,23 +70,14 @@ function RenderElement({
   references,
 }: {
   element: ElementNode;
-  renderers?: NodeRendererType;
-  references?: EmbedReferences;
+  renderers?: RichTextProps['renderers'];
+  references?: RichTextProps['references'];
 }) {
   const { children, type, ...rest } = element;
   const { nodeId, nodeType } = rest;
 
-  /**
-   * Checks if the element is empty, so that it can be removed.
-   *
-   * Elements that can be removed with empty text are defined in `defaultRemoveEmptyElements`
-   */
-  if (
-    defaultRemoveEmptyElements?.[
-      elementKeys[type] as keyof RemoveEmptyElementType
-    ] &&
-    elementIsEmpty({ children })
-  ) {
+  // Checks if the element is empty so that it can be removed.
+  if (type in EmptyElementsToRemove && isEmpty({ children })) {
     return <Fragment />;
   }
 
@@ -185,7 +174,7 @@ function RenderElement({
 
   const elementNodeRenderer = isEmbed
     ? elementToRender
-    : renderers?.[elementKeys[type] as keyof NodeRendererType];
+    : renderers?.[elementTypeKeys[type] as keyof RichTextProps['renderers']];
 
   const NodeRenderer = elementNodeRenderer as React.ElementType;
 
@@ -217,7 +206,7 @@ function RenderElements({
   renderers,
   parent,
 }: RenderElementsProps) {
-  const elements = getElements({ content });
+  const elements = getArrayOfElements(content);
 
   return (
     <>
@@ -245,11 +234,11 @@ export function RichText({
   // Asset object will be completly overriden by the resolvers. We need to keep
   // the default elements for the Asset that hasn't been writen.
   const assetRenderers = {
-    ...defaultElements.Asset,
+    ...defaultElements?.Asset,
     ...resolvers?.Asset,
   };
 
-  const renderers: NodeRendererType = {
+  const renderers: RichTextProps['renderers'] = {
     ...defaultElements,
     ...resolvers,
     Asset: assetRenderers,
@@ -269,14 +258,14 @@ export function RichText({
     return <Fragment />;
   }
 
-  const elements = getElements({ content });
-
   /*
     Checks if there's a embed type inside the content and if the `references` prop is defined
 
     If it isn't defined and there's embed elements, it will show a warning
-  */
+    */
   if (__DEV__) {
+    const elements = getArrayOfElements(content);
+
     const embedElements = elements.filter(element => element.type === 'embed');
 
     if (embedElements.length > 0 && !references) {
@@ -287,12 +276,10 @@ export function RichText({
   }
 
   return (
-    <>
-      <RenderElements
-        content={elements}
-        renderers={renderers}
-        references={references}
-      />
-    </>
+    <RenderElements
+      content={content}
+      renderers={renderers}
+      references={references}
+    />
   );
 }

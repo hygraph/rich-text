@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
-import { NodeRendererType, Text } from '@graphcms/rich-text-types';
+import { Text } from '@graphcms/rich-text-types';
 
-import { elementKeys } from './defaultElements';
+import { RichTextProps, NodeRendererType } from './types';
 
 function serialize(text: string) {
   if (text.includes('\n')) {
@@ -24,46 +24,33 @@ export function RenderText({
   shouldSerialize,
 }: {
   textNode: Text;
-  renderers?: NodeRendererType;
+  renderers?: RichTextProps['renderers'];
   shouldSerialize: boolean;
 }) {
   const { text, bold, italic, underline, code } = textNode;
 
-  const parsedText = shouldSerialize ? serialize(text) : text;
+  let parsedText: ReactNode = shouldSerialize ? serialize(text) : text;
 
-  const Bold = renderers?.[
-    elementKeys['bold'] as keyof NodeRendererType
-  ] as React.ElementType;
-
-  const Italic = renderers?.[
-    elementKeys['italic'] as keyof NodeRendererType
-  ] as React.ElementType;
-
-  const Underline = renderers?.[
-    elementKeys['underline'] as keyof NodeRendererType
-  ] as React.ElementType;
-
-  const Code = renderers?.[
-    elementKeys['code'] as keyof NodeRendererType
-  ] as React.ElementType;
-
-  let element: ReactNode = parsedText;
+  const Bold: NodeRendererType['bold'] = renderers?.['bold'];
+  const Italic: NodeRendererType['italic'] = renderers?.['italic'];
+  const Underline: NodeRendererType['underline'] = renderers?.['underline'];
+  const Code: NodeRendererType['code'] = renderers?.['code'];
 
   if (bold && Bold) {
-    element = <Bold>{element}</Bold>;
+    parsedText = <Bold>{parsedText}</Bold>;
   }
 
   if (italic && Italic) {
-    element = <Italic>{element}</Italic>;
+    parsedText = <Italic>{parsedText}</Italic>;
   }
 
   if (underline && Underline) {
-    element = <Underline>{element}</Underline>;
+    parsedText = <Underline>{parsedText}</Underline>;
   }
 
   if (code && Code) {
-    element = <Code>{element}</Code>;
+    parsedText = <Code>{parsedText}</Code>;
   }
 
-  return <>{element}</>;
+  return <>{parsedText}</>;
 }

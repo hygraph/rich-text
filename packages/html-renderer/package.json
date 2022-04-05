@@ -1,7 +1,7 @@
 {
-  "name": "@graphcms/rich-text-react-renderer",
-  "description": "GraphCMS Rich Text React renderer",
-  "version": "0.4.3",
+  "name": "@graphcms/rich-text-html-renderer",
+  "description": "GraphCMS Rich Text HTML renderer",
+  "version": "0.0.0",
   "author": "João Pedro Schmitz <hey@joaopedro.dev> (https://joaopedro.dev)",
   "license": "MIT",
   "scripts": {
@@ -13,20 +13,13 @@
   },
   "dependencies": {
     "@graphcms/rich-text-types": "^0.3.1",
-    "escape-html": "^1.0.3"
-  },
-  "devDependencies": {
-    "@types/escape-html": "^1.0.1"
-  },
-  "peerDependencies": {
-    "react": ">=16",
-    "react-dom": ">=16"
+    "@graphcms/rich-text-react-renderer": "^0.4.3"
   },
   "publishConfig": {
     "access": "public"
   },
   "keywords": [
-    "react",
+    "html",
     "rich-text",
     "renderer",
     "graphcms"
@@ -34,10 +27,10 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/GraphCMS/rich-text.git",
-    "directory": "packages/react-renderer"
+    "directory": "packages/html-renderer"
   },
   "main": "dist/index.js",
-  "module": "dist/rich-text-react-renderer.esm.js",
+  "module": "dist/rich-text-html-renderer.esm.js",
   "types": "dist/index.d.ts",
   "files": [
     "README.md",

@@ -1,11 +1,8 @@
-import {
-  ElementNode,
-  isElement,
-  isText,
-  Text,
-} from '@graphcms/rich-text-types';
+import { ElementNode, Text } from '../';
+import { isElement } from './isElement';
+import { isText } from './isText';
 
-export function elementIsEmpty({
+export function isEmpty({
   children,
 }: {
   children: (ElementNode | Text)[];

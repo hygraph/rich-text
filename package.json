@@ -34,7 +34,6 @@
     "format": "prettier --ignore-path .gitignore \"**/*.+(ts|tsx)\" --write",
     "build": "lerna run build",
     "prepublish": "lerna run prepublish",
-    "start:react:app": "yarn build && yarn --cwd examples/react && yarn --cwd examples/react start",
     "changeset": "changeset",
     "release": "changeset publish",
     "size": "size-limit",
@@ -51,12 +50,12 @@
       "limit": "6 KB"
     },
     {
-      "path": "packages/types/dist/rich-text-types.cjs.production.min.js",
-      "limit": "75 B"
+      "path": "packages/html-renderer/dist/rich-text-html-renderer.cjs.production.min.js",
+      "limit": "3 KB"
     },
     {
-      "path": "packages/types/dist/rich-text-types.esm.js",
-      "limit": "100 B"
+      "path": "packages/html-renderer/dist/rich-text-html-renderer.esm.js",
+      "limit": "3 KB"
     }
   ]
 }

@@ -48,9 +48,9 @@ The content from the example above will render:
 </p>
 ```
 
-## Query `RichText`
+## Query Rich Text
 
-For more information on how you can query the `RichText` content, please [check our docs](https://graphcms.com/docs/api-reference/schema/field-types#rich-text).
+For more information on how you can query Rich Text content, please [check our docs](https://graphcms.com/docs/api-reference/schema/field-types#rich-text).
 
 ## Custom elements
 
@@ -205,30 +205,32 @@ const references = [
   },
 ];
 
-const { container } = render(
-  <RichText
-    content={content}
-    references={references}
-    renderers={{
-      Asset: {
-        video: () => <div>custom VIDEO</div>,
-        image: () => <div>custom IMAGE</div>,
-        'video/mp4': () => {
-          return <div>custom video/mp4 renderer</div>;
+function App() {
+  return (
+    <RichText
+      content={content}
+      references={references}
+      renderers={{
+        Asset: {
+          video: () => <div>custom VIDEO</div>,
+          image: () => <div>custom IMAGE</div>,
+          'video/mp4': () => {
+            return <div>custom video/mp4 renderer</div>;
+          },
         },
-      },
-    }}
-  />
-);
+      }}
+    />
+  );
+}
 ```
 
-As mentioned, you can write renderers for all `mimeType` groups or to specific `mimeType` files.
+As mentioned, you can write renderers for all `mimeType` groups or to specific `mimeType`.
 
 ### References
 
 References are required on the `RichText` component to render embed assets.
 
-`id`, `mimeType` and `url` are required in your `Asset` query. It won't render if it's not present.
+`id`, `mimeType` and `url` are required in your `Asset` query.
 
 **Query example:**
 
@@ -250,8 +252,6 @@ References are required on the `RichText` component to render embed assets.
 ```
 
 ## Custom embeds
-
-> This feature is not released on the Rich Text field yet, but the package already supports it.
 
 Imagine you have an embed `Post` on your Rich Text field. To render it, you can have a custom renderer. Let's see an example:
 
@@ -332,11 +332,11 @@ References are required on the `RichText` component. You also need to include yo
 
 ## Empty elements
 
-By default, we remove empty headings from the element list to prevent SEO issues. Other elements, such as `thead` are also removed. You can find the complete list [here](https://github.com/GraphCMS/rich-text/blob/main/packages/react-renderer/src/defaultElements.tsx).
+By default, we remove empty headings from the element list to prevent SEO issues. Other elements, such as `thead` are also removed. You can find the complete list [here](https://github.com/GraphCMS/rich-text/blob/main/packages/types/src/index.ts#L168).
 
 ## TypeScript
 
-If you are using TypeScript in your project, we highly recommend you install the `@graphcms/rich-text-types` package. It contains types for the elements, alongside the props accepted by each of them. You can use them in your application to create custom components.
+If you are using TypeScript in your project, we recommend installing the `@graphcms/rich-text-types` package. It contains types for the elements, alongside the props accepted by them. You can use them in your application to create custom components.
 
 ### Children Type
 
@@ -356,7 +356,7 @@ type Content = {
 
 ### Custom Embeds/Assets
 
-Depending on your reference query and model, fields may change, and the same applies to types. To have a better DX using the package, we have `EmbedProps` type that can be imported from `@graphcms/rich-text-types` (you may need to install it if you don't have done it already).
+Depending on your reference query and model, fields may change, which applies to types. To have a better DX using the package, we have `EmbedProps` type that you can import from `@graphcms/rich-text-types` (you may need to install it if you don't have done it already).
 
 In this example, we have seen how to write a renderer for a `Post` model, but it applies the same way to any other model and `Asset` on your project.
 
@@ -535,7 +535,7 @@ export const getStaticPaths = async () => {
   // Get your paths here.
 };
 
-export const getStaticProps = async (context) => {
+export const getStaticProps = async context => {
   const data = await fetchFromGraphCMS({
     // Sample query, adjust to your content structure.
     // Note: 'id' and 'mimeType' are required for custom components.
@@ -567,7 +567,7 @@ export const getStaticProps = async (context) => {
   });
 
   // Pick images from assets
-  const images = data.post.content.references.filter((asset) =>
+  const images = data.post.content.references.filter(asset =>
     asset.mimeType.includes('image')
   );
 
@@ -575,7 +575,7 @@ export const getStaticProps = async (context) => {
   // As a result the images will have a `blurDataUrl` prop with the
   // base64 encoded image.
   await Promise.all(
-    images.map(async (image) => {
+    images.map(async image => {
       const { base64 } = await getPlaiceholder(image.url);
       image.blurDataUrl = base64;
     })

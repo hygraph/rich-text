@@ -1,21 +1,23 @@
-import 'react-app-polyfill/ie11';
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import React from 'react';
+
 import { RichText } from '@graphcms/rich-text-react-renderer';
+
 import Prism from 'prismjs';
 import 'prismjs/plugins/line-numbers/prism-line-numbers';
 import 'prismjs/themes/prism-tomorrow.css';
 import 'prismjs/plugins/line-numbers/prism-line-numbers.css';
 
-import { content, references } from './content';
+import { content, references } from '../../content-example';
 
-const App = () => {
+export default function App() {
   React.useEffect(() => {
     Prism.highlightAll();
   }, []);
 
   return (
     <div>
+      <h1>React example</h1>
+
       <RichText
         content={content}
         references={references}
@@ -37,6 +39,7 @@ const App = () => {
               href={href}
               target={openInNewTab ? '_blank' : '_self'}
               style={{ color: 'green' }}
+              rel="noreferrer"
             >
               {children}
             </a>
@@ -45,19 +48,6 @@ const App = () => {
             <h2 style={{ color: 'darkcyan' }}>{children}</h2>
           ),
           bold: ({ children }) => <strong>{children}</strong>,
-          // code_block: ({ children }) => {
-          //   return (
-          //     <pre
-          //       style={{
-          //         backgroundColor: 'darkcyan',
-          //         padding: '12px',
-          //         borderRadius: '4px',
-          //       }}
-          //     >
-          //       {children}
-          //     </pre>
-          //   );
-          // },
           code_block: ({ children }) => {
             return (
               <pre className="line-numbers language-none">
@@ -81,6 +71,4 @@ const App = () => {
       />
     </div>
   );
-};
-
-ReactDOM.render(<App />, document.getElementById('root'));
+}
