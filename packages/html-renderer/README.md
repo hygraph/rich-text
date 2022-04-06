@@ -190,12 +190,12 @@ const content = [
 const references = [
   {
     id: 'cknjbzowggjo90b91kjisy03a',
-    url: 'https://media.graphcms.com/dsQtt0ARqO28baaXbVy9',
+    url: 'https://media.graphassets.com/dsQtt0ARqO28baaXbVy9',
     mimeType: 'image/png',
   },
   {
     id: 'ckrus0f14ao760b32mz2dwvgx',
-    url: 'https://media.graphcms.com/7M0lXLdCQfeIDXnT2SVS',
+    url: 'https://media.graphassets.com/7M0lXLdCQfeIDXnT2SVS',
     mimeType: 'video/mp4',
   },
 ];

@@ -138,7 +138,7 @@ export const references: EmbedReferences = [
     fileName: 'nkkwzgz0bw6fg6mqzjc1.png',
     height: 690,
     width: 880,
-    url: 'https://media.graphcms.com/dsQtt0ARqO28baaXbVy9',
+    url: 'https://media.graphassets.com/dsQtt0ARqO28baaXbVy9',
     mimeType: 'image/png',
   },
   {
@@ -147,7 +147,7 @@ export const references: EmbedReferences = [
     fileName: 'file_example_MP4_480_1_5MG.mp4',
     height: null,
     width: null,
-    url: 'https://media.graphcms.com/7M0lXLdCQfeIDXnT2SVS',
+    url: 'https://media.graphassets.com/7M0lXLdCQfeIDXnT2SVS',
     mimeType: 'video/mp4',
   },
   {
@@ -156,7 +156,7 @@ export const references: EmbedReferences = [
     fileName: 'teste.txt',
     height: null,
     width: null,
-    url: 'https://media.graphcms.com/7VA0p81VQfmZQC9jPB2I',
+    url: 'https://media.graphassets.com/7VA0p81VQfmZQC9jPB2I',
     mimeType: 'text/plain',
   },
   {
@@ -165,7 +165,7 @@ export const references: EmbedReferences = [
     fileName: 'pdf-test.pdf',
     height: null,
     width: null,
-    url: 'https://media.graphcms.com/HzsAGQyASM2B6B3dHY0n',
+    url: 'https://media.graphassets.com/HzsAGQyASM2B6B3dHY0n',
     mimeType: 'application/pdf',
   },
   {

@@ -4,7 +4,7 @@ exports[`custom embeds and assets should render embed video, image, and audio as
 "
     <img
       loading=\\"lazy\\"
-      src=\\"https://media.graphcms.com/dsQtt0ARqO28baaXbVy9\\"
+      src=\\"https://media.graphassets.com/dsQtt0ARqO28baaXbVy9\\"
       width=\\"\\"
       height=\\"\\"
       alt=\\"\\"
@@ -12,7 +12,7 @@ exports[`custom embeds and assets should render embed video, image, and audio as
     />
   
     <video
-      src=\\"https://media.graphcms.com/7M0lXLdCQfeIDXnT2SVS\\"
+      src=\\"https://media.graphassets.com/7M0lXLdCQfeIDXnT2SVS\\"
       controls
       width=\\"100%\\"
       height=\\"100%\\"
@@ -20,18 +20,18 @@ exports[`custom embeds and assets should render embed video, image, and audio as
     >
       <p>
         Your browser doesn't support HTML5 video. Here is a
-        <a href=\\"https://media.graphcms.com/7M0lXLdCQfeIDXnT2SVS\\">link to the video</a> instead.
+        <a href=\\"https://media.graphassets.com/7M0lXLdCQfeIDXnT2SVS\\">link to the video</a> instead.
       </p>
     </video>
   
     <audio
       style=\\"display: block; max-width: 100%; height: auto\\"
-      src=\\"https://media.graphcms.com/H9eZ7CISSBpAKxqdSwzg\\"
+      src=\\"https://media.graphassets.com/H9eZ7CISSBpAKxqdSwzg\\"
       controls=\\"\\"
     >
       <p>
         Your browser doesn&#x27;t support HTML5 audio. Here is a
-        <a href=\\"https://media.graphcms.com/H9eZ7CISSBpAKxqdSwzg\\">link to the audio</a>
+        <a href=\\"https://media.graphassets.com/H9eZ7CISSBpAKxqdSwzg\\">link to the audio</a>
         instead.
       </p>
     </audio>
