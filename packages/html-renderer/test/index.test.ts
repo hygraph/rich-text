@@ -227,7 +227,7 @@ describe('@graphcms/rich-text-html-renderer', () => {
     expect(html).toEqual(`
     <img
       loading="lazy"
-      src="https://media.graphcms.com/output=format:webp/resize=,width:667,height:1000/8xrjYm4CR721mAZ1YAoy"
+      src="https://media.graphassets.com/output=format:webp/resize=,width:667,height:1000/8xrjYm4CR721mAZ1YAoy"
       width="667"
       height="1000"
       alt="photo-1564631027894-5bdb17618445.jpg"
@@ -252,7 +252,7 @@ describe('@graphcms/rich-text-html-renderer', () => {
 
     expect(html).toEqual(`
     <video
-      src="https://media.graphcms.com/oWd7OYr5Q5KGRJW9ujRO"
+      src="https://media.graphassets.com/oWd7OYr5Q5KGRJW9ujRO"
       controls
       width="400"
       height="400"
@@ -260,7 +260,7 @@ describe('@graphcms/rich-text-html-renderer', () => {
     >
       <p>
         Your browser doesn't support HTML5 video. Here is a
-        <a href="https://media.graphcms.com/oWd7OYr5Q5KGRJW9ujRO">link to the video</a> instead.
+        <a href="https://media.graphassets.com/oWd7OYr5Q5KGRJW9ujRO">link to the video</a> instead.
       </p>
     </video>
   `);
@@ -334,17 +334,17 @@ describe('custom embeds and assets', () => {
     const references = [
       {
         id: 'cknjbzowggjo90b91kjisy03a',
-        url: 'https://media.graphcms.com/dsQtt0ARqO28baaXbVy9',
+        url: 'https://media.graphassets.com/dsQtt0ARqO28baaXbVy9',
         mimeType: 'image/png',
       },
       {
         id: 'ckrus0f14ao760b32mz2dwvgx',
-        url: 'https://media.graphcms.com/7M0lXLdCQfeIDXnT2SVS',
+        url: 'https://media.graphassets.com/7M0lXLdCQfeIDXnT2SVS',
         mimeType: 'video/mp4',
       },
       {
         id: 'ckryzom5si5vw0d78d13bnwix',
-        url: 'https://media.graphcms.com/H9eZ7CISSBpAKxqdSwzg',
+        url: 'https://media.graphassets.com/H9eZ7CISSBpAKxqdSwzg',
         mimeType: 'audio/mpeg',
       },
     ];
@@ -360,12 +360,12 @@ describe('custom embeds and assets', () => {
     const references = [
       {
         id: 'ckrus0f14ao760b32mz2dwvgx',
-        url: 'https://media.graphcms.com/video_id',
+        url: 'https://media.graphassets.com/video_id',
         mimeType: 'video/mp4',
       },
       {
         id: 'ckq2eek7c00ek0d83iakzoxuh',
-        url: 'https://media.graphcms.com/video_id',
+        url: 'https://media.graphassets.com/video_id',
         mimeType: 'video/quicktime',
       },
     ];
@@ -390,22 +390,22 @@ describe('custom embeds and assets', () => {
     const references = [
       {
         id: 'ckrxv7b74g8il0d782lf66dup',
-        url: 'https://media.graphcms.com/7VA0p81VQfmZQC9jPB2I',
+        url: 'https://media.graphassets.com/7VA0p81VQfmZQC9jPB2I',
         mimeType: 'text/plain',
       },
       {
         id: 'ckrxv6otkg6ez0c8743xp9bzs',
-        url: 'https://media.graphcms.com/HzsAGQyASM2B6B3dHY0n',
+        url: 'https://media.graphassets.com/HzsAGQyASM2B6B3dHY0n',
         mimeType: 'application/pdf',
       },
       {
         id: 'model_example',
-        url: 'https://media.graphcms.com/HzsAGQyASM2B6B3dHY0n',
+        url: 'https://media.graphassets.com/HzsAGQyASM2B6B3dHY0n',
         mimeType: 'model/example',
       },
       {
         id: 'cks2osfk8t19a0b32vahjhn36',
-        url: 'https://media.graphcms.com/Kdk4nsiUTLac3gDD2m5L',
+        url: 'https://media.graphassets.com/Kdk4nsiUTLac3gDD2m5L',
         mimeType: 'font/ttf',
       },
     ];
@@ -455,12 +455,12 @@ describe('custom embeds and assets', () => {
     const references = [
       {
         id: '',
-        url: 'https://media.graphcms.com/dsQtt0ARqO28baaXbVy9',
+        url: 'https://media.graphassets.com/dsQtt0ARqO28baaXbVy9',
         mimeType: 'image/png',
       },
       {
         id: '',
-        url: 'https://media.graphcms.com/7M0lXLdCQfeIDXnT2SVS',
+        url: 'https://media.graphassets.com/7M0lXLdCQfeIDXnT2SVS',
         mimeType: 'video/mp4',
       },
       {
@@ -485,12 +485,12 @@ describe('custom embeds and assets', () => {
     const references = [
       {
         id: 'cknjbzowggjo90b91kjisy03a',
-        url: 'https://media.graphcms.com/dsQtt0ARqO28baaXbVy9',
+        url: 'https://media.graphassets.com/dsQtt0ARqO28baaXbVy9',
         mimeType: 'image/png',
       },
       {
         id: 'ckrus0f14ao760b32mz2dwvgx',
-        url: 'https://media.graphcms.com/7M0lXLdCQfeIDXnT2SVS',
+        url: 'https://media.graphassets.com/7M0lXLdCQfeIDXnT2SVS',
         mimeType: 'video/mp4',
       },
     ];
@@ -672,7 +672,7 @@ describe('custom embeds and assets', () => {
     const references = [
       {
         id: 'ckrus0f14ao760b32mz2dwvgx',
-        url: 'https://media.graphcms.com/7M0lXLdCQfeIDXnT2SVS',
+        url: 'https://media.graphassets.com/7M0lXLdCQfeIDXnT2SVS',
         mimeType: 'video/mp4',
       },
     ];
@@ -684,7 +684,7 @@ describe('custom embeds and assets', () => {
 
     expect(html).toEqual(`<p>Inline asset
     <video
-      src="https://media.graphcms.com/7M0lXLdCQfeIDXnT2SVS"
+      src="https://media.graphassets.com/7M0lXLdCQfeIDXnT2SVS"
       controls
       width="100%"
       height="100%"
@@ -692,7 +692,7 @@ describe('custom embeds and assets', () => {
     >
       <p>
         Your browser doesn't support HTML5 video. Here is a
-        <a href="https://media.graphcms.com/7M0lXLdCQfeIDXnT2SVS">link to the video</a> instead.
+        <a href="https://media.graphassets.com/7M0lXLdCQfeIDXnT2SVS">link to the video</a> instead.
       </p>
     </video>
   continued</p>`);

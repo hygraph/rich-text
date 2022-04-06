@@ -276,7 +276,7 @@ export const iframeContent: RichTextContent = [
 export const imageContent: RichTextContent = [
   {
     src:
-      'https://media.graphcms.com/output=format:webp/resize=,width:667,height:1000/8xrjYm4CR721mAZ1YAoy',
+      'https://media.graphassets.com/output=format:webp/resize=,width:667,height:1000/8xrjYm4CR721mAZ1YAoy',
     type: 'image',
     title: 'photo-1564631027894-5bdb17618445.jpg',
     width: 667,
@@ -294,7 +294,7 @@ export const imageContent: RichTextContent = [
 
 export const videoContent: RichTextContent = [
   {
-    src: 'https://media.graphcms.com/oWd7OYr5Q5KGRJW9ujRO',
+    src: 'https://media.graphassets.com/oWd7OYr5Q5KGRJW9ujRO',
     type: 'video',
     title: 'file_example_MP4_480_1_5MG.m4v',
     width: 400,

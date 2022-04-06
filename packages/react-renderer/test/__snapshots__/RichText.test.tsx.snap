@@ -68,7 +68,7 @@ exports[`@graphcms/rich-text-react-renderer renders video 1`] = `
   <video
     controls=""
     height="400"
-    src="https://media.graphcms.com/oWd7OYr5Q5KGRJW9ujRO"
+    src="https://media.graphassets.com/oWd7OYr5Q5KGRJW9ujRO"
     title="file_example_MP4_480_1_5MG.m4v"
     width="400"
   >
@@ -76,7 +76,7 @@ exports[`@graphcms/rich-text-react-renderer renders video 1`] = `
       Your browser doesn't support HTML5 video. Here is a
        
       <a
-        href="https://media.graphcms.com/oWd7OYr5Q5KGRJW9ujRO"
+        href="https://media.graphassets.com/oWd7OYr5Q5KGRJW9ujRO"
       >
         link to the video
       </a>
@@ -127,19 +127,19 @@ exports[`custom embeds and assets should render embed video, image, and audio as
 <div>
   <img
     loading="lazy"
-    src="https://media.graphcms.com/dsQtt0ARqO28baaXbVy9"
+    src="https://media.graphassets.com/dsQtt0ARqO28baaXbVy9"
   />
   <video
     controls=""
     height="100%"
-    src="https://media.graphcms.com/7M0lXLdCQfeIDXnT2SVS"
+    src="https://media.graphassets.com/7M0lXLdCQfeIDXnT2SVS"
     width="100%"
   >
     <p>
       Your browser doesn't support HTML5 video. Here is a
        
       <a
-        href="https://media.graphcms.com/7M0lXLdCQfeIDXnT2SVS"
+        href="https://media.graphassets.com/7M0lXLdCQfeIDXnT2SVS"
       >
         link to the video
       </a>
@@ -148,14 +148,14 @@ exports[`custom embeds and assets should render embed video, image, and audio as
   </video>
   <audio
     controls=""
-    src="https://media.graphcms.com/H9eZ7CISSBpAKxqdSwzg"
+    src="https://media.graphassets.com/H9eZ7CISSBpAKxqdSwzg"
     style="display: block; max-width: 100%; height: auto;"
   >
     <p>
       Your browser doesn't support HTML5 audio. Here is a
        
       <a
-        href="https://media.graphcms.com/H9eZ7CISSBpAKxqdSwzg"
+        href="https://media.graphassets.com/H9eZ7CISSBpAKxqdSwzg"
       >
         link to the audio
       </a>
