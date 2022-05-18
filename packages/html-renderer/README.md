@@ -16,7 +16,7 @@ yarn add @graphcms/rich-text-html-renderer
 
 ## 🔥 Usage/Examples
 
-To render the content on your application, you'll need to provide the array of elements returned from the GraphCMS API to the `astToHtmlString` function.
+To render the content on your application, you'll need to provide the array of elements returned from the GraphCMS API to the `astToHtmlString` function. The content has to be returned in `raw` format as that is the AST representation.
 
 For more information on how you can query the Rich Text content, [check our documentation](https://graphcms.com/docs/api-reference/schema/field-types#rich-text).
 
