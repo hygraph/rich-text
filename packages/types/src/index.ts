@@ -119,8 +119,14 @@ export type EmbedProps<T = any> = T & {
   isInline?: boolean;
 };
 
+export type LinkEmbedProps<T = any> = T & {
+  nodeId: string;
+  nodeType: string;
+  children: any;
+};
+
 export interface EmbedElement extends EmbedProps, Element {
-  type: 'embed';
+  type: 'embed' | 'link';
 }
 
 export type ElementNode =
