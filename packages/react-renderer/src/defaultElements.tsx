@@ -64,4 +64,5 @@ export const defaultElements: Required<RichTextProps['renderers']> = {
     text: FallbackForCustomAsset,
   },
   embed: {},
+  link: {},
 };

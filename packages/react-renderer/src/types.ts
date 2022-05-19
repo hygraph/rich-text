@@ -71,6 +71,9 @@ export type NodeRendererType = {
   embed?: {
     [key: string]: EmbedNodeRenderer | undefined;
   };
+  link?: {
+    [key: string]: EmbedNodeRenderer | undefined;
+  };
 };
 
 export type RichTextProps = {
