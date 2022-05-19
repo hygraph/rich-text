@@ -255,7 +255,7 @@ References are required on the `RichText` component to render embed assets.
 
 Imagine you have an embed `Post` on your Rich Text field. To render it, you can have a custom renderer. Let's see an example:
 
-```js
+```jsx
 import { RichText } from '@graphcms/rich-text-react-renderer';
 
 const content = [
@@ -330,6 +330,50 @@ References are required on the `RichText` component. You also need to include yo
 }
 ```
 
+### Link embeds
+
+The Rich Text Field also supports Link Embeds, which work similarly to normal embeds. Based on the model name, you can have a custom renderer for it. Example:
+
+```jsx
+import { RichText } from '@graphcms/rich-text-react-renderer';
+
+const content = [
+  {
+    type: 'link',
+    nodeId: 'post_id',
+    children: [
+      {
+        text: 'click here',
+      },
+    ],
+    nodeType: 'Post',
+  },
+];
+
+const references = [
+  {
+    id: 'post_id',
+    slug: 'graphcms-is-awesome',
+  },
+];
+
+function App() {
+  return (
+    <RichText
+      content={content}
+      references={references}
+      renderers={{
+        link: {
+          Post: ({ slug, children }) => {
+            return <a href={`/blog/${slug}`}>{children}</a>;
+          },
+        },
+      }}
+    />
+  );
+}
+```
+
 ## Empty elements
 
 By default, we remove empty headings from the element list to prevent SEO issues. Other elements, such as `thead` are also removed. You can find the complete list [here](https://github.com/GraphCMS/rich-text/blob/main/packages/types/src/index.ts#L168).
@@ -356,12 +400,12 @@ type Content = {
 
 ### Custom Embeds/Assets
 
-Depending on your reference query and model, fields may change, which applies to types. To have a better DX using the package, we have `EmbedProps` type that you can import from `@graphcms/rich-text-types` (you may need to install it if you don't have done it already).
+Depending on your reference query and model, fields may change, which applies to types. To have a better DX using the package, we have `EmbedProps` and `LinkEmbedProps` types that you can import from `@graphcms/rich-text-types` (you may need to install it if you don't have done it already).
 
 In this example, we have seen how to write a renderer for a `Post` model, but it applies the same way to any other model and `Asset` on your project.
 
 ```tsx
-import { EmbedProps } from '@graphcms/rich-text-types';
+import { EmbedProps, LinkEmbedProps } from '@graphcms/rich-text-types';
 
 type Post = {
   title: string;
@@ -378,12 +422,17 @@ function App() {
           Post: ({ title, description, slug }: EmbedProps<Post>) => {
             return (
               <div className="post">
-                <a href={`/post/${slug}`}>
+                <a href={`/blog/${slug}`}>
                   <h3>{title}</h3>
                   <p>{description}</p>
                 </a>
               </div>
             );
+          },
+        },
+        link: {
+          Post: ({ slug, children }: LinkEmbedProps<Post>) => {
+            return <a href={`/blog/${slug}`}>{children}</a>;
           },
         },
       }}
