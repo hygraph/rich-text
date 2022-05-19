@@ -114,12 +114,14 @@ export interface IFrameElement extends IFrameProps, Element {
 }
 
 export type EmbedProps<T = any> = T & {
+  id: string;
   nodeId: string;
   nodeType: string;
   isInline?: boolean;
 };
 
 export type LinkEmbedProps<T = any> = T & {
+  id: string;
   nodeId: string;
   nodeType: string;
   children: any;
