@@ -600,12 +600,7 @@ describe('custom embeds and assets', () => {
       renderers: {
         link: {
           Article: ({ slug, children }: LinkEmbedProps<{ slug: string }>) => {
-            return `<a href="${`/${slug}`}">${children}</a>`;
-          },
-        },
-        embed: {
-          Post: ({ title, nodeId }: EmbedProps<{ title: string }>) => {
-            return `<div class="post"><h3>${title}</h3><p>${nodeId}</p></div>`;
+            return `<a href="/${slug}">${children}</a>`;
           },
         },
       },
