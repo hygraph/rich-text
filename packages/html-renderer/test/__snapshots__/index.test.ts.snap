@@ -2,22 +2,9 @@
 
 exports[`custom embeds and assets should render embed video, image, and audio assets 1`] = `
 "
-    <img
-      loading=\\"lazy\\"
-      src=\\"https://media.graphassets.com/dsQtt0ARqO28baaXbVy9\\"
-      width=\\"\\"
-      height=\\"\\"
-      alt=\\"\\"
-      title=\\"\\"
-    />
+    <img loading=\\"lazy\\" src=\\"https://media.graphassets.com/dsQtt0ARqO28baaXbVy9\\"     />
   
-    <video
-      src=\\"https://media.graphassets.com/7M0lXLdCQfeIDXnT2SVS\\"
-      controls
-      width=\\"100%\\"
-      height=\\"100%\\"
-      title=\\"\\"
-    >
+    <video src=\\"https://media.graphassets.com/7M0lXLdCQfeIDXnT2SVS\\" controls width=\\"100%\\" height=\\"100%\\" >
       <p>
         Your browser doesn't support HTML5 video. Here is a
         <a href=\\"https://media.graphassets.com/7M0lXLdCQfeIDXnT2SVS\\">link to the video</a> instead.

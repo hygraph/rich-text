@@ -46,25 +46,11 @@ describe('@graphcms/rich-text-html-renderer', () => {
     const html = astToHtmlString({ content: emptyContent });
 
     expect(html).toEqual(`<h2>
-    <a
-      href="https://graphcms.com"
-      class=""
-      target="_self"
-      title=""
-      id=""
-      rel=""
-    >
+    <a href="https://graphcms.com" target="_self"     >
       Testing Link
     </a>
   </h2><h2>
-    <a
-      href="https://graphcms.com"
-      class=""
-      target="_self"
-      title=""
-      id=""
-      rel=""
-    >
+    <a href="https://graphcms.com" target="_self"     >
       Link
     </a>
    2</h2><table><tbody><tr><td><p>Row 1 - Col 1</p></td><td><p>Row 1 - Col 2</p></td></tr></tbody></table>`);
@@ -146,14 +132,7 @@ describe('@graphcms/rich-text-html-renderer', () => {
     const html = astToHtmlString({ content: linkContent });
 
     expect(html).toEqual(`
-    <a
-      href="https://graphcms.com"
-      class="text-white"
-      target="_blank"
-      title="GraphCMS website"
-      id="test"
-      rel="noreferrer"
-    >
+    <a href="https://graphcms.com" target="_blank" class="text-white" rel="noreferrer" title="GraphCMS website" id="test" rel="noreferrer">
       GraphCMS
     </a>
   `);
@@ -225,14 +204,7 @@ describe('@graphcms/rich-text-html-renderer', () => {
     const html = astToHtmlString({ content: imageContent });
 
     expect(html).toEqual(`
-    <img
-      loading="lazy"
-      src="https://media.graphassets.com/output=format:webp/resize=,width:667,height:1000/8xrjYm4CR721mAZ1YAoy"
-      width="667"
-      height="1000"
-      alt="photo-1564631027894-5bdb17618445.jpg"
-      title="photo-1564631027894-5bdb17618445.jpg"
-    />
+    <img loading="lazy" src="https://media.graphassets.com/output=format:webp/resize=,width:667,height:1000/8xrjYm4CR721mAZ1YAoy" width="667" height="1000" alt="photo-1564631027894-5bdb17618445.jpg" title="photo-1564631027894-5bdb17618445.jpg" />
   `);
   });
 
@@ -251,13 +223,7 @@ describe('@graphcms/rich-text-html-renderer', () => {
     const html = astToHtmlString({ content: videoContent });
 
     expect(html).toEqual(`
-    <video
-      src="https://media.graphassets.com/oWd7OYr5Q5KGRJW9ujRO"
-      controls
-      width="400"
-      height="400"
-      title="file_example_MP4_480_1_5MG.m4v"
-    >
+    <video src="https://media.graphassets.com/oWd7OYr5Q5KGRJW9ujRO" controls width="400" height="400" title="file_example_MP4_480_1_5MG.m4v">
       <p>
         Your browser doesn't support HTML5 video. Here is a
         <a href="https://media.graphassets.com/oWd7OYr5Q5KGRJW9ujRO">link to the video</a> instead.
@@ -350,8 +316,6 @@ describe('custom embeds and assets', () => {
     ];
 
     const html = astToHtmlString({ content: embedAssetContent, references });
-
-    console.log(html);
 
     expect(html).toMatchSnapshot(``);
   });
@@ -683,13 +647,7 @@ describe('custom embeds and assets', () => {
     });
 
     expect(html).toEqual(`<p>Inline asset
-    <video
-      src="https://media.graphassets.com/7M0lXLdCQfeIDXnT2SVS"
-      controls
-      width="100%"
-      height="100%"
-      title=""
-    >
+    <video src="https://media.graphassets.com/7M0lXLdCQfeIDXnT2SVS" controls width="100%" height="100%" >
       <p>
         Your browser doesn't support HTML5 video. Here is a
         <a href="https://media.graphassets.com/7M0lXLdCQfeIDXnT2SVS">link to the video</a> instead.
