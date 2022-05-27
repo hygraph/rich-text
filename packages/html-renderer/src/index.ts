@@ -87,7 +87,7 @@ function renderElement({
     return ``;
   }
 
-  const isEmbed = type === 'embed';
+  const isEmbed = nodeId && nodeType;
 
   const referenceValues = isEmbed
     ? references?.filter(ref => ref.id === nodeId)[0]
@@ -125,13 +125,16 @@ function renderElement({
   let elementToRender;
 
   if (isEmbed && nodeType !== 'Asset') {
-    const element = renderers?.embed?.[nodeType as string];
+    const element =
+      type === 'link'
+        ? renderers?.link?.[nodeType as string]
+        : renderers?.embed?.[nodeType as string];
 
     if (element !== undefined) {
       elementToRender = element;
     } else {
       console.warn(
-        `[@graphcms/rich-text-html-renderer]: No renderer found for custom embed node type ${nodeType}.`
+        `[@graphcms/rich-text-html-renderer]: No renderer found for custom ${type} nodeType ${nodeType}.`
       );
       return ``;
     }

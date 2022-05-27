@@ -1,5 +1,9 @@
 import { astToHtmlString } from '@graphcms/rich-text-html-renderer';
-import { RichTextContent, EmbedProps } from '@graphcms/rich-text-types';
+import {
+  RichTextContent,
+  EmbedProps,
+  LinkEmbedProps,
+} from '@graphcms/rich-text-types';
 
 import {
   defaultContent as content,
@@ -296,7 +300,7 @@ describe('@graphcms/rich-text-html-renderer', () => {
 });
 
 describe('custom embeds and assets', () => {
-  it('should render embed video, image, and audio assets', () => {
+  it('should render video, image, and audio assets', () => {
     const references = [
       {
         id: 'cknjbzowggjo90b91kjisy03a',
@@ -405,6 +409,16 @@ describe('custom embeds and assets', () => {
         nodeType: 'Asset',
       },
       {
+        type: 'link',
+        nodeId: 'link_id',
+        children: [
+          {
+            text: 'click here',
+          },
+        ],
+        nodeType: 'Article',
+      },
+      {
         type: 'embed',
         nodeId: 'custom_post_id',
         children: [
@@ -431,6 +445,10 @@ describe('custom embeds and assets', () => {
         id: '',
         title: 'GraphCMS is awesome :rocket:',
       },
+      {
+        id: '',
+        slug: 'graphcms-is-awesome',
+      },
     ];
 
     /**
@@ -441,7 +459,7 @@ describe('custom embeds and assets', () => {
       references,
     });
 
-    expect(console.error).toHaveBeenCalledTimes(3);
+    expect(console.error).toHaveBeenCalledTimes(4);
     expect(html).toEqual(``);
   });
 
@@ -555,6 +573,47 @@ describe('custom embeds and assets', () => {
     );
   });
 
+  it('should render custom link models', () => {
+    const contentObject: RichTextContent = [
+      {
+        type: 'link',
+        nodeId: 'my_article',
+        children: [
+          {
+            text: 'click here',
+          },
+        ],
+        nodeType: 'Article',
+      },
+    ];
+
+    const references = [
+      {
+        id: 'my_article',
+        slug: 'introducing-link-embeds',
+      },
+    ];
+
+    const html = astToHtmlString({
+      content: contentObject,
+      references,
+      renderers: {
+        link: {
+          Article: ({ slug, children }: LinkEmbedProps<{ slug: string }>) => {
+            return `<a href="${`/${slug}`}">${children}</a>`;
+          },
+        },
+        embed: {
+          Post: ({ title, nodeId }: EmbedProps<{ title: string }>) => {
+            return `<div class="post"><h3>${title}</h3><p>${nodeId}</p></div>`;
+          },
+        },
+      },
+    });
+
+    expect(html).toEqual(`<a href="/introducing-link-embeds">click here</a>`);
+  });
+
   it(`should show a warning if embeds are found but there aren't any renderer for it`, () => {
     console.warn = jest.fn();
 
@@ -569,12 +628,26 @@ describe('custom embeds and assets', () => {
         ],
         nodeType: 'Post',
       },
+      {
+        type: 'link',
+        nodeId: 'link_id',
+        children: [
+          {
+            text: 'My link',
+          },
+        ],
+        nodeType: 'Article',
+      },
     ];
 
     const references = [
       {
         id: 'custom_post_id',
         title: 'GraphCMS is awesome :rocket:',
+      },
+      {
+        id: 'link_id',
+        title: 'My link',
       },
     ];
 
@@ -583,7 +656,7 @@ describe('custom embeds and assets', () => {
       references,
     });
 
-    expect(console.warn).toHaveBeenCalledTimes(1);
+    expect(console.warn).toHaveBeenCalledTimes(2);
     expect(html).toEqual(``);
   });
 
