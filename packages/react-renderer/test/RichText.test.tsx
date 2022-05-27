@@ -70,7 +70,7 @@ describe('@graphcms/rich-text-react-renderer', () => {
     expect(container).toMatchInlineSnapshot(`
       <div>
         <h2>
-
+          
           <a
             href="https://graphcms.com"
           >
@@ -78,7 +78,7 @@ describe('@graphcms/rich-text-react-renderer', () => {
           </a>
         </h2>
         <h2>
-
+          
           <a
             href="https://graphcms.com"
           >
@@ -938,7 +938,7 @@ describe('custom embeds and assets', () => {
           >
             <p>
               Your browser doesn't support HTML5 video. Here is a
-
+               
               <a
                 href="https://media.graphassets.com/7M0lXLdCQfeIDXnT2SVS"
               >

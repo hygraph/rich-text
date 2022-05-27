@@ -123,48 +123,6 @@ exports[`@graphcms/rich-text-react-renderer should replace all
 </div>
 `;
 
-exports[`custom embeds and assets should render embed video, image, and audio assets 1`] = `
-<div>
-  <img
-    loading="lazy"
-    src="https://media.graphassets.com/dsQtt0ARqO28baaXbVy9"
-  />
-  <video
-    controls=""
-    height="100%"
-    src="https://media.graphassets.com/7M0lXLdCQfeIDXnT2SVS"
-    width="100%"
-  >
-    <p>
-      Your browser doesn't support HTML5 video. Here is a
-       
-      <a
-        href="https://media.graphassets.com/7M0lXLdCQfeIDXnT2SVS"
-      >
-        link to the video
-      </a>
-       instead.
-    </p>
-  </video>
-  <audio
-    controls=""
-    src="https://media.graphassets.com/H9eZ7CISSBpAKxqdSwzg"
-    style="display: block; max-width: 100%; height: auto;"
-  >
-    <p>
-      Your browser doesn't support HTML5 audio. Here is a
-       
-      <a
-        href="https://media.graphassets.com/H9eZ7CISSBpAKxqdSwzg"
-      >
-        link to the audio
-      </a>
-       instead.
-    </p>
-  </audio>
-</div>
-`;
-
 exports[`custom embeds and assets should render video, image, and audio assets 1`] = `
 <div>
   <img
