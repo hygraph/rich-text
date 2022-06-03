@@ -16,7 +16,7 @@ yarn add @graphcms/rich-text-react-renderer
 
 ## 🔥 Usage/Examples
 
-To render the content on your application, you'll need to provide the array of elements returned from the GraphCMS API to the `RichText` component.
+To render the content on your application, you'll need to provide the array of elements returned from the GraphCMS API to the `RichText` component. The content has to be returned in `raw` (or `json`) format as the AST representation. For more information on how to query the Rich Text content, [check our documentation](https://graphcms.com/docs/api-reference/schema/field-types#rich-text).
 
 ```tsx
 import { RichText } from '@graphcms/rich-text-react-renderer';
@@ -47,10 +47,6 @@ The content from the example above will render:
   <b>Hello world!</b>
 </p>
 ```
-
-## Query Rich Text
-
-For more information on how you can query Rich Text content, please [check our docs](https://graphcms.com/docs/api-reference/schema/field-types#rich-text).
 
 ## Custom elements
 
