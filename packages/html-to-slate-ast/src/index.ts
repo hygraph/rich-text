@@ -55,10 +55,9 @@ const ELEMENT_TAGS: Record<
       : '(Image)';
     if (href === null) return {};
     return {
-      type: 'link',
-      href: sanitizeUrl(href),
+      type: 'image',
+      src: sanitizeUrl(href),
       title,
-      openInNewTab: true,
     };
   },
   PRE: () => ({ type: 'code-block' }),
