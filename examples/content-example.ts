@@ -7,6 +7,20 @@ export const content: RichTextContent = {
       children: [{ text: 'Awesome new GraphCMS cap!' }],
     },
     {
+      src: 'https://media.graphassets.com/bFyCrmvuQfO7n0l5ZmH5',
+      type: 'image',
+      title: 'logo.svg',
+      width: 0,
+      handle: 'mQeGmwkXTnqTfcgUXVr7',
+      height: 0,
+      children: [
+        {
+          text: '',
+        },
+      ],
+      mimeType: 'image/svg+xml',
+    },
+    {
       type: 'paragraph',
       children: [
         { text: 'Sweet black ' },

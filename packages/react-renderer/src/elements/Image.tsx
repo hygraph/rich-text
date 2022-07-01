@@ -15,12 +15,15 @@ export function Image({
     );
   }
 
+  const shouldIncludeWidth = width && width > 0;
+  const shouldIncludeHeight = height && height > 0;
+
   return (
     <img
       loading="lazy"
       src={escapeHtml(src)}
-      width={width}
-      height={height}
+      {...(shouldIncludeWidth && { width })}
+      {...(shouldIncludeHeight && { height })}
       alt={altText}
       title={title}
     />
