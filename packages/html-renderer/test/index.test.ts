@@ -1,5 +1,9 @@
 import { astToHtmlString } from '@graphcms/rich-text-html-renderer';
-import { RichTextContent, EmbedProps } from '@graphcms/rich-text-types';
+import {
+  RichTextContent,
+  EmbedProps,
+  LinkEmbedProps,
+} from '@graphcms/rich-text-types';
 
 import {
   defaultContent as content,
@@ -46,25 +50,11 @@ describe('@graphcms/rich-text-html-renderer', () => {
     const html = astToHtmlString({ content: emptyContent });
 
     expect(html).toEqual(`<h2>
-    <a
-      href="https://graphcms.com"
-      class=""
-      target="_self"
-      title=""
-      id=""
-      rel=""
-    >
+    <a href="https://graphcms.com" target="_self"     >
       Testing Link
     </a>
   </h2><h2>
-    <a
-      href="https://graphcms.com"
-      class=""
-      target="_self"
-      title=""
-      id=""
-      rel=""
-    >
+    <a href="https://graphcms.com" target="_self"     >
       Link
     </a>
    2</h2><table><tbody><tr><td><p>Row 1 - Col 1</p></td><td><p>Row 1 - Col 2</p></td></tr></tbody></table>`);
@@ -146,14 +136,7 @@ describe('@graphcms/rich-text-html-renderer', () => {
     const html = astToHtmlString({ content: linkContent });
 
     expect(html).toEqual(`
-    <a
-      href="https://graphcms.com"
-      class="text-white"
-      target="_blank"
-      title="GraphCMS website"
-      id="test"
-      rel="noreferrer"
-    >
+    <a href="https://graphcms.com" target="_blank" class="text-white" rel="noreferrer" title="GraphCMS website" id="test" rel="noreferrer">
       GraphCMS
     </a>
   `);
@@ -225,14 +208,7 @@ describe('@graphcms/rich-text-html-renderer', () => {
     const html = astToHtmlString({ content: imageContent });
 
     expect(html).toEqual(`
-    <img
-      loading="lazy"
-      src="https://media.graphassets.com/output=format:webp/resize=,width:667,height:1000/8xrjYm4CR721mAZ1YAoy"
-      width="667"
-      height="1000"
-      alt="photo-1564631027894-5bdb17618445.jpg"
-      title="photo-1564631027894-5bdb17618445.jpg"
-    />
+    <img loading="lazy" src="https://media.graphassets.com/output=format:webp/resize=,width:667,height:1000/8xrjYm4CR721mAZ1YAoy" width="667" height="1000" alt="photo-1564631027894-5bdb17618445.jpg" title="photo-1564631027894-5bdb17618445.jpg" />
   `);
   });
 
@@ -251,13 +227,7 @@ describe('@graphcms/rich-text-html-renderer', () => {
     const html = astToHtmlString({ content: videoContent });
 
     expect(html).toEqual(`
-    <video
-      src="https://media.graphassets.com/oWd7OYr5Q5KGRJW9ujRO"
-      controls
-      width="400"
-      height="400"
-      title="file_example_MP4_480_1_5MG.m4v"
-    >
+    <video src="https://media.graphassets.com/oWd7OYr5Q5KGRJW9ujRO" controls width="400" height="400" title="file_example_MP4_480_1_5MG.m4v">
       <p>
         Your browser doesn't support HTML5 video. Here is a
         <a href="https://media.graphassets.com/oWd7OYr5Q5KGRJW9ujRO">link to the video</a> instead.
@@ -330,7 +300,7 @@ describe('@graphcms/rich-text-html-renderer', () => {
 });
 
 describe('custom embeds and assets', () => {
-  it('should render embed video, image, and audio assets', () => {
+  it('should render video, image, and audio assets', () => {
     const references = [
       {
         id: 'cknjbzowggjo90b91kjisy03a',
@@ -350,8 +320,6 @@ describe('custom embeds and assets', () => {
     ];
 
     const html = astToHtmlString({ content: embedAssetContent, references });
-
-    console.log(html);
 
     expect(html).toMatchSnapshot(``);
   });
@@ -441,6 +409,16 @@ describe('custom embeds and assets', () => {
         nodeType: 'Asset',
       },
       {
+        type: 'link',
+        nodeId: 'link_id',
+        children: [
+          {
+            text: 'click here',
+          },
+        ],
+        nodeType: 'Article',
+      },
+      {
         type: 'embed',
         nodeId: 'custom_post_id',
         children: [
@@ -467,6 +445,10 @@ describe('custom embeds and assets', () => {
         id: '',
         title: 'GraphCMS is awesome :rocket:',
       },
+      {
+        id: '',
+        slug: 'graphcms-is-awesome',
+      },
     ];
 
     /**
@@ -477,7 +459,7 @@ describe('custom embeds and assets', () => {
       references,
     });
 
-    expect(console.error).toHaveBeenCalledTimes(3);
+    expect(console.error).toHaveBeenCalledTimes(4);
     expect(html).toEqual(``);
   });
 
@@ -591,6 +573,42 @@ describe('custom embeds and assets', () => {
     );
   });
 
+  it('should render custom link models', () => {
+    const contentObject: RichTextContent = [
+      {
+        type: 'link',
+        nodeId: 'my_article',
+        children: [
+          {
+            text: 'click here',
+          },
+        ],
+        nodeType: 'Article',
+      },
+    ];
+
+    const references = [
+      {
+        id: 'my_article',
+        slug: 'introducing-link-embeds',
+      },
+    ];
+
+    const html = astToHtmlString({
+      content: contentObject,
+      references,
+      renderers: {
+        link: {
+          Article: ({ slug, children }: LinkEmbedProps<{ slug: string }>) => {
+            return `<a href="/${slug}">${children}</a>`;
+          },
+        },
+      },
+    });
+
+    expect(html).toEqual(`<a href="/introducing-link-embeds">click here</a>`);
+  });
+
   it(`should show a warning if embeds are found but there aren't any renderer for it`, () => {
     console.warn = jest.fn();
 
@@ -605,12 +623,26 @@ describe('custom embeds and assets', () => {
         ],
         nodeType: 'Post',
       },
+      {
+        type: 'link',
+        nodeId: 'link_id',
+        children: [
+          {
+            text: 'My link',
+          },
+        ],
+        nodeType: 'Article',
+      },
     ];
 
     const references = [
       {
         id: 'custom_post_id',
         title: 'GraphCMS is awesome :rocket:',
+      },
+      {
+        id: 'link_id',
+        title: 'My link',
       },
     ];
 
@@ -619,7 +651,7 @@ describe('custom embeds and assets', () => {
       references,
     });
 
-    expect(console.warn).toHaveBeenCalledTimes(1);
+    expect(console.warn).toHaveBeenCalledTimes(2);
     expect(html).toEqual(``);
   });
 
@@ -683,13 +715,7 @@ describe('custom embeds and assets', () => {
     });
 
     expect(html).toEqual(`<p>Inline asset
-    <video
-      src="https://media.graphassets.com/7M0lXLdCQfeIDXnT2SVS"
-      controls
-      width="100%"
-      height="100%"
-      title=""
-    >
+    <video src="https://media.graphassets.com/7M0lXLdCQfeIDXnT2SVS" controls width="100%" height="100%" >
       <p>
         Your browser doesn't support HTML5 video. Here is a
         <a href="https://media.graphassets.com/7M0lXLdCQfeIDXnT2SVS">link to the video</a> instead.

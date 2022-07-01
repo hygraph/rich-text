@@ -81,10 +81,10 @@ function RenderElement({
     return <Fragment />;
   }
 
-  const isEmbed = type === 'embed';
+  const isEmbed = nodeId && nodeType;
 
   /**
-   * The .filter method returns an array with all found elements.
+   * The .filter method returns an array with all elements found.
    * Since there won't be duplicated ID's, it's safe to use the first element.
    */
   const referenceValues = isEmbed
@@ -145,14 +145,17 @@ function RenderElement({
 
   // Option 1
   if (isEmbed && nodeType !== 'Asset') {
-    const element = renderers?.embed?.[nodeType as string];
+    const element =
+      type === 'link'
+        ? renderers?.link?.[nodeType as string]
+        : renderers?.embed?.[nodeType as string];
 
     if (element !== undefined) {
       elementToRender = element;
     } else {
       // Option 1.1
       console.warn(
-        `[@graphcms/rich-text-react-renderer]: No renderer found for custom embed node type ${nodeType}.`
+        `[@graphcms/rich-text-react-renderer]: No renderer found for custom ${type} nodeType ${nodeType}.`
       );
       return <Fragment />;
     }

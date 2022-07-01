@@ -15,13 +15,10 @@ export function Image({
   }
 
   return `
-    <img
-      loading="lazy"
-      src="${escapeHtml(src)}"
-      width="${width || ''}"
-      height="${height || ''}"
-      alt="${altText || ''}"
-      title="${title || ''}"
-    />
+    <img loading="lazy" src="${escapeHtml(src)}" ${
+    width ? `width="${width}"` : ``
+  } ${height ? `height="${height}"` : ``} ${
+    altText ? `alt="${altText}"` : ``
+  } ${title ? `title="${title}"` : ``} />
   `;
 }
