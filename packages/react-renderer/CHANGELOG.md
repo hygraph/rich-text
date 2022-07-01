@@ -1,5 +1,16 @@
 # @graphcms/rich-text-react-renderer
 
+## 0.6.0
+
+### Minor Changes
+
+- [`b272253`](https://github.com/GraphCMS/rich-text/commit/b2722534275efd2c5e473d549d0f0e5a28100025) [#84](https://github.com/GraphCMS/rich-text/pull/84) Thanks [@jpedroschmitz](https://github.com/jpedroschmitz)! - Adds support for Link Embeds
+
+### Patch Changes
+
+- Updated dependencies [[`b272253`](https://github.com/GraphCMS/rich-text/commit/b2722534275efd2c5e473d549d0f0e5a28100025)]:
+  - @graphcms/rich-text-types@0.5.0
+
 ## 0.5.0
 
 ### Minor Changes
