@@ -325,6 +325,39 @@ describe('@graphcms/rich-text-react-renderer', () => {
     `);
   });
 
+  it('removes the width and height attributes if they are set to 0', () => {
+    const { container } = render(
+      <RichText
+        content={[
+          {
+            src: 'https://media.graphassets.com/bFyCrmvuQfO7n0l5ZmH5',
+            type: 'image',
+            title: 'logo.svg',
+            width: 0,
+            handle: 'mQeGmwkXTnqTfcgUXVr7',
+            height: 0,
+            children: [
+              {
+                text: '',
+              },
+            ],
+            mimeType: 'image/svg+xml',
+          },
+        ]}
+      />
+    );
+
+    expect(container).toMatchInlineSnapshot(`
+      <div>
+        <img
+          loading="lazy"
+          src="https://media.graphassets.com/bFyCrmvuQfO7n0l5ZmH5"
+          title="logo.svg"
+        />
+      </div>
+    `);
+  });
+
   it('renders image with custom renderer', () => {
     const { container } = render(
       <RichText

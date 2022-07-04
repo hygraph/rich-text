@@ -212,6 +212,31 @@ describe('@graphcms/rich-text-html-renderer', () => {
   `);
   });
 
+  it('removes the width and height attributes if they are set to 0', () => {
+    const html = astToHtmlString({
+      content: [
+        {
+          src: 'https://media.graphassets.com/bFyCrmvuQfO7n0l5ZmH5',
+          type: 'image',
+          title: 'logo.svg',
+          width: 0,
+          handle: 'mQeGmwkXTnqTfcgUXVr7',
+          height: 0,
+          children: [
+            {
+              text: '',
+            },
+          ],
+          mimeType: 'image/svg+xml',
+        },
+      ],
+    });
+
+    expect(html).toEqual(`
+    <img loading="lazy" src="https://media.graphassets.com/bFyCrmvuQfO7n0l5ZmH5"    title="logo.svg" />
+  `);
+  });
+
   it('renders image with custom renderer', () => {
     const html = astToHtmlString({
       content: iframeContent,
