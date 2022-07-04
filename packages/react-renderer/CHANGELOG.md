@@ -1,5 +1,11 @@
 # @graphcms/rich-text-react-renderer
 
+## 0.6.1
+
+### Patch Changes
+
+- [`80c399f`](https://github.com/hygraph/rich-text/commit/80c399ff57f3f6e03cd5ecd8d23dd118ce3bb69d) [#87](https://github.com/hygraph/rich-text/pull/87) Thanks [@jpedroschmitz](https://github.com/jpedroschmitz)! - Make sure width and height are not included if set to 0
+
 ## 0.6.0
 
 ### Minor Changes
