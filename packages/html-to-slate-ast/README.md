@@ -1,8 +1,8 @@
 # @graphcms/html-to-slate-ast
 
-HTML to Slate AST converter for the GraphCMS's RichTextAST format.
+HTML to Slate AST converter for the Hygraph's RichTextAST format.
 
-⚠️ This converter outputs the custom flavour of Slate AST that is used at GraphCMS, and will most likely not produce an output compatible with your own Slate implementation. But feel free to fork it and adapt it to your needs.
+⚠️ This converter outputs the custom flavour of Slate AST that is used at Hygraph, and will most likely not produce an output compatible with your own Slate implementation. But feel free to fork it and adapt it to your needs.
 
 ## ⚡ Usage
 
@@ -60,9 +60,9 @@ const data = await client.request(newArticleQuery, {
 
 Here, in terms of Slate, `$content` is the editor node, so the `$ast` array must be assigned to the `children` key in that object.
 
-You can see the full example using [graphql-request](https://github.com/prisma-labs/graphql-request) to mutate the data into GraphCMS [here](https://github.com/GraphCMS/rich-text/blob/main/packages/html-to-slate-ast/examples/graphql-request-script.js)
+You can see the full example using [graphql-request](https://github.com/prisma-labs/graphql-request) to mutate the data into Hygraph [here](https://github.com/hygraph/rich-text/blob/main/packages/html-to-slate-ast/examples/graphql-request-script.js)
 
-See the docs about the [Rich Text field type](https://graphcms.com/docs/schema/field-types#rich-text) and [Content Api mutations](https://graphcms.com/docs/content-api/mutations)
+See the docs about the [Rich Text field type](https://hygraph.com/docs/schema/field-types#rich-text) and [Content Api mutations](https://hygraph.com/docs/content-api/mutations)
 
 ## 📝 License
 
@@ -70,4 +70,4 @@ Licensed under the MIT License.
 
 ---
 
-Made with 💜 by GraphCMS 👋 [join our community](https://slack.graphcms.com/)!
+Made with 💜 by Hygraph 👋 [join our community](https://slack.hygraph.com/)!

@@ -72,7 +72,7 @@ describe('@graphcms/rich-text-react-renderer', () => {
         <h2>
           
           <a
-            href="https://graphcms.com"
+            href="https://hygraph.com"
           >
             Testing Link
           </a>
@@ -80,7 +80,7 @@ describe('@graphcms/rich-text-react-renderer', () => {
         <h2>
           
           <a
-            href="https://graphcms.com"
+            href="https://hygraph.com"
           >
             Link
           </a>
@@ -219,13 +219,13 @@ describe('@graphcms/rich-text-react-renderer', () => {
         type: 'link',
         id: 'test',
         rel: 'noreferrer',
-        href: 'https://graphcms.com',
-        title: 'GraphCMS website',
+        href: 'https://hygraph.com',
+        title: 'Hygraph website',
         className: 'text-white',
         openInNewTab: true,
         children: [
           {
-            text: 'GraphCMS',
+            text: 'Hygraph',
           },
         ],
       },
@@ -237,13 +237,13 @@ describe('@graphcms/rich-text-react-renderer', () => {
       <div>
         <a
           class="text-white"
-          href="https://graphcms.com"
+          href="https://hygraph.com"
           id="test"
           rel="noreferrer"
           target="_blank"
-          title="GraphCMS website"
+          title="Hygraph website"
         >
-          GraphCMS
+          Hygraph
         </a>
       </div>
     `);
@@ -429,7 +429,7 @@ describe('@graphcms/rich-text-react-renderer', () => {
           { text: ' ' },
           { text: 'embroidered', italic: true },
           { text: ' ' },
-          { bold: true, text: 'GraphCMS' },
+          { bold: true, text: 'Hygraph' },
           { text: ' logo.' },
         ],
       },
@@ -617,11 +617,11 @@ describe('custom embeds and assets', () => {
       },
       {
         id: '',
-        title: 'GraphCMS is awesome :rocket:',
+        title: 'Hygraph is awesome :rocket:',
       },
       {
         id: '',
-        slug: 'graphcms-is-awesome',
+        slug: 'hygraph-is-awesome',
       },
     ];
 
@@ -735,7 +735,7 @@ describe('custom embeds and assets', () => {
     const references = [
       {
         id: 'custom_post_id',
-        title: 'GraphCMS is awesome :rocket:',
+        title: 'Hygraph is awesome :rocket:',
       },
     ];
 
@@ -764,7 +764,7 @@ describe('custom embeds and assets', () => {
           class="post"
         >
           <h3>
-            GraphCMS is awesome :rocket:
+            Hygraph is awesome :rocket:
           </h3>
           <p>
             custom_post_id
@@ -849,7 +849,7 @@ describe('custom embeds and assets', () => {
     const references = [
       {
         id: 'custom_post_id',
-        title: 'GraphCMS is awesome :rocket:',
+        title: 'Hygraph is awesome :rocket:',
       },
       {
         id: 'link_id',
@@ -893,7 +893,7 @@ describe('custom embeds and assets', () => {
     const references = [
       {
         id: 'custom_post_id_1',
-        title: 'GraphCMS is awesome :rocket:',
+        title: 'Hygraph is awesome :rocket:',
       },
       {
         id: 'custom_post_id_2',
@@ -928,7 +928,7 @@ describe('custom embeds and assets', () => {
       <div>
         <div>
           <h3>
-            GraphCMS is awesome :rocket:
+            Hygraph is awesome :rocket:
           </h3>
           <span>
             custom_post_id_1

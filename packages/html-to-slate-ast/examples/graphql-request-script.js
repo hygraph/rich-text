@@ -1,9 +1,9 @@
-import { GraphQLClient, gql } from 'graphql-request'
+import { GraphQLClient, gql } from 'graphql-request';
 import { htmlToSlateAST } from '@graphcms/html-to-slate-ast';
 
-const client = new GraphQLClient(`${process.env.GRAPHCMS_ENDPOINT}`, {
+const client = new GraphQLClient(`${process.env.HYGRAPH_ENDPOINT}`, {
   headers: {
-    Authorization: `Bearer ${process.env.GRAPHCMS_TOKEN}`,
+    Authorization: `Bearer ${process.env.HYGRAPH_TOKEN}`,
   },
 });
 
@@ -18,7 +18,7 @@ const newArticleQuery = gql`
       }
     }
   }
-`
+`;
 
 async function main() {
   const htmlString = '<ul><li>Hey <a href="thing">link text</a> here</li></ul>';
@@ -26,17 +26,17 @@ async function main() {
 
   // Create a RichText object from the AST
   const content = {
-    children: ast
-  }
+    children: ast,
+  };
 
   const data = await client.request(newArticleQuery, {
     title: 'Example title for an article',
-    content // Pass the RichText object as the content
-  })
+    content, // Pass the RichText object as the content
+  });
 
-  console.log(data)
+  console.log(data);
 }
 
 main()
   .then(() => process.exit(0))
-  .catch((e) => console.error(e));
+  .catch(e => console.error(e));

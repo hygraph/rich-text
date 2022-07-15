@@ -20,7 +20,7 @@ export const emptyContent: RichTextContent = [
         text: '',
       },
       {
-        href: 'https://graphcms.com',
+        href: 'https://hygraph.com',
         type: 'link',
         children: [
           {
@@ -37,7 +37,7 @@ export const emptyContent: RichTextContent = [
         text: '',
       },
       {
-        href: 'https://graphcms.com',
+        href: 'https://hygraph.com',
         type: 'link',
         children: [
           {

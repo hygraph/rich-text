@@ -103,7 +103,7 @@ exports[`@graphcms/rich-text-react-renderer should render empty text spaces 1`] 
     </i>
      
     <b>
-      GraphCMS
+      Hygraph
     </b>
      logo.
   </p>

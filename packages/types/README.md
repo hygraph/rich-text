@@ -1,7 +1,7 @@
 # @graphcms/rich-text-types
 
-TypeScript definitions for the GraphCMS Rich Text field type.
+TypeScript definitions for the Hygraph Rich Text field type.
 
 ---
 
-Made with 💜 by GraphCMS 👋 [join our community](https://slack.graphcms.com)!
+Made with 💜 by Hygraph 👋 [join our community](https://slack.hygraph.com)!
