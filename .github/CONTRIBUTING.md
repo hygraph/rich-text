@@ -68,7 +68,7 @@ This repository uses [changesets][] to do versioning. What that means for contri
 
 ### Publish canary version
 
-To publish a canary version using `changesets`, you'll need to be in the GraphCMS npm organization. Otherwise, ask a maintainer to do it for you. To get started, enter prerelease mode. You can do that with the `pre enter <tag>`. The tag that you need to pass is used in versions(e.g. `1.0.0-canary.0`) and the npm dist tag.
+To publish a canary version using `changesets`, you'll need to be in the Hygraph npm organization. Otherwise, ask a maintainer to do it for you. To get started, enter prerelease mode. You can do that with the `pre enter <tag>`. The tag that you need to pass is used in versions(e.g. `1.0.0-canary.0`) and the npm dist tag.
 
 A prerelease workflow might look something like this:
 

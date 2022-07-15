@@ -50,11 +50,11 @@ describe('@graphcms/rich-text-html-renderer', () => {
     const html = astToHtmlString({ content: emptyContent });
 
     expect(html).toEqual(`<h2>
-    <a href="https://graphcms.com" target="_self"     >
+    <a href="https://hygraph.com" target="_self"     >
       Testing Link
     </a>
   </h2><h2>
-    <a href="https://graphcms.com" target="_self"     >
+    <a href="https://hygraph.com" target="_self"     >
       Link
     </a>
    2</h2><table><tbody><tr><td><p>Row 1 - Col 1</p></td><td><p>Row 1 - Col 2</p></td></tr></tbody></table>`);
@@ -121,13 +121,13 @@ describe('@graphcms/rich-text-html-renderer', () => {
         type: 'link',
         id: 'test',
         rel: 'noreferrer',
-        href: 'https://graphcms.com',
-        title: 'GraphCMS website',
+        href: 'https://hygraph.com',
+        title: 'Hygraph website',
         className: 'text-white',
         openInNewTab: true,
         children: [
           {
-            text: 'GraphCMS',
+            text: 'Hygraph',
           },
         ],
       },
@@ -136,8 +136,8 @@ describe('@graphcms/rich-text-html-renderer', () => {
     const html = astToHtmlString({ content: linkContent });
 
     expect(html).toEqual(`
-    <a href="https://graphcms.com" target="_blank" class="text-white" rel="noreferrer" title="GraphCMS website" id="test" rel="noreferrer">
-      GraphCMS
+    <a href="https://hygraph.com" target="_blank" class="text-white" rel="noreferrer" title="Hygraph website" id="test" rel="noreferrer">
+      Hygraph
     </a>
   `);
   });
@@ -291,7 +291,7 @@ describe('@graphcms/rich-text-html-renderer', () => {
           { text: ' ' },
           { text: 'embroidered', italic: true },
           { text: ' ' },
-          { bold: true, text: 'GraphCMS' },
+          { bold: true, text: 'Hygraph' },
           { text: ' logo.' },
         ],
       },
@@ -300,7 +300,7 @@ describe('@graphcms/rich-text-html-renderer', () => {
     const html = astToHtmlString({ content: contentObject });
 
     expect(html).toEqual(
-      `<p>Sweet black <b>cap</b> <u>with</u> <i>embroidered</i> <b>GraphCMS</b> logo.</p>`
+      `<p>Sweet black <b>cap</b> <u>with</u> <i>embroidered</i> <b>Hygraph</b> logo.</p>`
     );
   });
 
@@ -468,11 +468,11 @@ describe('custom embeds and assets', () => {
       },
       {
         id: '',
-        title: 'GraphCMS is awesome :rocket:',
+        title: 'Hygraph is awesome :rocket:',
       },
       {
         id: '',
-        slug: 'graphcms-is-awesome',
+        slug: 'hygraph-is-awesome',
       },
     ];
 
@@ -577,7 +577,7 @@ describe('custom embeds and assets', () => {
     const references = [
       {
         id: 'custom_post_id',
-        title: 'GraphCMS is awesome :rocket:',
+        title: 'Hygraph is awesome :rocket:',
       },
     ];
 
@@ -594,7 +594,7 @@ describe('custom embeds and assets', () => {
     });
 
     expect(html).toEqual(
-      `<div class="post"><h3>GraphCMS is awesome :rocket:</h3><p>custom_post_id</p></div>`
+      `<div class="post"><h3>Hygraph is awesome :rocket:</h3><p>custom_post_id</p></div>`
     );
   });
 
@@ -663,7 +663,7 @@ describe('custom embeds and assets', () => {
     const references = [
       {
         id: 'custom_post_id',
-        title: 'GraphCMS is awesome :rocket:',
+        title: 'Hygraph is awesome :rocket:',
       },
       {
         id: 'link_id',
@@ -698,7 +698,7 @@ describe('custom embeds and assets', () => {
     const references = [
       {
         id: 'custom_post_id_1',
-        title: 'GraphCMS is awesome :rocket:',
+        title: 'Hygraph is awesome :rocket:',
       },
     ];
 
@@ -721,7 +721,7 @@ describe('custom embeds and assets', () => {
     });
 
     expect(html).toEqual(
-      `<div><h3>GraphCMS is awesome :rocket:</h3><span>custom_post_id_1</span></div>`
+      `<div><h3>Hygraph is awesome :rocket:</h3><span>custom_post_id_1</span></div>`
     );
   });
 

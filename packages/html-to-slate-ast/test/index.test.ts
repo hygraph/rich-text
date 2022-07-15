@@ -286,7 +286,7 @@ describe('Transforms lists', () => {
     });
   });
   test('nested, two leves, with a link', () => {
-    const input = `<ol><li>First item</li><li><a href="https://graphcms.com" target="_blank">Second item</a><ul><li>First nested item</li><li>Second nested item<ul><li>First deeply nested item</li></ul></li></ul></li><li>Third item</li></ol>`;
+    const input = `<ol><li>First item</li><li><a href="https://hygraph.com" target="_blank">Second item</a><ul><li>First nested item</li><li>Second nested item<ul><li>First deeply nested item</li></ul></li></ul></li><li>Third item</li></ol>`;
     return htmlToSlateAST(input).then(ast => {
       expect(ast).toEqual([
         {
@@ -314,7 +314,7 @@ describe('Transforms lists', () => {
                   children: [
                     {
                       type: 'link',
-                      href: 'https://graphcms.com',
+                      href: 'https://hygraph.com',
                       openInNewTab: true,
                       children: [
                         {
@@ -1103,7 +1103,7 @@ test('Transforms pre tags into code-block nodes', () => {
 describe('Should apply marks to anchor text node', () => {
   test('if the parent has a mark', async () => {
     const input =
-      '<p><em>Emphasized <a href="www.graphcms.com">link</a></em></p>';
+      '<p><em>Emphasized <a href="www.hygraph.com">link</a></em></p>';
     const ast = await htmlToSlateAST(input);
     expect(ast).toStrictEqual([
       {
@@ -1115,7 +1115,7 @@ describe('Should apply marks to anchor text node', () => {
           },
           {
             type: 'link',
-            href: 'www.graphcms.com',
+            href: 'www.hygraph.com',
             openInNewTab: false,
             children: [
               {
@@ -1131,7 +1131,7 @@ describe('Should apply marks to anchor text node', () => {
 
   test('if the mark is inside the anchor tag', async () => {
     const input =
-      '<p>Emphasized <a href="www.graphcms.com"><strong>link</strong></a></p>';
+      '<p>Emphasized <a href="www.hygraph.com"><strong>link</strong></a></p>';
     const ast = await htmlToSlateAST(input);
 
     expect(ast).toStrictEqual([
@@ -1141,7 +1141,7 @@ describe('Should apply marks to anchor text node', () => {
           { text: 'Emphasized ' },
           {
             type: 'link',
-            href: 'www.graphcms.com',
+            href: 'www.hygraph.com',
             openInNewTab: false,
             children: [{ text: 'link', bold: true }],
           },

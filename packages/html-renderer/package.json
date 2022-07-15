@@ -1,6 +1,6 @@
 {
   "name": "@graphcms/rich-text-html-renderer",
-  "description": "GraphCMS Rich Text HTML renderer",
+  "description": "Hygraph Rich Text HTML renderer",
   "version": "0.2.0",
   "author": "João Pedro Schmitz <hey@joaopedro.dev> (https://joaopedro.dev)",
   "license": "MIT",
@@ -25,11 +25,11 @@
     "html",
     "rich-text",
     "renderer",
-    "graphcms"
+    "hygraph"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/GraphCMS/rich-text.git",
+    "url": "git+https://github.com/hygraph/rich-text.git",
     "directory": "packages/html-renderer"
   },
   "main": "dist/index.js",

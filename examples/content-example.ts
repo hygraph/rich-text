@@ -4,7 +4,7 @@ export const content: RichTextContent = {
   children: [
     {
       type: 'heading-two',
-      children: [{ text: 'Awesome new GraphCMS cap!' }],
+      children: [{ text: 'Awesome new Hygraph cap!' }],
     },
     {
       src: 'https://media.graphassets.com/bFyCrmvuQfO7n0l5ZmH5',
@@ -30,7 +30,7 @@ export const content: RichTextContent = {
         { text: ' ' },
         { text: 'embroidered', italic: true },
         { text: ' ' },
-        { bold: true, text: 'GraphCMS' },
+        { bold: true, text: 'Hygraph' },
         { text: ' logo.' },
       ],
     },
@@ -184,6 +184,6 @@ export const references: EmbedReferences = [
   },
   {
     id: 'custom_post_id',
-    title: 'GraphCMS is awesome :rocket:',
+    title: 'Hygraph is awesome :rocket:',
   },
 ];

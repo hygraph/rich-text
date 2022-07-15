@@ -1,6 +1,6 @@
 # @graphcms/rich-text-html-renderer
 
-Render Rich Text content from GraphCMS in any application.
+Render Rich Text content from Hygraph in any application.
 
 ## ⚡ Getting started
 
@@ -16,7 +16,7 @@ yarn add @graphcms/rich-text-html-renderer
 
 ## 🔥 Usage/Examples
 
-To render the content on your application, you'll need to provide the array of elements returned from the GraphCMS API to the `astToHtmlString` function. The content has to be returned in `raw` (or `json`) format as the AST representation. For more information on how to query the Rich Text content, [check our documentation](https://graphcms.com/docs/api-reference/schema/field-types#rich-text).
+To render the content on your application, you'll need to provide the array of elements returned from the Hygraph API to the `astToHtmlString` function. The content has to be returned in `raw` (or `json`) format as the AST representation. For more information on how to query the Rich Text content, [check our documentation](https://hygraph.com/docs/api-reference/schema/field-types#rich-text).
 
 ```js
 import { astToHtmlString } from '@graphcms/rich-text-html-renderer';
@@ -259,7 +259,7 @@ const content = [
 const references = [
   {
     id: 'custom_post_id',
-    title: 'GraphCMS is awesome :rocket:',
+    title: 'Hygraph is awesome :rocket:',
   },
 ];
 
@@ -334,7 +334,7 @@ const content = [
 const references = [
   {
     id: 'post_id',
-    slug: 'graphcms-is-awesome',
+    slug: 'hygraph-is-awesome',
   },
 ];
 
@@ -353,7 +353,7 @@ const html = astToHtmlString({
 
 ## Empty elements
 
-By default, we remove empty headings from the element list to prevent SEO issues. Other elements, such as `thead` are also removed. You can find the complete list [here](https://github.com/GraphCMS/rich-text/blob/main/packages/types/src/index.ts#L168).
+By default, we remove empty headings from the element list to prevent SEO issues. Other elements, such as `thead` are also removed. You can find the complete list [here](https://github.com/hygraph/rich-text/blob/main/packages/types/src/index.ts#L168).
 
 ## TypeScript
 
@@ -430,4 +430,4 @@ Licensed under the MIT License.
 
 ---
 
-Made with 💜 by GraphCMS 👋 [join our community](https://slack.graphcms.com/)!
+Made with 💜 by Hygraph 👋 [join our community](https://slack.hygraph.com/)!

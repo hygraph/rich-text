@@ -1,6 +1,6 @@
 # @graphcms/rich-text-react-renderer
 
-Render Rich Text content from GraphCMS in React applications.
+Render Rich Text content from Hygraph in React applications.
 
 ## ⚡ Getting started
 
@@ -16,7 +16,7 @@ yarn add @graphcms/rich-text-react-renderer
 
 ## 🔥 Usage/Examples
 
-To render the content on your application, you'll need to provide the array of elements returned from the GraphCMS API to the `RichText` component. The content has to be returned in `raw` (or `json`) format as the AST representation. For more information on how to query the Rich Text content, [check our documentation](https://graphcms.com/docs/api-reference/schema/field-types#rich-text).
+To render the content on your application, you'll need to provide the array of elements returned from the Hygraph API to the `RichText` component. The content has to be returned in `raw` (or `json`) format as the AST representation. For more information on how to query the Rich Text content, [check our documentation](https://hygraph.com/docs/api-reference/schema/field-types#rich-text).
 
 ```tsx
 import { RichText } from '@graphcms/rich-text-react-renderer';
@@ -270,7 +270,7 @@ const content = [
 const references = [
   {
     id: 'custom_post_id',
-    title: 'GraphCMS is awesome :rocket:',
+    title: 'Hygraph is awesome :rocket:',
   },
 ];
 
@@ -349,7 +349,7 @@ const content = [
 const references = [
   {
     id: 'post_id',
-    slug: 'graphcms-is-awesome',
+    slug: 'hygraph-is-awesome',
   },
 ];
 
@@ -372,7 +372,7 @@ function App() {
 
 ## Empty elements
 
-By default, we remove empty headings from the element list to prevent SEO issues. Other elements, such as `thead` are also removed. You can find the complete list [here](https://github.com/GraphCMS/rich-text/blob/main/packages/types/src/index.ts#L168).
+By default, we remove empty headings from the element list to prevent SEO issues. Other elements, such as `thead` are also removed. You can find the complete list [here](https://github.com/hygraph/rich-text/blob/main/packages/types/src/index.ts#L168).
 
 ## TypeScript
 
@@ -510,7 +510,7 @@ function App() {
 }
 ```
 
-Since the images are in the GraphCMS CDN, you need to specify our domain in the `next.config.js` file. For more information, check [this guide](https://nextjs.org/docs/basic-features/image-optimization#domains).
+Since the images are in the Hygraph CDN, you need to specify our domain in the `next.config.js` file. For more information, check [this guide](https://nextjs.org/docs/basic-features/image-optimization#domains).
 
 ```js
 module.exports = {
@@ -542,7 +542,7 @@ Here's a full blown example for a single blog post page with rich text content.
 // [slug.jsx]
 import { RichText } from '@graphcms/rich-text-react-renderer';
 import { getPlaiceholder } from 'plaiceholder';
-import { fetchFromGraphCMS } from '../../lib/graphcms';
+import { fetchFromHygraph } from '../../lib/hygraph';
 import Image from 'next/image';
 
 // Page template
@@ -581,7 +581,7 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = async context => {
-  const data = await fetchFromGraphCMS({
+  const data = await fetchFromHygraph({
     // Sample query, adjust to your content structure.
     // Note: 'id' and 'mimeType' are required for custom components.
     query: `
@@ -679,7 +679,7 @@ function App() {
 
 ### Gatsby Image component
 
-Unfortunately, there's no way to use the Gatsby Image component with this package at the moment. The `GatsbyImage` component (for dynamic images) fetches the image from a query during build time, which is not possible to accomplish right now. For more information, see [GraphCMS/rich-text#16](https://github.com/GraphCMS/rich-text/pull/16).
+Unfortunately, there's no way to use the Gatsby Image component with this package at the moment. The `GatsbyImage` component (for dynamic images) fetches the image from a query during build time, which is not possible to accomplish right now. For more information, see [hygraph/rich-text#16](https://github.com/hygraph/rich-text/pull/16).
 
 ### Code blocks with [Prism.js](https://prismjs.com/)
 
@@ -730,4 +730,4 @@ Licensed under the MIT License.
 
 ---
 
-Made with 💜 by GraphCMS 👋 [join our community](https://slack.graphcms.com/)!
+Made with 💜 by Hygraph 👋 [join our community](https://slack.hygraph.com/)!

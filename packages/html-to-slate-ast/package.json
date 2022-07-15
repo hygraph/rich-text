@@ -1,7 +1,7 @@
 {
   "name": "@graphcms/html-to-slate-ast",
   "version": "0.12.1",
-  "description": "Convert HTML to GraphCMS's RichTextAST (slate)",
+  "description": "Convert HTML to Hygraph's RichTextAST (slate)",
   "license": "MIT",
   "scripts": {
     "start": "tsdx watch --tsconfig tsconfig.build.json --verbose --noClean",
@@ -28,11 +28,11 @@
   "keywords": [
     "slate",
     "rich-text",
-    "graphcms"
+    "hygraph"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/GraphCMS/rich-text.git",
+    "url": "git+https://github.com/hygraph/rich-text.git",
     "directory": "packages/html-to-slate-ast"
   },
   "main": "dist/index.js",

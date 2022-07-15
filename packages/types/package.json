@@ -1,6 +1,6 @@
 {
   "name": "@graphcms/rich-text-types",
-  "description": "TypeScript definitions for the GraphCMS Rich Text field type.",
+  "description": "TypeScript definitions for the Hygraph Rich Text field type.",
   "version": "0.5.0",
   "author": "João Pedro Schmitz <hey@joaopedro.dev> (https://joaopedro.dev)",
   "license": "MIT",
@@ -21,11 +21,11 @@
     "rich-text",
     "types",
     "typescript",
-    "graphcms"
+    "hygraph"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/GraphCMS/rich-text-renderer.git",
+    "url": "git+https://github.com/hygraph/rich-text.git",
     "directory": "packages/types"
   },
   "main": "dist/index.js",
