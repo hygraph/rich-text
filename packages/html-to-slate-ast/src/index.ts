@@ -60,8 +60,7 @@ const ELEMENT_TAGS: Record<
       title: title,
       children: [{
         text: "" // required by Hygraph
-      }],
-      mimeType: "image/jpeg"
+      }]
     };
   },
   PRE: () => ({ type: 'code-block' }),
