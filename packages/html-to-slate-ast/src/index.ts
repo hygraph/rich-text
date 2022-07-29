@@ -55,10 +55,13 @@ const ELEMENT_TAGS: Record<
       : '(Image)';
     if (href === null) return {};
     return {
-      type: 'link',
-      href: sanitizeUrl(href),
-      title,
-      openInNewTab: true,
+      type: 'image',
+      src: sanitizeUrl.sanitizeUrl(href),
+      title: title,
+      children: [{
+        text: "" // required by Hygraph
+      }],
+      mimeType: "image/jpeg"
     };
   },
   PRE: () => ({ type: 'code-block' }),
