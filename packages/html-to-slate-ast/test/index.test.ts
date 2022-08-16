@@ -689,7 +689,7 @@ test('Transforms Google Docs input', () => {
   const input = fs
     .readFileSync(__dirname + '/google-docs_input.html')
     .toString();
-  return htmlToSlateAST(input).then(ast =>
+  return htmlToSlateAST(input).then(ast => {
     expect(ast).toEqual([
       {
         type: 'heading-one',
@@ -927,12 +927,7 @@ test('Transforms Google Docs input', () => {
                     type: 'table_cell',
                     children: [
                       {
-                        type: 'paragraph',
-                        children: [
-                          {
-                            text: '',
-                          },
-                        ],
+                        text: '\n',
                       },
                     ],
                   },
@@ -940,12 +935,7 @@ test('Transforms Google Docs input', () => {
                     type: 'table_cell',
                     children: [
                       {
-                        type: 'paragraph',
-                        children: [
-                          {
-                            text: '',
-                          },
-                        ],
+                        text: '\n',
                       },
                     ],
                   },
@@ -981,8 +971,8 @@ test('Transforms Google Docs input', () => {
           },
         ],
       },
-    ])
-  );
+    ]);
+  });
 });
 
 test('Converts word documents', () => {
