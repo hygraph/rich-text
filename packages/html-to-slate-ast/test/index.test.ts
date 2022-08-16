@@ -576,6 +576,115 @@ test('Transforms iframe correctly', async () => {
   ]);
 });
 
+test('Transforms tables with nested html tags as cells', async () => {
+  const input = fs
+    .readFileSync(__dirname + '/html_input_table.html')
+    .toString();
+
+  const ast = await htmlToSlateAST(input);
+  expect(ast).toStrictEqual([
+    {
+      type: 'table',
+      children: [
+        {
+          type: 'table_body',
+          children: [
+            {
+              type: 'table_row',
+              children: [
+                {
+                  type: 'table_cell',
+                  children: [
+                    {
+                      type: 'paragraph',
+                      children: [
+                        {
+                          bold: true,
+                          text: 'R1C1 - BOLD TEXT',
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  type: 'table_cell',
+                  children: [
+                    {
+                      type: 'paragraph',
+                      children: [
+                        {
+                          text: 'R1C2',
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  type: 'table_cell',
+                  children: [
+                    {
+                      type: 'paragraph',
+                      children: [
+                        {
+                          text: 'R1C3',
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              type: 'table_row',
+              children: [
+                {
+                  type: 'table_cell',
+                  children: [
+                    {
+                      type: 'paragraph',
+                      children: [
+                        {
+                          text: 'R2C1',
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  type: 'table_cell',
+                  children: [
+                    {
+                      italic: true,
+                      text: 'R2C2 - ITALIC TEXT',
+                    },
+                  ],
+                },
+                {
+                  type: 'table_cell',
+                  children: [
+                    {
+                      type: 'paragraph',
+                      children: [
+                        {
+                          bold: true,
+                          text: 'R2C3 - BOLD TEXT',
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      text: '\n',
+    },
+  ]);
+});
+
 test('Transforms Google Docs input', () => {
   const input = fs
     .readFileSync(__dirname + '/google-docs_input.html')
