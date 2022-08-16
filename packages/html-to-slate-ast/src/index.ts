@@ -234,19 +234,17 @@ function deserialize<
     } else if (nodeName === 'TD' || nodeName === 'TH') {
       // if TD or TH is empty, insert a paragraph to ensure selection can be placed inside
       const childNodes = Array.from((el as HTMLTableCellElement).childNodes);
-      const modifiedChildren =
-        childNodes.length === 0
-          ? [
-              {
-                type: 'paragraph',
-                children: [{ text: '' }],
-              },
-            ]
-          : childNodes.map(child => ({
-              type: 'paragraph',
-              children: [{ text: child.textContent ? child.textContent : '' }],
-            }));
-      return jsx('element', attrs, modifiedChildren);
+      if (childNodes.length === 0) {
+        return jsx('element', attrs, [
+          {
+            type: 'paragraph',
+            children: [{ text: '' }],
+          },
+        ]);
+      } else {
+        const children = childNodes.map(c => deserialize(c, global)).flat();
+        return jsx('element', attrs, children);
+      }
     } else if (nodeName === 'IMG') {
       return jsx('element', attrs, [attrs.href]);
     }
