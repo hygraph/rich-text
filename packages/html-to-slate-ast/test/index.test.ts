@@ -491,11 +491,205 @@ test('Transforms inner spans wrapped in a div into paragraph', () => {
   );
 });
 
+test('Transforms iframe correctly', async () => {
+  const input = fs
+    .readFileSync(__dirname + '/html_input_iframe.html')
+    .toString();
+
+  const ast = await htmlToSlateAST(input);
+  expect(ast).toStrictEqual([
+    {
+      type: 'paragraph',
+      children: [
+        {
+          text: 'SANTA CLARA, Calif., (June 20, 2017) –',
+          bold: true,
+        },
+        {
+          text: ' experience for fans and newcomers alike.\n  ',
+        },
+      ],
+    },
+    {
+      type: 'paragraph',
+      children: [
+        {
+          url: '//www.youtube.com/embed/ljiWOrULppk?rel=0',
+          type: 'iframe',
+          width: 640,
+          height: 360,
+          children: [
+            {
+              text: '',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      type: 'paragraph',
+      children: [
+        {
+          text: ' ',
+        },
+      ],
+    },
+    {
+      type: 'paragraph',
+      children: [
+        {
+          text: '.hack',
+          italic: true,
+        },
+        {
+          text:
+            ' is a multimedia franchise created and developed by famed\n    Japanese developer CyberConnect2. Comprising of video games, anime, novels,\n    and manga, the world of ',
+        },
+        {
+          text: '.hack',
+          italic: true,
+        },
+        {
+          text:
+            ' focuses on the mysterious events\n    surrounding a wildly popular in-universe massively multiplayer role-playing\n    game called The World. ',
+        },
+        {
+          text: '.hack//G.U. ',
+          italic: true,
+        },
+        {
+          text: 'begins after the events of the\n    original ',
+        },
+        {
+          text: '.hack ',
+          italic: true,
+        },
+        {
+          text:
+            'series with players assuming the role of Haseo as he\n    tracks down a powerful Player Killer named Tri-Edge who killed his friend’s\n    in-game avatar Shino, and put her into a coma in real life.\n  ',
+        },
+      ],
+    },
+    {
+      text: '\n',
+    },
+  ]);
+});
+
+test('Transforms tables with nested html tags as cells', async () => {
+  const input = fs
+    .readFileSync(__dirname + '/html_input_table.html')
+    .toString();
+
+  const ast = await htmlToSlateAST(input);
+  expect(ast).toStrictEqual([
+    {
+      type: 'table',
+      children: [
+        {
+          type: 'table_body',
+          children: [
+            {
+              type: 'table_row',
+              children: [
+                {
+                  type: 'table_cell',
+                  children: [
+                    {
+                      type: 'paragraph',
+                      children: [
+                        {
+                          bold: true,
+                          text: 'R1C1 - BOLD TEXT',
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  type: 'table_cell',
+                  children: [
+                    {
+                      type: 'paragraph',
+                      children: [
+                        {
+                          text: 'R1C2',
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  type: 'table_cell',
+                  children: [
+                    {
+                      type: 'paragraph',
+                      children: [
+                        {
+                          text: 'R1C3',
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              type: 'table_row',
+              children: [
+                {
+                  type: 'table_cell',
+                  children: [
+                    {
+                      type: 'paragraph',
+                      children: [
+                        {
+                          text: 'R2C1',
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  type: 'table_cell',
+                  children: [
+                    {
+                      italic: true,
+                      text: 'R2C2 - ITALIC TEXT',
+                    },
+                  ],
+                },
+                {
+                  type: 'table_cell',
+                  children: [
+                    {
+                      type: 'paragraph',
+                      children: [
+                        {
+                          bold: true,
+                          text: 'R2C3 - BOLD TEXT',
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      text: '\n',
+    },
+  ]);
+});
+
 test('Transforms Google Docs input', () => {
   const input = fs
     .readFileSync(__dirname + '/google-docs_input.html')
     .toString();
-  return htmlToSlateAST(input).then(ast =>
+  return htmlToSlateAST(input).then(ast => {
     expect(ast).toEqual([
       {
         type: 'heading-one',
@@ -733,12 +927,7 @@ test('Transforms Google Docs input', () => {
                     type: 'table_cell',
                     children: [
                       {
-                        type: 'paragraph',
-                        children: [
-                          {
-                            text: '',
-                          },
-                        ],
+                        text: '\n',
                       },
                     ],
                   },
@@ -746,12 +935,7 @@ test('Transforms Google Docs input', () => {
                     type: 'table_cell',
                     children: [
                       {
-                        type: 'paragraph',
-                        children: [
-                          {
-                            text: '',
-                          },
-                        ],
+                        text: '\n',
                       },
                     ],
                   },
@@ -787,8 +971,8 @@ test('Transforms Google Docs input', () => {
           },
         ],
       },
-    ])
-  );
+    ]);
+  });
 });
 
 test('Converts word documents', () => {
