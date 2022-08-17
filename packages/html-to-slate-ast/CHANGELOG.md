@@ -1,5 +1,13 @@
 # @graphcms/html-to-slate-ast
 
+## 0.13.0
+
+### Minor Changes
+
+- [`37b3d32`](https://github.com/hygraph/rich-text/commit/37b3d3292b4c7b31dd388e32c6ba9619571cc352) [#93](https://github.com/hygraph/rich-text/pull/93) Thanks [@anmolarora1](https://github.com/anmolarora1)! - - Add IFrame support
+  - Add bold text support to table cells
+  - Add nested tags support to table cells
+
 ## 0.12.1
 
 ### Patch Changes
