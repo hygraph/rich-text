@@ -69,7 +69,7 @@ const ELEMENT_TAGS: Record<
     const width = el.getAttribute('width');
     return {
       type: 'iframe',
-      url: '//www.youtube.com/embed/ljiWOrULppk?rel=0',
+      url: src,
       // default iframe height is 150
       height: Number(height || 150),
       // default iframe width is 300
