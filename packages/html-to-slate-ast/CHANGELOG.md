@@ -1,5 +1,11 @@
 # @graphcms/html-to-slate-ast
 
+## 0.13.1
+
+### Patch Changes
+
+- [`c28a87d`](https://github.com/hygraph/rich-text/commit/c28a87d64b5ab3ed09b0dd8b840a3a806aa61eba) [#95](https://github.com/hygraph/rich-text/pull/95) Thanks [@anmolarora1](https://github.com/anmolarora1)! - fix: replace hardcoded iframe url with src
+
 ## 0.13.0
 
 ### Minor Changes
