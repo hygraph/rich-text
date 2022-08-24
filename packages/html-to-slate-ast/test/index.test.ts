@@ -514,7 +514,7 @@ test('Transforms iframe correctly', async () => {
       type: 'paragraph',
       children: [
         {
-          url: '//www.youtube.com/embed/ljiWOrULppk?rel=0',
+          url: 'https://www.youtube.com/embed/s-47dgkrQns',
           type: 'iframe',
           width: 640,
           height: 360,
