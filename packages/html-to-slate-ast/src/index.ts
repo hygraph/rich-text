@@ -30,7 +30,7 @@ const ELEMENT_TAGS: Record<
       ...(el.hasAttribute('class') && {
         className: el.getAttribute('class'),
       }),
-      openInNewTab: Boolean(el.getAttribute('target') === '_blank'),
+      openInNewTab: true,
     };
   },
   BLOCKQUOTE: () => ({ type: 'block-quote' }),
