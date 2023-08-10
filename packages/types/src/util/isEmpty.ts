@@ -1,5 +1,4 @@
 import { ElementNode, Text } from '../';
-import { isElement } from './isElement';
 import { isText } from './isText';
 
 export function isEmpty({
@@ -11,18 +10,15 @@ export function isEmpty({
   // It may have a link inside, that's why we need to check this condition.
   if (children.length > 1) {
     const hasText = children.filter(function f(child): boolean | number {
-      if (isText(child) && child.text !== '') {
+      if ((isText(child) && child.text !== '') ||
+      (child as ElementNode).type === 'link') {
         return true;
-      }
-
-      if (isElement(child)) {
-        return (child.children = child.children.filter(f)).length;
       }
 
       return false;
     });
 
-    return hasText.length > 0 ? false : true;
+    return !(hasText.length > 0);
   } else if (children[0].text === '') return true;
 
   return false;
