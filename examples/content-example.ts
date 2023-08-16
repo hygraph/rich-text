@@ -7,20 +7,6 @@ export const content: RichTextContent = {
       children: [{ text: 'Awesome new Hygraph cap!' }],
     },
     {
-      src: 'https://media.graphassets.com/bFyCrmvuQfO7n0l5ZmH5',
-      type: 'image',
-      title: 'logo.svg',
-      width: 0,
-      handle: 'mQeGmwkXTnqTfcgUXVr7',
-      height: 0,
-      children: [
-        {
-          text: '',
-        },
-      ],
-      mimeType: 'image/svg+xml',
-    },
-    {
       type: 'paragraph',
       children: [
         { text: 'Sweet black ' },
@@ -88,19 +74,9 @@ export const content: RichTextContent = {
       type: 'code-block',
       children: [
         {
-          text: 'const graph = \'cms\'\n\n<?php $echo "Hello" ?>',
+          text: 'const hy = \'graph\'\n\n<?php $echo "Hello" ?>',
         },
       ],
-    },
-    {
-      type: 'embed',
-      nodeId: 'cknjbzowggjo90b91kjisy03a',
-      children: [
-        {
-          text: '',
-        },
-      ],
-      nodeType: 'Asset',
     },
     {
       type: 'embed',
@@ -146,15 +122,6 @@ export const content: RichTextContent = {
 };
 
 export const references: EmbedReferences = [
-  {
-    id: 'cknjbzowggjo90b91kjisy03a',
-    handle: 'dsQtt0ARqO28baaXbVy9',
-    fileName: 'nkkwzgz0bw6fg6mqzjc1.png',
-    height: 690,
-    width: 880,
-    url: 'https://media.graphassets.com/dsQtt0ARqO28baaXbVy9',
-    mimeType: 'image/png',
-  },
   {
     id: 'ckrus0f14ao760b32mz2dwvgx',
     handle: '7M0lXLdCQfeIDXnT2SVS',
