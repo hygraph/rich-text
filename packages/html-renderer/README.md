@@ -67,6 +67,26 @@ const html = astToHtmlString({
 });
 ```
 
+If needed, you can also import the `defaultElements` from the package and use it as a base for your custom renderers.
+
+```js
+import {
+  astToHtmlString,
+  defaultElements,
+} from '@graphcms/rich-text-html-renderer';
+
+const content = {
+  /* ... */
+};
+
+const html = astToHtmlString({
+  content: inlineContent,
+  renderers: {
+    bold: props => defaultElements.bold(props),
+  },
+});
+```
+
 Below you can check the full list of elements you can customize, alongside the props available for each of them.
 
 - `a`
