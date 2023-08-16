@@ -1,7 +1,7 @@
 {
   "name": "@graphcms/rich-text-html-renderer",
   "description": "Hygraph Rich Text HTML renderer",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "author": "João Pedro Schmitz <hey@joaopedro.dev> (https://joaopedro.dev)",
   "license": "MIT",
   "scripts": {
