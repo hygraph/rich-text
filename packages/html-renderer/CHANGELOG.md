@@ -1,5 +1,11 @@
 # @graphcms/rich-text-html-renderer
 
+## 0.3.0
+
+### Minor Changes
+
+- [`7992b80`](https://github.com/hygraph/rich-text/commit/7992b80923dad0b88cd55b406770fdc15a050743) [#107](https://github.com/hygraph/rich-text/pull/107) Thanks [@rbastiansch](https://github.com/rbastiansch)! - Export `defaultElements`
+
 ## 0.2.0
 
 ### Minor Changes
