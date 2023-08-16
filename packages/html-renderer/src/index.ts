@@ -290,5 +290,5 @@ export function astToHtmlString({
   }).join('');
 }
 
-export * from './elements';
+export { defaultElements } from './defaultElements';
 export * from './types';
