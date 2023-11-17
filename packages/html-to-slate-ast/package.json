@@ -12,15 +12,14 @@
     "prepublish": "npm run build"
   },
   "peerDependencies": {
-    "jsdom": "^16.6.0",
-    "slate": "^0.65.3",
-    "slate-hyperscript": "^0.62.0"
+    "slate": "^0.66.1",
+    "slate-hyperscript": "^0.67.0"
   },
   "devDependencies": {
-    "@types/jsdom": "^16.2.11",
-    "jsdom": "^16.6.0",
-    "slate": "^0.65.3",
-    "slate-hyperscript": "^0.62.0"
+    "@types/jsdom": "^21.1.5",
+    "jsdom": "^22.1.0",
+    "slate": "^0.66.1",
+    "slate-hyperscript": "^0.67.0"
   },
   "publishConfig": {
     "access": "public"

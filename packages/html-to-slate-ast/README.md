@@ -15,7 +15,7 @@ This package needs to have the packages `slate` and `slate-hyperscript` installe
 npm install jsdom
 
 # required peer-dependancies
-npm install slate@0.58.3 slate-hyperscript@0.58.3
+npm install slate@0.66.1 slate-hyperscript@0.67.0
 npm install @graphcms/html-to-slate-ast
 ```
 
