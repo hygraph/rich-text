@@ -1,10 +1,5 @@
-name: 'size'
-on:
-  pull_request:
-    branches:
-      - master
-permissions:
-  pull-requests: write
+name: size
+on: [pull_request]
 jobs:
   size:
     runs-on: ubuntu-latest
