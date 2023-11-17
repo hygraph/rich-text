@@ -40,9 +40,6 @@
     "LICENSE.md",
     "dist"
   ],
-  "engines": {
-    "node": ">=10"
-  },
   "jest": {
     "setupFilesAfterEnv": [
       "@testing-library/jest-dom/extend-expect"

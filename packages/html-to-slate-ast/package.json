@@ -42,9 +42,6 @@
     "LICENSE.md",
     "dist"
   ],
-  "engines": {
-    "node": ">=10"
-  },
   "jest": {},
   "dependencies": {
     "@braintree/sanitize-url": "^5.0.2",
