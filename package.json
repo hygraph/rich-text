@@ -6,7 +6,6 @@
     "@changesets/cli": "^2.10.3",
     "@commitlint/cli": "^12.1.1",
     "@commitlint/config-conventional": "^12.1.1",
-    "@size-limit/preset-small-lib": "^4.10.2",
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.2.6",
     "@types/node": "^15.12.4",
@@ -19,7 +18,6 @@
     "lint-staged": "^11.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "size-limit": "^4.10.2",
     "tsdx": "^0.14.1",
     "typescript": "^4.2.4"
   },
@@ -36,26 +34,6 @@
     "prepublish": "lerna run prepublish",
     "changeset": "changeset",
     "release": "changeset publish",
-    "size": "size-limit",
-    "analyze": "size-limit --why",
     "prepare": "husky install"
-  },
-  "size-limit": [
-    {
-      "path": "packages/react-renderer/dist/rich-text-react-renderer.cjs.production.min.js",
-      "limit": "6 KB"
-    },
-    {
-      "path": "packages/react-renderer/dist/rich-text-react-renderer.esm.js",
-      "limit": "6 KB"
-    },
-    {
-      "path": "packages/html-renderer/dist/rich-text-html-renderer.cjs.production.min.js",
-      "limit": "3 KB"
-    },
-    {
-      "path": "packages/html-renderer/dist/rich-text-html-renderer.esm.js",
-      "limit": "3 KB"
-    }
-  ]
+  }
 }
