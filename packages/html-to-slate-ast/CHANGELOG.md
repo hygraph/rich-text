@@ -1,5 +1,11 @@
 # @graphcms/html-to-slate-ast
 
+## 0.13.3
+
+### Patch Changes
+
+- [`4774158`](https://github.com/hygraph/rich-text/commit/477415821d347c2265d304e0146d0c138f2bb5dc) [#112](https://github.com/hygraph/rich-text/pull/112) Thanks [@jpedroschmitz](https://github.com/jpedroschmitz)! - Update @braintree/sanitize-url to fix vulnerability issue
+
 ## 0.13.2
 
 ### Patch Changes
