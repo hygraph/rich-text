@@ -1,5 +1,11 @@
 # @graphcms/html-to-slate-ast
 
+## 0.13.2
+
+### Patch Changes
+
+- [`2cf8a43`](https://github.com/hygraph/rich-text/commit/2cf8a43e9a3d77672e29f52bb500317b4e3d2db6) [#110](https://github.com/hygraph/rich-text/pull/110) Thanks [@jpedroschmitz](https://github.com/jpedroschmitz)! - Updated dev and peer dependencies alongside docs to fix vulnerability warning report
+
 ## 0.13.1
 
 ### Patch Changes
