@@ -44,7 +44,7 @@
   ],
   "jest": {},
   "dependencies": {
-    "@braintree/sanitize-url": "^5.0.2",
+    "@braintree/sanitize-url": "^6.0.4",
     "@graphcms/rich-text-types": "^0.5.0"
   }
 }
