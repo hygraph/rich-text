@@ -1,0 +1,13 @@
+{
+  "mode": "pre",
+  "tag": "canary",
+  "initialVersions": {
+    "@graphcms/rich-text-html-renderer": "0.3.0",
+    "@graphcms/html-to-slate-ast": "0.13.3",
+    "@graphcms/rich-text-react-renderer": "0.6.1",
+    "@graphcms/rich-text-types": "0.5.0"
+  },
+  "changesets": [
+    "famous-needles-sneeze"
+  ]
+}
