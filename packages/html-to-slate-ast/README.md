@@ -8,18 +8,18 @@ HTML to Slate AST converter for the Hygraph's RichTextAST format.
 
 ### 1. Install
 
-This package needs to have the packages `slate` and `slate-hyperscript` installed, and `jsdom` as well if you need to run the converter in nodejs.
+This package needs to have the packages `slate` and `slate-hyperscript` installed, and `jsdom` as well if you need to run the converter in Node.js.
 
 ```bash
 npm install slate@0.66.1 slate-hyperscript@0.67.0 @graphcms/html-to-slate-ast
 
-# for node or isomorphic usage, jsdom is required
+# for Node.js or isomorphic usage, jsdom is required
 npm install jsdom
 ```
 
 ### 2. Convert your data
 
-☝️ `htmlToSlateAst` returns a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises)
+If you are using Node.js, you will need to use the `htmlToSlateAST` function, which returns a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises). If you are using this package in the browser, you can use the `htmlToSlateASTSync` function, which is synchronous and doesn't require the `jsdom` package.
 
 ```js
 import { htmlToSlateAST } from '@graphcms/html-to-slate-ast';

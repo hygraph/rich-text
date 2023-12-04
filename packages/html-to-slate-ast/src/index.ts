@@ -511,6 +511,10 @@ const parseDomDocument = async (normalizedHTML: string) => {
   }
 };
 
+const parseDomDocumentSync = (normalizedHTML: string) => {
+  return new DOMParser().parseFromString(normalizedHTML, 'text/html');
+};
+
 export function htmlToSlateAST<T>(
   html: string
 ): Promise<string | Descendant | ChildNode[] | Descendant[] | T | T[]>;
@@ -522,6 +526,21 @@ export async function htmlToSlateAST(html: string) {
     return await import('jsdom').then(jsdom => new jsdom.JSDOM().window);
   })();
   return deserialize(domDocument.body, global);
+}
+
+export function htmlToSlateASTSync(html: string) {
+  if (
+    typeof window === 'undefined' ||
+    typeof window.DOMParser === 'undefined'
+  ) {
+    throw new Error(
+      'This function is intended to be used in a browser environment only'
+    );
+  }
+
+  const normalizedHTML = normalizeHtml(html);
+  const domDocument = parseDomDocumentSync(normalizedHTML);
+  return deserialize(domDocument.body, window);
 }
 
 export default htmlToSlateAST;
