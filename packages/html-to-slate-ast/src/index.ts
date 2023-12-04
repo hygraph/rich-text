@@ -528,7 +528,9 @@ export async function htmlToSlateAST(html: string) {
   return deserialize(domDocument.body, global);
 }
 
-export function htmlToSlateASTSync(html: string) {
+export function htmlToSlateASTSync<T>(
+  html: string
+): string | Descendant | ChildNode[] | Descendant[] | T | T[] {
   if (
     typeof window === 'undefined' ||
     typeof window.DOMParser === 'undefined'
