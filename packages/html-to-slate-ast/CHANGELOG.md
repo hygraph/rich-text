@@ -1,5 +1,11 @@
 # @graphcms/html-to-slate-ast
 
+## 0.14.0-canary.1
+
+### Patch Changes
+
+- Fix htmlToSlateASTSync not working
+
 ## 0.14.0-canary.0
 
 ### Minor Changes

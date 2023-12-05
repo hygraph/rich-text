@@ -8,6 +8,7 @@
     "@graphcms/rich-text-types": "0.5.0"
   },
   "changesets": [
+    "blue-peaches-tap",
     "famous-needles-sneeze"
   ]
 }
