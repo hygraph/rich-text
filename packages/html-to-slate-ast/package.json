@@ -35,14 +35,23 @@
     "url": "git+https://github.com/hygraph/rich-text.git",
     "directory": "packages/html-to-slate-ast"
   },
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
   "files": [
     "README.md",
     "LICENSE.md",
     "dist"
   ],
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    },
+    "./client": {
+      "require": "./dist/client/index.js",
+      "import": "./dist/client/index.mjs",
+      "types": "./dist/client/index.d.ts"
+    }
+  },
   "jest": {},
   "dependencies": {
     "@braintree/sanitize-url": "^6.0.4",
