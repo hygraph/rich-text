@@ -1,5 +1,11 @@
 # @graphcms/html-to-slate-ast
 
+## 0.14.0-canary.5
+
+### Patch Changes
+
+- Revert export changes which breaks types
+
 ## 0.14.0-canary.4
 
 ### Patch Changes
