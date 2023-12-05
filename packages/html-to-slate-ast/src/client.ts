@@ -1,5 +1,6 @@
 import { Descendant } from 'slate';
-import { deserialize, normalizeHtml } from '../lib';
+import { normalizeHtml } from './normalizeHtml';
+import { deserialize } from './deserialize';
 
 const parseDomDocumentSync = (normalizedHTML: string) => {
   return new DOMParser().parseFromString(normalizedHTML, 'text/html');
