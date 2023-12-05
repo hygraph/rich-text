@@ -1,5 +1,11 @@
 # @graphcms/html-to-slate-ast
 
+## 0.14.0-canary.4
+
+### Patch Changes
+
+- Export htmlToSlateASTSync from index
+
 ## 0.14.0-canary.3
 
 ### Patch Changes
