@@ -4,8 +4,8 @@
   "description": "Convert HTML to Hygraph's RichTextAST (slate)",
   "license": "MIT",
   "scripts": {
-    "start": "tsdx watch --tsconfig tsconfig.build.json --verbose --noClean",
-    "build": "tsdx build --tsconfig tsconfig.build.json",
+    "start": "tsup --watch",
+    "build": "tsup",
     "test": "tsdx test --passWithNoTests",
     "test:watch": "tsdx test --watch --passWithNoTests",
     "lint": "tsdx lint",
@@ -19,7 +19,8 @@
     "@types/jsdom": "^21.1.5",
     "jsdom": "^22.1.0",
     "slate": "^0.66.1",
-    "slate-hyperscript": "^0.67.0"
+    "slate-hyperscript": "^0.67.0",
+    "tsup": "^8.0.1"
   },
   "publishConfig": {
     "access": "public"
@@ -35,7 +36,7 @@
     "directory": "packages/html-to-slate-ast"
   },
   "main": "dist/index.js",
-  "module": "dist/html-to-slate-ast.esm.js",
+  "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "files": [
     "README.md",
