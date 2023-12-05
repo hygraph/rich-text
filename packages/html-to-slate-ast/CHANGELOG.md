@@ -1,5 +1,23 @@
 # @graphcms/html-to-slate-ast
 
+## 0.14.0
+
+### Minor Changes
+
+- [`c831239`](https://github.com/hygraph/rich-text/commit/c8312392b3371ba58a9b7c1fed30696ba9b2a9f7) [#115](https://github.com/hygraph/rich-text/pull/115) Thanks [@jpedroschmitz](https://github.com/jpedroschmitz)! - Add htmlToSlateASTSync function
+
+### Patch Changes
+
+- [`786beef`](https://github.com/hygraph/rich-text/commit/786beef2a0736e26239e5d6267567961d64f97ea) [#115](https://github.com/hygraph/rich-text/pull/115) Thanks [@jpedroschmitz](https://github.com/jpedroschmitz)! - Fix htmlToSlateASTSync not working
+
+* [`bb5a39a`](https://github.com/hygraph/rich-text/commit/bb5a39aec1b91dc02de18729c3bd5c9af6bf3e5c) [#115](https://github.com/hygraph/rich-text/pull/115) Thanks [@jpedroschmitz](https://github.com/jpedroschmitz)! - Revert export changes which breaks types
+
+- [`2cac5c4`](https://github.com/hygraph/rich-text/commit/2cac5c4e20f6882ac5588c31197a6be723b2294e) [#115](https://github.com/hygraph/rich-text/pull/115) Thanks [@jpedroschmitz](https://github.com/jpedroschmitz)! - Correctly export it from /client
+
+* [`eb9ffd6`](https://github.com/hygraph/rich-text/commit/eb9ffd693dd3abe285a5f37608c51304e0b0b75e) [#115](https://github.com/hygraph/rich-text/pull/115) Thanks [@jpedroschmitz](https://github.com/jpedroschmitz)! - Export htmlToSlateASTSync from /client
+
+- [`9faadd1`](https://github.com/hygraph/rich-text/commit/9faadd1138de3cf38bef56aad86197713ec5b340) [#115](https://github.com/hygraph/rich-text/pull/115) Thanks [@jpedroschmitz](https://github.com/jpedroschmitz)! - Export htmlToSlateASTSync from index
+
 ## 0.14.0-canary.5
 
 ### Patch Changes

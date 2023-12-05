@@ -1,6 +1,6 @@
 {
   "name": "@graphcms/html-to-slate-ast",
-  "version": "0.14.0-canary.5",
+  "version": "0.14.0",
   "description": "Convert HTML to Hygraph's RichTextAST (slate)",
   "license": "MIT",
   "scripts": {
