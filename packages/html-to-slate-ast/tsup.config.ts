@@ -1,9 +1,8 @@
 import { defineConfig } from 'tsup';
 
 export default defineConfig(options => ({
-  entry: ['src/index.ts'],
+  entry: ['src/index.ts', 'src/client'],
   tsconfig: 'tsconfig.build.json',
-  splitting: true,
   minify: !options.watch,
   sourcemap: true,
   dts: true,

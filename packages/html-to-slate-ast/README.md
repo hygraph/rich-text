@@ -19,10 +19,12 @@ npm install jsdom
 
 ### 2. Convert your data
 
-If you are using Node.js, you will need to use the `htmlToSlateAST` function, which returns a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises). If you are using this package in the browser, you can use the `htmlToSlateASTSync` function, which is synchronous and doesn't require the `jsdom` package.
+If you are using Node.js, you will need to use the `htmlToSlateAST` function, which returns a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises). If you are using this package in the browser, you can use the `htmlToSlateASTSync` function (available at `@graphcms/html-to-slate-ast/client`), which is synchronous and doesn't require `jsdom`.
 
 ```js
 import { htmlToSlateAST } from '@graphcms/html-to-slate-ast';
+// Or
+import { htmlToSlateASTSync } from '@graphcms/html-to-slate-ast/client';
 
 async function main() {
   const htmlString = '<div><p>test</p></div>'; // or import from a file or database
