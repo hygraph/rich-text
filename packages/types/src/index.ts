@@ -26,6 +26,7 @@ export interface Element {
     | 'iframe'
     | 'embed'
     | 'code-block';
+
   [key: string]: unknown;
 }
 
@@ -78,12 +79,13 @@ export interface LinkElement extends LinkProps, Element {
 }
 
 export interface ImageProps {
+  type: 'image';
   src: string;
   title?: string;
   width?: number;
   height?: number;
   handle?: string;
-  mimeType?: AssetMimeTypes;
+  mimeType?: ImageMimeTypes;
   altText?: string;
 }
 
@@ -93,10 +95,12 @@ export interface ImageElement extends ImageProps, Element {
 
 export interface VideoProps {
   src: string;
+  type: 'video';
   title?: string;
-  width?: number;
-  height?: number;
+  width: number | null;
+  height: number | null;
   handle?: string;
+  mimeType: VideoMimeTypes;
 }
 
 export interface VideoElement extends VideoProps, Element {
