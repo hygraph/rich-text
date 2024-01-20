@@ -1,5 +1,11 @@
 # @graphcms/rich-text-types
 
+## 0.5.1
+
+### Patch Changes
+
+- [`86411d2`](https://github.com/hygraph/rich-text/commit/86411d2ca48761ad4f0d2dba141abfa3b77f050c) [#117](https://github.com/hygraph/rich-text/pull/117) Thanks [@joelpierre](https://github.com/joelpierre)! - Fix/video prop types
+
 ## 0.5.0
 
 ### Minor Changes
