@@ -6,6 +6,8 @@ HTML to Slate AST converter for the Hygraph's RichTextAST format.
 
 ## ⚡ Usage
 
+> Note: If you're using this package with Node.js, you'll need to use version 18 or higher.
+
 ### 1. Install
 
 This package needs to have the packages `slate` and `slate-hyperscript` installed, and `jsdom` as well if you need to run the converter in Node.js.
