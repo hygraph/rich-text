@@ -10,4 +10,5 @@ export default defineConfig(options => ({
   treeshake: true,
   clean: true,
   format: ['esm', 'cjs'],
+  skipNodeModulesBundle: true,
 }));
