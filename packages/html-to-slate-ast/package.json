@@ -9,7 +9,8 @@
     "test": "tsdx test --passWithNoTests",
     "test:watch": "tsdx test --watch --passWithNoTests",
     "lint": "tsdx lint",
-    "prepublish": "npm run build"
+    "prepublish": "npm run build",
+    "test:node": "node examples/node-script.js"
   },
   "peerDependencies": {
     "slate": "^0.66.1",
