@@ -26,3 +26,7 @@ jobs:
 
       - name: Test
         run: yarn test --ci --coverage --maxWorkers=2
+
+      - name: Run Node.js Environment Test for @graphcms/html-to-slate-ast
+        run: yarn test:node
+        working-directory: ./packages/html-to-slate-ast
