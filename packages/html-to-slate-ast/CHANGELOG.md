@@ -1,5 +1,11 @@
 # @graphcms/html-to-slate-ast
 
+## 0.14.1
+
+### Patch Changes
+
+- [`fa2b896`](https://github.com/hygraph/rich-text/commit/fa2b8969dd8b58209565844cfef2a127ca203d59) [#121](https://github.com/hygraph/rich-text/pull/121) Thanks [@jpedroschmitz](https://github.com/jpedroschmitz)! - Fix jsdom being bundled with the package
+
 ## 0.14.0
 
 ### Minor Changes
