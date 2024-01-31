@@ -14,7 +14,13 @@
   },
   "peerDependencies": {
     "slate": "^0.66.1",
-    "slate-hyperscript": "^0.67.0"
+    "slate-hyperscript": "^0.67.0",
+    "jsdom": "^24.0.0"
+  },
+  "peerDependenciesMeta": {
+    "jsdom": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "@types/jsdom": "^21.1.6",
