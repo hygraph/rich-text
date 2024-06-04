@@ -26,7 +26,7 @@ export function IFrame({ url }: Partial<IFrameProps>) {
         allow="fullscreen"
         frameBorder="0"
         referrerPolicy="no-referrer"
-      />
+      ></iframe>
     </div>
   `;
 }
