@@ -1,5 +1,11 @@
 # @graphcms/rich-text-html-renderer
 
+## 0.3.1
+
+### Patch Changes
+
+- [`c8a5a7c`](https://github.com/hygraph/rich-text/commit/c8a5a7c409efd8570e77bd28a66352eb9e519a42) [#127](https://github.com/hygraph/rich-text/pull/127) Thanks [@jpedroschmitz](https://github.com/jpedroschmitz)! - fix: add closing tag for iframe
+
 ## 0.3.0
 
 ### Minor Changes
