@@ -181,7 +181,7 @@ describe('@graphcms/rich-text-html-renderer', () => {
         allow="fullscreen"
         frameBorder="0"
         referrerPolicy="no-referrer"
-      />
+      ></iframe>
     </div>
   `);
   });
