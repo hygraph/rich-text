@@ -510,12 +510,17 @@ function App() {
 }
 ```
 
-Since the images are in the Hygraph CDN, you need to specify our domain in the `next.config.js` file. For more information, check [this guide](https://nextjs.org/docs/basic-features/image-optimization#domains).
+Since the images are in the Hygraph CDN, you need to specify our domain in the `next.config.js` file. For more information, check [this guide](https://nextjs.org/docs/app/api-reference/components/image#remotepatterns).
 
 ```js
 module.exports = {
   images: {
-    domains: ['media.graphassets.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**.graphassets.com',
+      },
+    ],
   },
 };
 ```
