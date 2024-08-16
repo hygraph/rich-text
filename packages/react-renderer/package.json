@@ -1,7 +1,7 @@
 {
   "name": "@graphcms/rich-text-react-renderer",
   "description": "Hygraph Rich Text React renderer",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "author": "João Pedro Schmitz <hey@joaopedro.dev> (https://joaopedro.dev)",
   "license": "MIT",
   "scripts": {
