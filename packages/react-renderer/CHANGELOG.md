@@ -1,5 +1,11 @@
 # @graphcms/rich-text-react-renderer
 
+## 0.6.2
+
+### Patch Changes
+
+- [`50696b8`](https://github.com/hygraph/rich-text/commit/50696b85ef30b1561f686a75a42e84bde3a39190) [#130](https://github.com/hygraph/rich-text/pull/130) Thanks [@jpedroschmitz](https://github.com/jpedroschmitz)! - Update documentation
+
 ## 0.6.1
 
 ### Patch Changes
