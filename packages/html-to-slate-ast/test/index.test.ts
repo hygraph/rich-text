@@ -1189,6 +1189,29 @@ test('Converts an image pasted from Google Docs into a link node', () => {
   );
 });
 
+test('Keeps image if it is hosted on hygraph', () => {
+  return htmlToSlateAST(
+    `<img
+        title="this is this image&#39;s title"
+        src="https://media.graphassets.com/output=format:webp/resize=,width:667,height:1000/8xrjYm4CR721mAZ1YAoy"
+        width="600" height="1000" style="margin-left:0px;margin-top:0px;" />`
+  ).then(ast => {
+    expect(ast).toStrictEqual([
+      {
+        type: 'image',
+        src:
+          'https://media.graphassets.com/output=format:webp/resize=,width:667,height:1000/8xrjYm4CR721mAZ1YAoy',
+        width: 600,
+        height: 1000,
+        title: "this is this image's title",
+        style: 'margin-left:0px;margin-top:0px;',
+        handle: '8xrjYm4CR721mAZ1YAoy',
+        children: [],
+      },
+    ]);
+  });
+});
+
 test('Reshape an incorrectly structured table', () => {
   return htmlToSlateAST(
     '<table><colgroup><col /><col /></colgroup><thead><tr><th></th></tr></thead><tbody><tr><td></td></tr><tr></tr></tbody></table>'

@@ -54,11 +54,39 @@ const ELEMENT_TAGS: Record<
       ? el.getAttribute('title')
       : '(Image)';
     if (href === null) return {};
+
+    // Fix text node when pasting images; sanitize URLs;
+    // if the image is not hosted on graphassets.com, we convert it to a link
+    if (href.includes('graphassets.com') === false) {
+      return {
+        type: 'link',
+        href: sanitizeUrl(href),
+        title,
+        openInNewTab: true,
+      };
+    }
+
+    // if href includes graphassets.com, we convert it to a image
+    // handle is always the last part of the href
+    const handle = href.split('/').pop();
+
     return {
-      type: 'link',
-      href: sanitizeUrl(href),
-      title,
-      openInNewTab: true,
+      type: 'image',
+      src: href,
+      ...(el.hasAttribute('title') && { title: el.getAttribute('title') }),
+      ...(el.hasAttribute('width') && {
+        width: Number(el.getAttribute('width')),
+      }),
+      ...(el.hasAttribute('height') && {
+        height: Number(el.getAttribute('height')),
+      }),
+      ...(el.hasAttribute('class') && {
+        className: el.getAttribute('class'),
+      }),
+      ...(el.hasAttribute('style') && {
+        style: el.getAttribute('style'),
+      }),
+      ...(handle && { handle }),
     };
   },
   PRE: () => ({ type: 'code-block' }),
