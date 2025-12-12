@@ -1,5 +1,11 @@
 # @graphcms/html-to-slate-ast
 
+## 0.14.2
+
+### Patch Changes
+
+- [`4f506a2`](https://github.com/hygraph/rich-text/commit/4f506a2337ad139fc0df7ef1a29266e776045fc1) [#136](https://github.com/hygraph/rich-text/pull/136) Thanks [@borivojevic](https://github.com/borivojevic)! - fix: preserve graphassets images during HTML import
+
 ## 0.14.1
 
 ### Patch Changes
